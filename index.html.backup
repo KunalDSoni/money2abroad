@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="description" content="Money2Abroad — Send money abroad at the real exchange rate. RBI authorised. Trusted by 4 million Indians worldwide." />
+<meta name="theme-color" content="#FFFFFF" />
+<title>Money2Abroad — International money transfers, beautifully simple.</title>
+
+<link rel="icon" type="image/jpeg" href="Money2Abroad Logo.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans:    ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Inter Tight"', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        ink:    { DEFAULT:'#1D1D1F', 950:'#0A0A0A', 900:'#1D1D1F', 700:'#424245', 500:'#6E6E73', 400:'#86868B', 300:'#A1A1A6', 200:'#D2D2D7', 100:'#E5E5EA', 50:'#F5F5F7' },
+        cream:  '#FBFBFD',
+        accent: { 50:'#FFF4EA', 100:'#FFE4CC', 500:'#FF6A00', 600:'#E55A00' }
+      },
+      letterSpacing: {
+        tightest: '-0.045em',
+        tighter:  '-0.03em',
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(0,0,0,0.04), 0 12px 40px -12px rgba(0,0,0,0.08)',
+        cardHover: '0 1px 2px rgba(0,0,0,0.04), 0 24px 60px -20px rgba(0,0,0,0.12)',
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #FFFFFF;
+    color: #1D1D1F;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  .font-display { font-family: 'Inter Tight', Inter, system-ui, sans-serif; font-feature-settings: 'ss01','cv11'; }
+
+  /* Headline scaling */
+  .h-display {
+    font-size: clamp(40px, 7.5vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    font-weight: 600;
+  }
+  .h-section {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+  }
+  .h-eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #FF6A00;
+  }
+  .lede {
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.5;
+    color: #424245;
+    font-weight: 400;
+  }
+
+  /* Buttons — Apple-style pills */
+  .btn-primary {
+    background: #1D1D1F;
+    color: #fff;
+    border-radius: 980px;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: background .2s ease, transform .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-primary:hover { background: #000; }
+  .btn-secondary {
+    background: transparent;
+    color: #1D1D1F;
+    border: 1px solid #1D1D1F;
+    border-radius: 980px;
+    padding: 11px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: background .2s ease, color .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-secondary:hover { background: #1D1D1F; color: #fff; }
+  .btn-link {
+    color: #1D1D1F;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color .2s ease;
+  }
+  .btn-link:hover { color: #FF6A00; }
+  .btn-link svg { transition: transform .2s ease; }
+  .btn-link:hover svg { transform: translateX(2px); }
+
+  /* Subtle reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: all 1s cubic-bezier(.16,.84,.44,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Live indicator */
+  .live-dot { position: relative; }
+  .live-dot::before {
+    content: ""; position: absolute; inset: -3px; border-radius: 50%; background: #FF6A00; opacity: 0.35;
+    animation: pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse { 0%{transform:scale(.7);opacity:.5} 100%{transform:scale(2.2);opacity:0} }
+
+  /* FAQ */
+  details summary { list-style: none; cursor: pointer; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] summary .faq-icon { transform: rotate(45deg); }
+  .faq-icon { transition: transform .25s ease; }
+
+  /* Mobile menu */
+  #mobileMenu { transition: max-height .35s ease, opacity .25s ease; max-height: 0; overflow: hidden; opacity: 0; }
+  #mobileMenu.open { max-height: 100vh; opacity: 1; }
+
+  /* Refined hover lift */
+  .lift { transition: transform .35s cubic-bezier(.16,.84,.44,1), box-shadow .35s ease; }
+  .lift:hover { transform: translateY(-3px); }
+
+  /* Compare row */
+  .row-divider > * + * { border-top: 1px solid #E5E5EA; }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+
+  /* Focus states */
+  button:focus-visible, a:focus-visible, input:focus-visible {
+    outline: 2px solid #FF6A00;
+    outline-offset: 2px;
+  }
+  input { -webkit-appearance: none; appearance: none; }
+
+  /* Hero glow */
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(255,106,0,0.06), transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(29,29,31,0.04), transparent 40%);
+    pointer-events: none;
+  }
+
+  /* Smooth currency flicker */
+  .flicker { transition: opacity .3s ease; }
+
+  /* Section spacing */
+  .section { padding: clamp(64px, 10vw, 120px) 0; }
+
+  /* Header scroll effect */
+  #siteHeader.scrolled {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom-color: rgba(0,0,0,0.08);
+  }
+
+  /* Tabular numerals for financial data */
+  .tabular { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+
+<!-- =========================== HEADER =========================== -->
+<header id="siteHeader" class="sticky top-0 z-50 transition-all duration-300 border-b border-transparent">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8 h-14 sm:h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center" aria-label="Money2Abroad home">
+      <img src="Money2Abroad Logo.jpg" alt="Money2Abroad" class="h-7 sm:h-8 w-auto" style="mix-blend-mode: multiply;" />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 text-[14px] font-normal text-ink-900">
+      <a href="#send"      class="hover:opacity-60 transition">Send</a>
+      <a href="#rates"     class="hover:opacity-60 transition">Rates</a>
+      <a href="#purposes"  class="hover:opacity-60 transition">Use cases</a>
+      <a href="#how"       class="hover:opacity-60 transition">How it works</a>
+      <a href="#security"  class="hover:opacity-60 transition">Security</a>
+      <a href="#faq"       class="hover:opacity-60 transition">Help</a>
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button class="hidden sm:inline-flex text-[14px] font-normal text-ink-900 hover:opacity-60 transition">Sign in</button>
+      <button class="btn-primary text-[14px]">Get started</button>
+      <button id="menuBtn" class="lg:hidden p-2 -mr-2 text-ink-900" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="lg:hidden border-t border-ink-100 bg-white">
+    <div class="px-5 py-5 flex flex-col gap-4 text-[16px] text-ink-900">
+      <a href="#send">Send</a>
+      <a href="#rates">Rates</a>
+      <a href="#purposes">Use cases</a>
+      <a href="#how">How it works</a>
+      <a href="#security">Security</a>
+      <a href="#faq">Help</a>
+      <hr class="border-ink-100"/>
+      <a href="#" class="text-ink-500">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<!-- =========================== HERO =========================== -->
+<section class="relative bg-cream overflow-hidden">
+  <div class="hero-glow"></div>
+
+  <div class="relative max-w-[1280px] mx-auto px-5 sm:px-8 pt-14 sm:pt-20 lg:pt-28 pb-16 sm:pb-24 lg:pb-32">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <!-- Headline -->
+      <div class="lg:col-span-7 reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-ink-100 mb-7 sm:mb-9">
+          <span class="live-dot w-1.5 h-1.5 bg-accent-500 rounded-full"></span>
+          <span class="text-[12.5px] font-medium text-ink-700">RBI authorised · trusted by 4M+ Indians</span>
+        </div>
+
+        <h1 class="font-display h-display text-ink-900">
+          Money to anywhere.<br/>
+          <span class="text-ink-500">In a moment.</span>
+        </h1>
+
+        <p class="mt-6 sm:mt-8 lede max-w-xl">
+          Send money abroad at the real exchange rate. No hidden fees, no surprises. Built for Indians sending money home, abroad, and everywhere in between.
+        </p>
+
+        <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-3">
+          <button class="btn-primary">Send money <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <a href="#how" class="btn-link">How it works <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Converter -->
+      <div class="lg:col-span-5 reveal">
+        <div class="bg-white rounded-2xl border border-ink-100 shadow-card overflow-hidden">
+          <div class="px-6 pt-6 pb-2 flex items-center justify-between">
+            <div class="text-[13px] font-medium text-ink-500">Live exchange</div>
+            <div class="flex items-center gap-1.5 text-[12px] font-medium text-ink-500">
+              <span class="live-dot w-1 h-1 bg-accent-500 rounded-full"></span>
+              Real-time
+            </div>
+          </div>
+
+          <div class="px-6 pt-2 pb-6 space-y-3">
+            <!-- You send -->
+            <label class="block">
+              <div class="text-[12.5px] text-ink-500 mb-1.5">You send</div>
+              <div class="flex items-stretch gap-2">
+                <input id="sendAmt" type="number" inputmode="decimal" value="100000" class="flex-1 min-w-0 bg-cream rounded-xl px-4 py-3.5 text-[22px] sm:text-[24px] font-medium tracking-tighter tabular text-ink-900 outline-none focus:ring-2 focus:ring-ink-900" />
+                <button class="flex items-center gap-2 px-4 py-3.5 bg-cream rounded-xl text-[14px] font-medium text-ink-900 whitespace-nowrap" aria-label="From INR">
+                  <span class="text-base">🇮🇳</span> INR
+                  <svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+            </label>
+
+            <!-- Fees breakdown -->
+            <div class="px-1 py-1 space-y-1.5 text-[13.5px]">
+              <div class="flex justify-between text-ink-500">
+                <span>Our fee (0.45%)</span>
+                <span class="tabular text-ink-900">− ₹<span id="fee">450</span></span>
+              </div>
+              <div class="flex justify-between text-ink-500">
+                <span>GST (18% on fee)</span>
+                <span class="tabular text-ink-900">− ₹<span id="gst">81</span></span>
+              </div>
+              <div class="flex justify-between text-ink-500 pt-1.5 border-t border-ink-100">
+                <span>Mid-market rate</span>
+                <span class="tabular text-ink-900">1 USD = ₹<span id="rate">83.42</span></span>
+              </div>
+            </div>
+
+            <!-- Recipient gets -->
+            <label class="block">
+              <div class="text-[12.5px] text-ink-500 mb-1.5">Recipient gets</div>
+              <div class="flex items-stretch gap-2">
+                <div class="flicker flex-1 min-w-0 bg-ink-900 rounded-xl px-4 py-3.5 text-[22px] sm:text-[24px] font-medium tracking-tighter tabular text-white" id="recvAmt">1,191.49</div>
+                <button class="flex items-center gap-2 px-4 py-3.5 bg-ink-900 text-white rounded-xl text-[14px] font-medium whitespace-nowrap" aria-label="To USD">
+                  <span class="text-base">🇺🇸</span> USD
+                  <svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+                </button>
+              </div>
+            </label>
+
+            <div class="flex items-center justify-between text-[12.5px] text-ink-500 pt-1">
+              <span>Arrives in <span class="text-ink-900 font-medium">28 seconds</span></span>
+              <span>Save <span class="text-accent-500 font-medium">₹3,920</span> vs banks</span>
+            </div>
+
+            <button class="btn-primary w-full justify-center mt-2 py-3.5 text-[15px]">Continue securely</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust strip -->
+  <div class="border-t border-ink-100">
+    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 py-8 sm:py-10">
+      <div class="text-[12px] uppercase tracking-[0.14em] text-ink-400 mb-5 sm:mb-6 font-medium">Authorised, audited, accredited</div>
+      <div class="flex flex-wrap items-center gap-x-8 sm:gap-x-12 gap-y-4 text-[13.5px] font-medium text-ink-700">
+        <div>RBI Authorised AD-II</div>
+        <div class="hidden sm:block w-px h-4 bg-ink-200"></div>
+        <div>FIU-IND Registered</div>
+        <div class="hidden sm:block w-px h-4 bg-ink-200"></div>
+        <div>ISO/IEC 27001</div>
+        <div class="hidden sm:block w-px h-4 bg-ink-200"></div>
+        <div>PCI-DSS Level 1</div>
+        <div class="hidden sm:block w-px h-4 bg-ink-200"></div>
+        <div>SOC 2 Type II</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== STAT NUMBERS =========================== -->
+<section class="section bg-white">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 reveal">
+      <div>
+        <div class="font-display text-[44px] sm:text-[56px] tracking-tightest text-ink-900 leading-none tabular">₹47K Cr</div>
+        <div class="mt-3 text-[14px] text-ink-500">Transferred annually across 180+ corridors</div>
+      </div>
+      <div>
+        <div class="font-display text-[44px] sm:text-[56px] tracking-tightest text-ink-900 leading-none tabular">28<span class="text-ink-300">s</span></div>
+        <div class="mt-3 text-[14px] text-ink-500">Median settlement time, end-to-end</div>
+      </div>
+      <div>
+        <div class="font-display text-[44px] sm:text-[56px] tracking-tightest text-ink-900 leading-none tabular">4.2M<span class="text-ink-300">+</span></div>
+        <div class="mt-3 text-[14px] text-ink-500">Indians worldwide transferring with us</div>
+      </div>
+      <div>
+        <div class="font-display text-[44px] sm:text-[56px] tracking-tightest text-ink-900 leading-none tabular">99.99<span class="text-ink-300">%</span></div>
+        <div class="mt-3 text-[14px] text-ink-500">Platform uptime — SLA-backed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== LIVE RATES =========================== -->
+<section id="rates" class="section bg-cream">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+      <div class="h-eyebrow mb-3">Live rates</div>
+      <h2 class="font-display h-section text-ink-900">The mid-market rate. Always.</h2>
+      <p class="mt-5 lede">No hidden FX margins, no quote inflation. The exact rate you'd see on Reuters — that's what you get.</p>
+    </div>
+
+    <div class="reveal bg-white rounded-2xl border border-ink-100 overflow-hidden">
+      <div class="hidden sm:grid grid-cols-12 px-6 py-4 border-b border-ink-100 text-[12px] uppercase tracking-[0.08em] text-ink-400 font-medium">
+        <div class="col-span-5">Currency</div>
+        <div class="col-span-3 text-right">Live mid-market</div>
+        <div class="col-span-2 text-right">24h</div>
+        <div class="col-span-2 text-right">Action</div>
+      </div>
+      <div id="ratesBody"></div>
+    </div>
+
+    <div class="mt-5 text-[12.5px] text-ink-400 text-center sm:text-left">Refreshed every 3 seconds · Sourced from Reuters, Bloomberg, Refinitiv</div>
+  </div>
+</section>
+
+<!-- =========================== FEATURE 1: SPEED =========================== -->
+<section class="section bg-white">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div class="lg:col-span-6 reveal order-2 lg:order-1">
+        <div class="aspect-[4/3] rounded-2xl bg-cream border border-ink-100 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+          <div>
+            <div class="text-[12px] uppercase tracking-[0.14em] text-ink-400 font-medium">Settlement timeline</div>
+            <div class="mt-1 font-display text-[32px] sm:text-[40px] tracking-tighter text-ink-900">28 seconds</div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent-500 shrink-0"></span><span class="text-[14px] text-ink-700">Mumbai → New York · 26s</span></div>
+            <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent-500 shrink-0"></span><span class="text-[14px] text-ink-700">Bengaluru → London · 31s</span></div>
+            <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent-500 shrink-0"></span><span class="text-[14px] text-ink-700">Delhi → Dubai · 18s</span></div>
+            <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-accent-500 shrink-0"></span><span class="text-[14px] text-ink-700">Chennai → Singapore · 22s</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 reveal order-1 lg:order-2">
+        <div class="h-eyebrow mb-3">Speed</div>
+        <h2 class="font-display h-section text-ink-900">Built on global rails.<br/>Tuned for Indian users.</h2>
+        <p class="mt-6 lede max-w-lg">SWIFT gpi for traceability, RippleNet for liquidity, Visa Direct for last-mile reach. Three of the world's most trusted payment rails — orchestrated to deliver in seconds, not days.</p>
+        <a href="#how" class="btn-link mt-8">See the architecture <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FEATURE 2: PRICE =========================== -->
+<section class="section bg-cream">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div class="lg:col-span-6 reveal">
+        <div class="h-eyebrow mb-3">Price</div>
+        <h2 class="font-display h-section text-ink-900">Up to 6× cheaper than your bank.</h2>
+        <p class="mt-6 lede max-w-lg">A flat 0.45% fee. Mid-market exchange rate, always. Zero hidden margin. Compare it to your bank's transfer — the difference may surprise you.</p>
+        <a href="#compare" class="btn-link mt-8">View comparison <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="lg:col-span-6 reveal">
+        <div class="aspect-[4/3] rounded-2xl bg-white border border-ink-100 p-8 sm:p-10 flex flex-col justify-center">
+          <div class="text-[12px] uppercase tracking-[0.14em] text-ink-400 font-medium mb-6">Sending ₹5,00,000 to USD</div>
+          <div class="space-y-5">
+            <div>
+              <div class="flex justify-between text-[14px] mb-1.5"><span class="text-ink-500">Bank average</span><span class="tabular text-ink-900 font-medium">$5,832</span></div>
+              <div class="h-1.5 bg-ink-100 rounded-full overflow-hidden"><div class="h-full bg-ink-300 rounded-full" style="width:97.5%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[14px] mb-1.5"><span class="text-ink-500">Western Union</span><span class="tabular text-ink-900 font-medium">$5,775</span></div>
+              <div class="h-1.5 bg-ink-100 rounded-full overflow-hidden"><div class="h-full bg-ink-300 rounded-full" style="width:96.5%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-[14px] mb-1.5"><span class="text-ink-900 font-medium">Money2Abroad</span><span class="tabular text-ink-900 font-semibold">$5,983</span></div>
+              <div class="h-1.5 bg-ink-100 rounded-full overflow-hidden"><div class="h-full bg-accent-500 rounded-full" style="width:100%"></div></div>
+            </div>
+          </div>
+          <div class="mt-7 pt-6 border-t border-ink-100 flex items-baseline justify-between">
+            <span class="text-[13px] text-ink-500">Recipient gets more</span>
+            <span class="font-display text-[28px] tracking-tighter text-ink-900">+ $151</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== HOW IT WORKS =========================== -->
+<section id="how" class="section bg-white">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+      <div class="h-eyebrow mb-3">How it works</div>
+      <h2 class="font-display h-section text-ink-900">Four steps. End-to-end.</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink-100 border border-ink-100 rounded-2xl overflow-hidden reveal">
+      <div class="bg-white p-7 sm:p-8 lg:p-10">
+        <div class="text-[13px] tabular text-ink-400 mb-5 font-medium">01</div>
+        <h3 class="font-display text-[20px] tracking-tighter text-ink-900 mb-2.5">Sign up in 90 seconds</h3>
+        <p class="text-[14.5px] leading-relaxed text-ink-500">DigiLocker-powered KYC. PAN and Aadhaar verified instantly. No paperwork.</p>
+      </div>
+      <div class="bg-white p-7 sm:p-8 lg:p-10">
+        <div class="text-[13px] tabular text-ink-400 mb-5 font-medium">02</div>
+        <h3 class="font-display text-[20px] tracking-tighter text-ink-900 mb-2.5">Lock your rate</h3>
+        <p class="text-[14.5px] leading-relaxed text-ink-500">Real-time mid-market rate. Hold for up to 24 hours, free of charge.</p>
+      </div>
+      <div class="bg-white p-7 sm:p-8 lg:p-10">
+        <div class="text-[13px] tabular text-ink-400 mb-5 font-medium">03</div>
+        <h3 class="font-display text-[20px] tracking-tighter text-ink-900 mb-2.5">Pay how you like</h3>
+        <p class="text-[14.5px] leading-relaxed text-ink-500">UPI, NEFT, IMPS, net banking, or debit card. Pay in INR, settle abroad.</p>
+      </div>
+      <div class="bg-white p-7 sm:p-8 lg:p-10">
+        <div class="text-[13px] tabular text-ink-400 mb-5 font-medium">04</div>
+        <h3 class="font-display text-[20px] tracking-tighter text-ink-900 mb-2.5">Track in real time</h3>
+        <p class="text-[14.5px] leading-relaxed text-ink-500">SWIFT gpi tracking, second-by-second status, WhatsApp updates included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== COUNTRIES =========================== -->
+<section id="send" class="section bg-cream">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12 sm:mb-16 reveal">
+      <div class="max-w-2xl">
+        <div class="h-eyebrow mb-3">Global reach</div>
+        <h2 class="font-display h-section text-ink-900">180+ countries.<br/>One platform.</h2>
+      </div>
+      <a href="#" class="btn-link">View all corridors <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 reveal">
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇺🇸</div><div class="font-display text-[15px] text-ink-900">United States</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">USD · ~28s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇬🇧</div><div class="font-display text-[15px] text-ink-900">United Kingdom</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">GBP · ~30s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇨🇦</div><div class="font-display text-[15px] text-ink-900">Canada</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">CAD · ~32s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇦🇺</div><div class="font-display text-[15px] text-ink-900">Australia</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">AUD · ~28s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇩🇪</div><div class="font-display text-[15px] text-ink-900">Germany</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">EUR · ~30s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇸🇬</div><div class="font-display text-[15px] text-ink-900">Singapore</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">SGD · ~22s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇦🇪</div><div class="font-display text-[15px] text-ink-900">UAE</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">AED · ~18s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇯🇵</div><div class="font-display text-[15px] text-ink-900">Japan</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">JPY · ~35s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇨🇭</div><div class="font-display text-[15px] text-ink-900">Switzerland</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">CHF · ~30s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇳🇿</div><div class="font-display text-[15px] text-ink-900">New Zealand</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">NZD · ~32s</div></div>
+      <div class="lift bg-white rounded-2xl p-5 sm:p-6 border border-ink-100"><div class="text-2xl mb-3">🇫🇷</div><div class="font-display text-[15px] text-ink-900">France</div><div class="text-[12.5px] text-ink-500 mt-1 tabular">EUR · ~30s</div></div>
+      <a href="#" class="lift bg-ink-900 text-white rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+        <div class="font-display text-[28px] tracking-tighter">+170</div>
+        <div>
+          <div class="font-display text-[15px]">More countries</div>
+          <div class="text-[12.5px] text-white/60 mt-1">View directory →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== USE CASES =========================== -->
+<section id="purposes" class="section bg-white">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+      <div class="h-eyebrow mb-3">Use cases</div>
+      <h2 class="font-display h-section text-ink-900">Whatever the reason.<br/>Whatever the country.</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 reveal">
+      <div class="lift bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <div class="font-display text-[15px] text-accent-500 mb-3">Education</div>
+        <h3 class="font-display text-[22px] tracking-tighter text-ink-900 mb-3">Student tuition</h3>
+        <p class="text-[14.5px] text-ink-500 leading-relaxed">A1 form auto-filled. Pay tuition, GIC and deposits to 5,000+ universities worldwide.</p>
+      </div>
+      <div class="lift bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <div class="font-display text-[15px] text-accent-500 mb-3">Travel</div>
+        <h3 class="font-display text-[22px] tracking-tighter text-ink-900 mb-3">Forex card</h3>
+        <p class="text-[14.5px] text-ink-500 leading-relaxed">Multi-currency travel card with zero markup and free ATM withdrawals globally.</p>
+      </div>
+      <div class="lift bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <div class="font-display text-[15px] text-accent-500 mb-3">Family</div>
+        <h3 class="font-display text-[22px] tracking-tighter text-ink-900 mb-3">Send home</h3>
+        <p class="text-[14.5px] text-ink-500 leading-relaxed">Recurring transfers under LRS. Up to $250K per year. Auto tax filing.</p>
+      </div>
+      <div class="lift bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <div class="font-display text-[15px] text-accent-500 mb-3">Business</div>
+        <h3 class="font-display text-[22px] tracking-tighter text-ink-900 mb-3">Global payouts</h3>
+        <p class="text-[14.5px] text-ink-500 leading-relaxed">Pay vendors and contractors via API. Bulk payouts. FIRA in two hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== SECURITY =========================== -->
+<section id="security" class="section bg-ink-900 text-white">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+      <div class="lg:col-span-5 reveal">
+        <div class="text-[13px] font-medium tracking-[0.02em] text-accent-500 mb-3">Security</div>
+        <h2 class="font-display h-section">Your money,<br/>obsessively protected.</h2>
+        <p class="mt-6 text-[17px] sm:text-[19px] leading-relaxed text-white/60 max-w-md">Modern cryptography, AI-driven fraud detection, and segregated nodal accounts on every transfer.</p>
+      </div>
+
+      <div class="lg:col-span-7 reveal">
+        <div class="grid sm:grid-cols-2 gap-px bg-white/10 rounded-2xl overflow-hidden">
+          <div class="bg-ink-900 p-7">
+            <div class="font-display text-[16px] mb-2">Post-quantum encryption</div>
+            <div class="text-[13.5px] text-white/55 leading-relaxed">NIST-aligned Kyber-1024 transport. Future-proofed against quantum attacks.</div>
+          </div>
+          <div class="bg-ink-900 p-7">
+            <div class="font-display text-[16px] mb-2">AI fraud detection</div>
+            <div class="text-[13.5px] text-white/55 leading-relaxed">99.97% precision. Custom transformer trained on 12M+ transactions.</div>
+          </div>
+          <div class="bg-ink-900 p-7">
+            <div class="font-display text-[16px] mb-2">Segregated nodal accounts</div>
+            <div class="text-[13.5px] text-white/55 leading-relaxed">Customer funds never touch our balance sheet — held in escrow at HDFC Bank.</div>
+          </div>
+          <div class="bg-ink-900 p-7">
+            <div class="font-display text-[16px] mb-2">Multi-jurisdictional compliance</div>
+            <div class="text-[13.5px] text-white/55 leading-relaxed">FEMA, FATCA, CRS, GDPR, PSD2 — audited by Big-4 every quarter.</div>
+          </div>
+        </div>
+
+        <div class="mt-10 grid grid-cols-3 gap-6">
+          <div>
+            <div class="font-display text-[28px] tracking-tighter tabular">99.99%</div>
+            <div class="text-[12.5px] text-white/55 mt-1">Uptime SLA</div>
+          </div>
+          <div>
+            <div class="font-display text-[28px] tracking-tighter tabular">0</div>
+            <div class="text-[12.5px] text-white/55 mt-1">Breaches, ever</div>
+          </div>
+          <div>
+            <div class="font-display text-[28px] tracking-tighter tabular">24/7</div>
+            <div class="text-[12.5px] text-white/55 mt-1">Human support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== COMPARISON =========================== -->
+<section id="compare" class="section bg-cream">
+  <div class="max-w-[1100px] mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mx-auto text-center mb-12 sm:mb-16 reveal">
+      <div class="h-eyebrow mb-3">The difference</div>
+      <h2 class="font-display h-section text-ink-900">A clearer comparison.</h2>
+      <p class="mt-5 lede">Same ₹5,00,000 transfer to USD. Different outcomes.</p>
+    </div>
+
+    <div class="reveal bg-white rounded-2xl border border-ink-100 overflow-x-auto no-scrollbar">
+      <table class="w-full min-w-[640px] text-[14px]">
+        <thead>
+          <tr class="text-left border-b border-ink-100">
+            <th class="px-6 py-5 font-medium text-[12px] uppercase tracking-[0.08em] text-ink-400">Provider</th>
+            <th class="px-6 py-5 font-medium text-[12px] uppercase tracking-[0.08em] text-ink-400 text-right">Fee</th>
+            <th class="px-6 py-5 font-medium text-[12px] uppercase tracking-[0.08em] text-ink-400 text-right">FX margin</th>
+            <th class="px-6 py-5 font-medium text-[12px] uppercase tracking-[0.08em] text-ink-400 text-right">Speed</th>
+            <th class="px-6 py-5 font-medium text-[12px] uppercase tracking-[0.08em] text-ink-400 text-right">Recipient</th>
+          </tr>
+        </thead>
+        <tbody class="row-divider">
+          <tr class="bg-accent-50/40">
+            <td class="px-6 py-5 font-medium text-ink-900">Money2Abroad</td>
+            <td class="px-6 py-5 text-right tabular text-ink-900">₹450</td>
+            <td class="px-6 py-5 text-right tabular text-accent-600 font-medium">0.0%</td>
+            <td class="px-6 py-5 text-right tabular text-ink-900">28s</td>
+            <td class="px-6 py-5 text-right font-medium tabular text-ink-900">$5,983</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-5 text-ink-700">Wise</td>
+            <td class="px-6 py-5 text-right tabular text-ink-700">₹1,250</td>
+            <td class="px-6 py-5 text-right tabular text-ink-500">0.6%</td>
+            <td class="px-6 py-5 text-right tabular text-ink-500">1–2 hrs</td>
+            <td class="px-6 py-5 text-right tabular text-ink-700">$5,944</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-5 text-ink-700">HDFC / SBI</td>
+            <td class="px-6 py-5 text-right tabular text-ink-700">₹1,500</td>
+            <td class="px-6 py-5 text-right tabular text-ink-500">2.4%</td>
+            <td class="px-6 py-5 text-right tabular text-ink-500">2–4 days</td>
+            <td class="px-6 py-5 text-right tabular text-ink-700">$5,832</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-5 text-ink-700">Western Union</td>
+            <td class="px-6 py-5 text-right tabular text-ink-700">₹2,200</td>
+            <td class="px-6 py-5 text-right tabular text-ink-500">3.1%</td>
+            <td class="px-6 py-5 text-right tabular text-ink-500">1–3 days</td>
+            <td class="px-6 py-5 text-right tabular text-ink-700">$5,775</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-5 text-center text-[12.5px] text-ink-400">Snapshot · 1 USD = ₹83.42 mid-market · Excludes TCS where applicable</div>
+  </div>
+</section>
+
+<!-- =========================== TESTIMONIALS =========================== -->
+<section class="section bg-white">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+      <div class="h-eyebrow mb-3">Voices</div>
+      <h2 class="font-display h-section text-ink-900">Trusted across continents.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 reveal">
+      <figure class="bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <blockquote class="font-display text-[20px] sm:text-[22px] tracking-tighter text-ink-900 leading-snug">"Sent ₹40 lakh for my MS at Stanford. It arrived in 26 seconds. The A1 form was auto-filled. This is what fintech should feel like."</blockquote>
+        <figcaption class="mt-7 flex items-center gap-3 text-[13.5px]">
+          <div class="w-9 h-9 rounded-full bg-ink-900 text-white flex items-center justify-center font-medium text-[12.5px]">AS</div>
+          <div><div class="font-medium text-ink-900">Aarav Sharma</div><div class="text-ink-500">MS Student · Stanford</div></div>
+        </figcaption>
+      </figure>
+      <figure class="bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <blockquote class="font-display text-[20px] sm:text-[22px] tracking-tighter text-ink-900 leading-snug">"I send money home weekly from Dubai. Money2Abroad saves me ₹3,000 every transfer compared to my bank."</blockquote>
+        <figcaption class="mt-7 flex items-center gap-3 text-[13.5px]">
+          <div class="w-9 h-9 rounded-full bg-ink-900 text-white flex items-center justify-center font-medium text-[12.5px]">PR</div>
+          <div><div class="font-medium text-ink-900">Priya Reddy</div><div class="text-ink-500">Software Engineer · Dubai</div></div>
+        </figcaption>
+      </figure>
+      <figure class="bg-cream rounded-2xl p-7 sm:p-8 border border-ink-100">
+        <blockquote class="font-display text-[20px] sm:text-[22px] tracking-tighter text-ink-900 leading-snug">"Our SaaS pays 80+ contractors via the API. Bulk USD payouts settle in minutes. The auto-FIRA is a quiet game-changer."</blockquote>
+        <figcaption class="mt-7 flex items-center gap-3 text-[13.5px]">
+          <div class="w-9 h-9 rounded-full bg-ink-900 text-white flex items-center justify-center font-medium text-[12.5px]">RK</div>
+          <div><div class="font-medium text-ink-900">Rohan Kapoor</div><div class="text-ink-500">Founder · Trellis.ai</div></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FAQ =========================== -->
+<section id="faq" class="section bg-cream">
+  <div class="max-w-[820px] mx-auto px-5 sm:px-8">
+    <div class="text-center mb-12 sm:mb-16 reveal">
+      <div class="h-eyebrow mb-3">Help</div>
+      <h2 class="font-display h-section text-ink-900">Frequently asked.</h2>
+    </div>
+
+    <div class="reveal bg-white rounded-2xl border border-ink-100 divide-y divide-ink-100">
+      <details class="group p-6 sm:p-7">
+        <summary class="flex justify-between items-center gap-6">
+          <span class="font-display text-[17px] sm:text-[18px] tracking-tighter text-ink-900">Is Money2Abroad regulated by RBI?</span>
+          <svg class="faq-icon shrink-0 text-ink-500" width="18" height="18" viewBox="0 0 18 18"><path d="M9 4v10M4 9h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-500">Yes. Money2Abroad operates as an Authorised Dealer Category-II under the Reserve Bank of India (License #AD-II/2024/MUM/0782). All transfers are routed under FEMA's Liberalised Remittance Scheme (LRS) up to USD 250,000 per individual per financial year.</p>
+      </details>
+      <details class="group p-6 sm:p-7">
+        <summary class="flex justify-between items-center gap-6">
+          <span class="font-display text-[17px] sm:text-[18px] tracking-tighter text-ink-900">What documents do I need?</span>
+          <svg class="faq-icon shrink-0 text-ink-500" width="18" height="18" viewBox="0 0 18 18"><path d="M9 4v10M4 9h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-500">PAN and Aadhaar — fetched automatically via DigiLocker. For purposes above ₹10 lakh (e.g. tuition), we auto-generate the A1 / A2 form. No manual paperwork.</p>
+      </details>
+      <details class="group p-6 sm:p-7">
+        <summary class="flex justify-between items-center gap-6">
+          <span class="font-display text-[17px] sm:text-[18px] tracking-tighter text-ink-900">How is your exchange rate "mid-market"?</span>
+          <svg class="faq-icon shrink-0 text-ink-500" width="18" height="18" viewBox="0 0 18 18"><path d="M9 4v10M4 9h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-500">We pull live rates from Reuters, Bloomberg, and Refinitiv every 3 seconds and pass them on with zero markup. Your only cost is a transparent 0.45% service fee. Banks typically add 2–4% as hidden FX margin.</p>
+      </details>
+      <details class="group p-6 sm:p-7">
+        <summary class="flex justify-between items-center gap-6">
+          <span class="font-display text-[17px] sm:text-[18px] tracking-tighter text-ink-900">What about Tax Collected at Source (TCS)?</span>
+          <svg class="faq-icon shrink-0 text-ink-500" width="18" height="18" viewBox="0 0 18 18"><path d="M9 4v10M4 9h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-500">TCS of 20% applies on LRS transfers above ₹7 lakh per year (5% for education funded via loan; nil up to ₹7L for education). We auto-calculate, deposit with the IT department, and generate Form 27D in your dashboard.</p>
+      </details>
+      <details class="group p-6 sm:p-7">
+        <summary class="flex justify-between items-center gap-6">
+          <span class="font-display text-[17px] sm:text-[18px] tracking-tighter text-ink-900">What if a transfer gets stuck?</span>
+          <svg class="faq-icon shrink-0 text-ink-500" width="18" height="18" viewBox="0 0 18 18"><path d="M9 4v10M4 9h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="mt-4 text-[15px] leading-relaxed text-ink-500">99.94% of transfers settle in under 60 seconds. In rare delays, our 24×7 human support (avg. 38-second response) and the SWIFT gpi tracker show exactly where your funds are. Full settlement guarantee, insured by ICICI Lombard.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== CTA =========================== -->
+<section class="section bg-white">
+  <div class="max-w-[1100px] mx-auto px-5 sm:px-8 reveal">
+    <div class="rounded-3xl bg-cream border border-ink-100 px-7 sm:px-12 lg:px-20 py-16 sm:py-20 lg:py-24 text-center">
+      <h2 class="font-display h-section text-ink-900">Send your first transfer.<br/>We'll waive the fee.</h2>
+      <p class="mt-5 lede max-w-md mx-auto">No card required. Sign up in 90 seconds.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <button class="btn-primary">Start now</button>
+        <button class="btn-secondary">Talk to an expert</button>
+      </div>
+
+      <div class="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-3 text-[13px] text-ink-500">
+        <a href="#" class="flex items-center gap-2 hover:text-ink-900 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          App Store
+        </a>
+        <span class="text-ink-200">·</span>
+        <a href="#" class="flex items-center gap-2 hover:text-ink-900 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.27 8.635-8.572zm3.397-5.392l2.65 1.521a1 1 0 010 1.728l-2.643 1.516-2.806-2.806 2.799-2.96zM5.864 2.658L16.802 8.93l-2.302 2.302L5.864 2.658z"/></svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FOOTER =========================== -->
+<footer class="bg-cream border-t border-ink-100 pt-16 sm:pt-20 pb-10">
+  <div class="max-w-[1280px] mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-12">
+      <div class="lg:col-span-4">
+        <img src="Money2Abroad Logo.jpg" alt="Money2Abroad" class="h-9 w-auto mb-5" style="mix-blend-mode: multiply;" />
+        <p class="text-[14px] leading-relaxed text-ink-500 max-w-sm">International money transfers, beautifully simple. Authorised by the Reserve Bank of India.</p>
+        <div class="mt-7 flex gap-4 text-ink-500">
+          <a href="#" aria-label="Twitter" class="hover:text-ink-900 transition"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-ink-900 transition"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5V8h3zM6.5 6.732C5.534 6.732 4.75 5.942 4.75 5s.784-1.732 1.75-1.732S8.25 4.058 8.25 5 7.466 6.732 6.5 6.732zM19 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="hover:text-ink-900 transition"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-400 mb-4">Send money</div>
+        <ul class="space-y-2.5 text-[14px] text-ink-700">
+          <li><a href="#" class="hover:text-ink-900">USA</a></li>
+          <li><a href="#" class="hover:text-ink-900">United Kingdom</a></li>
+          <li><a href="#" class="hover:text-ink-900">Canada</a></li>
+          <li><a href="#" class="hover:text-ink-900">Australia</a></li>
+          <li><a href="#" class="hover:text-ink-900">All corridors</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-400 mb-4">Products</div>
+        <ul class="space-y-2.5 text-[14px] text-ink-700">
+          <li><a href="#" class="hover:text-ink-900">Personal</a></li>
+          <li><a href="#" class="hover:text-ink-900">Business</a></li>
+          <li><a href="#" class="hover:text-ink-900">Education</a></li>
+          <li><a href="#" class="hover:text-ink-900">Forex card</a></li>
+          <li><a href="#" class="hover:text-ink-900">Developer API</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-400 mb-4">Company</div>
+        <ul class="space-y-2.5 text-[14px] text-ink-700">
+          <li><a href="#" class="hover:text-ink-900">About</a></li>
+          <li><a href="#" class="hover:text-ink-900">Newsroom</a></li>
+          <li><a href="#" class="hover:text-ink-900">Careers</a></li>
+          <li><a href="#" class="hover:text-ink-900">Investors</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-400 mb-4">Help</div>
+        <ul class="space-y-2.5 text-[14px] text-ink-700">
+          <li><a href="#" class="hover:text-ink-900">Support</a></li>
+          <li><a href="#" class="hover:text-ink-900">Contact</a></li>
+          <li><a href="#" class="hover:text-ink-900">Track transfer</a></li>
+          <li><a href="#" class="hover:text-ink-900">System status</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-ink-100 grid md:grid-cols-2 gap-4 items-center text-[12.5px] text-ink-500">
+      <div>© 2026 Money2Abroad Technologies Pvt. Ltd. — Mumbai, India</div>
+      <div class="md:text-right space-x-4 sm:space-x-5">
+        <a href="#" class="hover:text-ink-900">Privacy</a>
+        <a href="#" class="hover:text-ink-900">Terms</a>
+        <a href="#" class="hover:text-ink-900">FEMA Disclosure</a>
+        <a href="#" class="hover:text-ink-900">Sitemap</a>
+      </div>
+    </div>
+    <div class="mt-5 text-[11.5px] leading-relaxed text-ink-400 max-w-5xl">
+      Money2Abroad Technologies Pvt. Ltd. is an Authorised Dealer Category-II under the Reserve Bank of India (License #AD-II/2024/MUM/0782) and registered with FIU-IND. Foreign exchange transactions are subject to FEMA regulations and the Liberalised Remittance Scheme (LRS), permitting up to USD 250,000 per individual per financial year. Tax Collected at Source (TCS) at applicable rates may apply. Past exchange rates do not guarantee future rates. Please consult a qualified tax advisor before transacting.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile menu */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+/* Reveal */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* Header on scroll */
+const header = document.getElementById('siteHeader');
+const onScroll = () => {
+  if (window.scrollY > 8) header.classList.add('scrolled');
+  else header.classList.remove('scrolled');
+};
+window.addEventListener('scroll', onScroll, {passive: true});
+onScroll();
+
+/* Currency converter */
+const sendAmt = document.getElementById('sendAmt');
+const recvAmt = document.getElementById('recvAmt');
+const feeEl = document.getElementById('fee');
+const gstEl = document.getElementById('gst');
+const rateEl = document.getElementById('rate');
+let baseRate = 83.42;
+
+const fmt = (n, d=2) => n.toLocaleString('en-IN', {minimumFractionDigits:d, maximumFractionDigits:d});
+
+function recalc(){
+  const inr = +sendAmt.value || 0;
+  const fee = inr * 0.0045;
+  const gst = fee * 0.18;
+  const usd = (inr - fee - gst) / baseRate;
+  feeEl.textContent = fmt(fee, 0);
+  gstEl.textContent = fmt(gst, 0);
+  rateEl.textContent = baseRate.toFixed(2);
+  recvAmt.style.opacity = 0.4;
+  setTimeout(() => { recvAmt.textContent = fmt(usd); recvAmt.style.opacity = 1; }, 140);
+}
+sendAmt?.addEventListener('input', recalc);
+
+/* Live rate tick */
+setInterval(() => {
+  baseRate = +(83.42 + (Math.random() - 0.5) * 0.18).toFixed(3);
+  recalc();
+  buildRates();
+}, 3500);
+recalc();
+
+/* Live rates table */
+const currencies = [
+  { f:'🇺🇸', n:'US Dollar',         c:'USD', base:83.42 },
+  { f:'🇪🇺', n:'Euro',              c:'EUR', base:90.18 },
+  { f:'🇬🇧', n:'British Pound',     c:'GBP', base:105.74 },
+  { f:'🇨🇦', n:'Canadian Dollar',   c:'CAD', base:60.92 },
+  { f:'🇦🇺', n:'Australian Dollar', c:'AUD', base:54.31 },
+  { f:'🇸🇬', n:'Singapore Dollar',  c:'SGD', base:61.85 },
+  { f:'🇦🇪', n:'UAE Dirham',        c:'AED', base:22.71 },
+  { f:'🇯🇵', n:'Japanese Yen',      c:'JPY', base:0.55 },
+];
+
+function buildRates(){
+  const body = document.getElementById('ratesBody');
+  if (!body) return;
+  body.innerHTML = currencies.map(cur => {
+    const wobble = (Math.random() - 0.5) * 0.4;
+    const live = (cur.base + wobble).toFixed(2);
+    const change = ((wobble / cur.base) * 100).toFixed(2);
+    const up = +change >= 0;
+    return `
+      <div class="grid grid-cols-12 px-6 py-4 sm:py-5 items-center border-b border-ink-100 last:border-0 hover:bg-cream transition">
+        <div class="col-span-7 sm:col-span-5 flex items-center gap-3">
+          <span class="text-[18px]">${cur.f}</span>
+          <div>
+            <div class="text-[14.5px] font-medium text-ink-900">${cur.n}</div>
+            <div class="text-[12px] text-ink-400 tabular">${cur.c} / INR</div>
+          </div>
+        </div>
+        <div class="col-span-3 text-right tabular text-ink-900 text-[14.5px]">₹${live}</div>
+        <div class="hidden sm:block col-span-2 text-right tabular text-[13px] ${up ? 'text-accent-600' : 'text-ink-500'}">${up ? '+' : ''}${change}%</div>
+        <div class="col-span-2 text-right">
+          <button class="text-[13px] font-medium text-ink-900 hover:text-accent-500 transition">Send →</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+buildRates();
+</script>
+
+</body>
+</html>
