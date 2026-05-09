@@ -260,16 +260,19 @@
   .hc-input {
     background: transparent; border: 0; outline: none;
     color: inherit; font: inherit; padding: 0;
-    width: 100%; min-width: 0;
+    width: var(--hc-input-width, 5.5ch);
+    max-width: calc(100% - 4.5ch); min-width: 1ch;
+    flex: 0 1 auto;
     font-family: 'Geist', sans-serif; font-weight: 500;
     font-size: 36px; letter-spacing: -0.02em; line-height: 1;
+    font-feature-settings: 'tnum' 1, 'cv11' 1;
     -moz-appearance: textfield;
   }
   .hc-input::-webkit-outer-spin-button,
   .hc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   .hc-input:focus { outline: none; }
-  .hc-input-wrap { display: flex; align-items: baseline; gap: 6px; }
-  .hc-input-wrap .cur { color: rgba(239,233,218,0.5); font-size: 16px; font-family: 'Geist'; font-weight: 500; }
+  .hc-input-wrap { display: inline-flex; align-items: baseline; gap: 6px; max-width: 100%; }
+  .hc-input-wrap .cur { color: rgba(239,233,218,0.5); font-size: 16px; font-family: 'Geist'; font-weight: 500; flex: 0 0 auto; }
   .hc-fresh {
     font-family: 'Geist Mono'; font-size: 10px;
     color: rgba(239,233,218,0.45); margin-top: 4px;
@@ -887,6 +890,13 @@
   })();
 </script>
 
+<!-- =========== TICKER =========== -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker-track">
+    <span class="ticker-item"><span class="pair">Loading live FX from Yahoo Finance…</span></span>
+  </div>
+</div>
+
 <!-- =========== HERO =========== -->
 <header class="hero">
   <div class="grid-bg"></div>
@@ -962,10 +972,6 @@
             <div class="val" id="hc-change">—</div>
           </div>
         </div>
-        <div class="hc-row">
-          <div class="hc-label">TT charges &amp; GST</div>
-          <div class="val mono">₹ 0 <span style="color:rgba(239,233,218,0.4);">(waived)</span></div>
-        </div>
         <div class="hc-cta">
           <span>Lock rate &amp; debit wallet</span>
           <span>→</span>
@@ -974,13 +980,6 @@
     </div>
   </div>
 </header>
-
-<!-- =========== TICKER =========== -->
-<div class="ticker">
-  <div class="ticker-track" id="ticker-track">
-    <span class="ticker-item"><span class="pair">Loading live FX from Yahoo Finance…</span></span>
-  </div>
-</div>
 
 <!-- =========== BUILT FOR =========== -->
 <section id="why">
@@ -1503,26 +1502,6 @@
   </div>
 </section>
 
-<!-- =========== MEGA STATS =========== -->
-<section class="megastats" style="padding:0;">
-  <div class="megastat">
-    <div class="v mono">₹2,420 <em>Cr</em></div>
-    <div class="l">Annualized remittance volume · FY25</div>
-  </div>
-  <div class="megastat">
-    <div class="v mono">8,500<em>+</em></div>
-    <div class="l">Travel agencies on the platform</div>
-  </div>
-  <div class="megastat">
-    <div class="v mono">99.94<em>%</em></div>
-    <div class="l">Same-day settlement rate</div>
-  </div>
-  <div class="megastat">
-    <div class="v mono">28 <em>sec</em></div>
-    <div class="l">Median quote-to-debit time</div>
-  </div>
-</section>
-
 <!-- =========== TESTIMONIALS =========== -->
 <section id="partners">
   <div class="wrap">
@@ -1747,6 +1726,11 @@
     function senderCcy()   { return direction === 'inr-to-fx' ? 'INR' : currentCcy; }
     function receiverCcy() { return direction === 'inr-to-fx' ? currentCcy : 'INR'; }
 
+    function sizeSendInput() {
+      const chars = Math.max(1, String(sendEl.value || '').length);
+      sendEl.style.setProperty('--hc-input-width', (chars + 2) + 'ch');
+    }
+
     function fmtAmount(n, ccy) {
       const decimals = (ccy === 'INR') ? 2 : (n > 0 && n < 1 ? 4 : 2);
       const locale = (ccy === 'INR') ? 'en-IN' : 'en-US';
@@ -1774,11 +1758,13 @@
 
     function reformatSendValue() {
       const raw = parseAmt(sendEl.value);
-      if (!raw) { sendEl.value = ''; return; }
+      if (!raw) { sendEl.value = ''; sizeSendInput(); return; }
       sendEl.value = fmtAmount(raw, senderCcy());
+      sizeSendInput();
     }
 
     function paint() {
+      sizeSendInput();
       if (!currentRate) return;
       const sendAmt = parseAmt(sendEl.value);
       const recv = direction === 'inr-to-fx'
@@ -1825,6 +1811,7 @@
     sendEl.addEventListener('blur', () => { reformatSendValue(); paint(); });
     sendEl.addEventListener('focus', () => {
       sendEl.value = String(parseAmt(sendEl.value) || '');
+      sizeSendInput();
       sendEl.select();
     });
 
@@ -1834,6 +1821,7 @@
       ccyFlag.textContent = META[currentCcy].flag;
       sendCurEl.textContent = senderCcy();
       recCurEl.textContent  = receiverCcy();
+      sizeSendInput();
       refreshHero();
     });
 
@@ -1850,10 +1838,12 @@
         sendEl.value = fmtAmount(currentRate ? Math.max(1, Math.round(cur * currentRate)) : 1000, 'INR');
       }
       placeChips();
+      sizeSendInput();
       paint();
     });
 
     placeChips();
+    sizeSendInput();
     refreshHero();
     setInterval(refreshHero, 30_000);
 
