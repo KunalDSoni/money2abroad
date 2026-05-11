@@ -4,12 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Money2Abroad — Live FX and digital outward remittance for India’s travel trade. Start here, then explore the product story and travel-agent program." />
-<meta name="theme-color" content="#f5f1e8" />
+<meta name="theme-color" content="#ffffff" />
 <title>Money2Abroad — Outward remittance for travel agents</title>
 <link rel="icon" type="image/jpeg" href="Money2Abroad Logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
@@ -24,6 +24,10 @@
       <span class="current" aria-current="page">Home</span>
       <a href="remittance-for-travel-agents/index.html">Travel agents</a>
       <a href="about-us/index.html">About us</a>
+      <a href="faq/index.html">FAQ</a>
+      <a href="gst-calculator/index.html">GST</a>
+      <a href="tcs-calculator/index.html">TCS</a>
+      <a href="rbi-guidelines/index.html">RBI</a>
       <a href="contact-us/index.html">Contact us</a>
     </div>
     <div class="nav-cta">
@@ -38,6 +42,10 @@
     <span class="current" aria-current="page">Home</span>
     <a href="remittance-for-travel-agents/index.html">Travel agents</a>
     <a href="about-us/index.html">About us</a>
+    <a href="faq/index.html">FAQ</a>
+    <a href="gst-calculator/index.html">GST</a>
+    <a href="tcs-calculator/index.html">TCS</a>
+    <a href="rbi-guidelines/index.html">RBI</a>
     <a href="contact-us/index.html">Contact us</a>
     <div class="mobile-cta">
       <a href="#" class="btn btn-ghost">Agent login</a>
@@ -71,11 +79,9 @@
   <div class="wrap" style="position:relative;">
     <div class="hero-grid">
       <div>
-        <h1 class="display">
-          Outward remittance<br/>
-          for <em>travel agents.</em><br/>
-          <span class="strike">Built for tour payments.</span>
-        </h1>
+        <div class="eyebrow">Money2Abroad</div>
+        <div class="spacer-sm"></div>
+        <h1 class="home-headline">Remittance for travel agents in India.</h1>
         <p class="hero-copy">
           Check live FX, run a digital desk for DMCs and overseas vendors, and track confirmations — without losing your day to branch queues.
         </p>
@@ -89,62 +95,36 @@
           <span class="chip"><span class="d"></span>SWIFT-ready tracking</span>
           <span class="chip"><span class="d"></span>Made for Indian agencies</span>
         </div>
-        <div class="hero-meta">
-          <div class="stat">
-            <div class="n mono">Multi-page</div>
-            <div class="l">Clean URLs — home, about, agents, contact</div>
-          </div>
-          <div class="stat">
-            <div class="n mono">47+ ccys</div>
-            <div class="l">Tour, visa, education &amp; vendor corridors</div>
-          </div>
-          <div class="stat">
-            <div class="n mono">Live FX</div>
-            <div class="l">Rates refresh while you quote</div>
-          </div>
-        </div>
       </div>
 
       <div class="hero-card">
-        <div class="hc-row" id="hc-row-send" style="border-bottom:0;padding-bottom:6px;">
-          <div style="flex:1;min-width:0;">
+        <div class="hc-row hc-row-flip" id="hc-row-send">
+          <div class="hc-side">
             <div class="hc-label" id="hc-send-label">You send</div>
+            <span class="ccy-flag" id="hc-inr-chip">🇮🇳 INR</span>
+          </div>
+          <div class="hc-amt-wrap">
             <div class="hc-input-wrap">
               <input id="hc-send" class="hc-input mono" type="text" inputmode="decimal" autocomplete="off" value="1,000" aria-label="Amount you send" />
-              <span class="cur" id="hc-send-cur">INR</span>
+              <span class="cur" id="hc-send-cur" style="display:none;">INR</span>
             </div>
           </div>
-          <span id="hc-chip-slot-top"></span>
         </div>
-        <div style="display:flex;justify-content:center;">
-          <button type="button" id="hc-swap" class="swap mono" aria-label="Swap currencies" title="Swap currencies">⇅</button>
-        </div>
-        <div class="hc-row" id="hc-row-recv" style="margin-top:-22px;">
-          <div style="flex:1;min-width:0;">
+        <div class="hc-connector" aria-hidden="true"><span></span></div>
+        <div class="hc-row hc-row-flip" id="hc-row-recv">
+          <div class="hc-side">
             <div class="hc-label" id="hc-recv-label">Beneficiary receives</div>
-            <div class="hc-amount mono" id="hc-rec">—<span class="cur" id="hc-rec-cur">USD</span></div>
+            <label class="ccy-select" id="hc-ccy-wrap">
+              <span id="hc-ccy-flag">🇺🇸</span>
+              <span id="hc-ccy-code">USD</span>
+              <select id="hc-ccy" aria-label="Foreign currency"></select>
+            </label>
           </div>
-          <span id="hc-chip-slot-bot"></span>
-        </div>
-
-        <span class="ccy-flag" id="hc-inr-chip" style="display:none;">🇮🇳 INR</span>
-        <label class="ccy-select" id="hc-ccy-wrap" style="display:none;">
-          <span id="hc-ccy-flag">🇺🇸</span>
-          <span id="hc-ccy-code">USD</span>
-          <select id="hc-ccy" aria-label="Foreign currency"></select>
-        </label>
-
-        <div class="hc-fx">
-          <div style="flex:1;">
-            <div class="lbl">Live rate</div>
-            <div class="val" id="hc-rate">1 USD = ₹—</div>
-            <div class="hc-fresh" id="hc-fresh">Fetching live rate…</div>
-          </div>
-          <div style="text-align:right;">
-            <div class="lbl">24h change</div>
-            <div class="val" id="hc-change">—</div>
+          <div class="hc-amt-wrap">
+            <div class="hc-amount mono" id="hc-rec">—<span class="cur" id="hc-rec-cur" style="display:none;">USD</span></div>
           </div>
         </div>
+
         <a href="contact-us/index.html" class="hc-cta" style="text-decoration:none;color:inherit;">
           <span>Talk to the desk</span>
           <span>→</span>
@@ -245,9 +225,10 @@
       </div>
       <div class="foot-col">
         <h5>Talk to us</h5>
-        <a href="mailto:desk@money2abroad.in">desk@money2abroad.in</a>
-        <a href="tel:+912269704000">+91 22 6970 4000</a>
-        <a href="#">Mumbai · BKC</a>
+        <a href="mailto:info@finwaveforex.com">info@finwaveforex.com</a>
+        <a href="tel:+917948916100">+91 79 4891 6100</a>
+        <a href="tel:+919898906133">+91 98989 06133</a>
+        <a href="#">Ahmedabad · Navrangpura</a>
         <a href="#">Status &amp; uptime</a>
         <a href="contact-us/index.html">Contact us</a>
       </div>
@@ -335,11 +316,7 @@
     const rateEl     = document.getElementById('hc-rate');
     const freshEl    = document.getElementById('hc-fresh');
     const changeEl   = document.getElementById('hc-change');
-    const swapBtn    = document.getElementById('hc-swap');
-    const slotTop    = document.getElementById('hc-chip-slot-top');
-    const slotBot    = document.getElementById('hc-chip-slot-bot');
-    const inrChip    = document.getElementById('hc-inr-chip');
-    const fxChip     = document.getElementById('hc-ccy-wrap');
+    /* swap removed — INR is fixed on the send side */
 
     CCYS.forEach(c => {
       const opt = document.createElement('option');
@@ -352,11 +329,10 @@
     let currentCcy  = 'USD';
     let currentRate = null;
     let currentPrev = null;
-    let direction   = 'inr-to-fx';
     let lastFetch   = 0;
 
-    function senderCcy()   { return direction === 'inr-to-fx' ? 'INR' : currentCcy; }
-    function receiverCcy() { return direction === 'inr-to-fx' ? currentCcy : 'INR'; }
+    function senderCcy()   { return 'INR'; }
+    function receiverCcy() { return currentCcy; }
 
     function sizeSendInput() {
       const chars = Math.max(1, String(sendEl.value || '').length);
@@ -372,55 +348,41 @@
       }).format(n);
     }
 
-    function placeChips() {
-      slotTop.innerHTML = '';
-      slotBot.innerHTML = '';
-      inrChip.style.display = '';
-      fxChip.style.display  = '';
-      if (direction === 'inr-to-fx') {
-        slotTop.appendChild(inrChip);
-        slotBot.appendChild(fxChip);
-      } else {
-        slotTop.appendChild(fxChip);
-        slotBot.appendChild(inrChip);
-      }
-      sendCurEl.textContent = senderCcy();
-      recCurEl.textContent  = receiverCcy();
-    }
-
     function reformatSendValue() {
       const raw = parseAmt(sendEl.value);
       if (!raw) { sendEl.value = ''; sizeSendInput(); return; }
-      sendEl.value = fmtAmount(raw, senderCcy());
+      sendEl.value = fmtAmount(raw, 'INR');
       sizeSendInput();
     }
 
     function paint() {
       sizeSendInput();
+      sendCurEl.textContent = 'INR';
+      recCurEl.textContent  = currentCcy;
       if (!currentRate) return;
       const sendAmt = parseAmt(sendEl.value);
-      const recv = direction === 'inr-to-fx'
-        ? sendAmt / currentRate
-        : sendAmt * currentRate;
-      recEl.firstChild.nodeValue = fmtAmount(recv, receiverCcy()) + ' ';
+      const recv = sendAmt / currentRate;
+      recEl.firstChild.nodeValue = fmtAmount(recv, currentCcy) + ' ';
 
       ccyFlag.textContent = META[currentCcy].flag;
       ccyCode.textContent = currentCcy;
-      rateEl.textContent  = '1 ' + currentCcy + ' = ₹' + fmtRate(currentRate);
+      if (rateEl)   rateEl.textContent = '1 ' + currentCcy + ' = ₹' + fmtRate(currentRate);
 
-      if (currentPrev && currentPrev > 0) {
-        const pct = ((currentRate - currentPrev) / currentPrev) * 100;
-        const up = pct >= 0;
-        changeEl.textContent = (up ? '▲ +' : '▼ ') + pct.toFixed(2) + '%';
-        changeEl.className = 'val ' + (up ? 'hc-change-up' : 'hc-change-down');
-      } else {
-        changeEl.textContent = '—';
-        changeEl.className = 'val';
+      if (changeEl) {
+        if (currentPrev && currentPrev > 0) {
+          const pct = ((currentRate - currentPrev) / currentPrev) * 100;
+          const up = pct >= 0;
+          changeEl.textContent = (up ? '▲ +' : '▼ ') + pct.toFixed(2) + '%';
+          changeEl.className = 'val ' + (up ? 'hc-change-up' : 'hc-change-down');
+        } else {
+          changeEl.textContent = '—';
+          changeEl.className = 'val';
+        }
       }
     }
 
     function tickFreshness() {
-      if (!lastFetch) return;
+      if (!freshEl || !lastFetch) return;
       const s = Math.floor((Date.now() - lastFetch) / 1000);
       freshEl.textContent = 'Updated ' + (s < 5 ? 'just now' : s + 's ago') + ' · auto-refresh 30s';
     }
@@ -435,12 +397,21 @@
         paint();
         tickFreshness();
       } catch (e) {
-        freshEl.textContent = 'Live feed unavailable · retrying…';
+        if (freshEl) freshEl.textContent = 'Live feed unavailable · retrying…';
       }
     }
 
-    sendEl.addEventListener('input', paint);
-    sendEl.addEventListener('blur', () => { reformatSendValue(); paint(); });
+    // Limit INR input to 8 digits (max ₹9,99,99,999)
+    const INR_MAX = 99999999;
+    function clampToLrs() {
+      const v = parseAmt(sendEl.value);
+      if (v > INR_MAX) {
+        sendEl.value = fmtAmount(INR_MAX, 'INR');
+      }
+    }
+
+    sendEl.addEventListener('input', () => { clampToLrs(); paint(); });
+    sendEl.addEventListener('blur', () => { clampToLrs(); reformatSendValue(); paint(); });
     sendEl.addEventListener('focus', () => {
       sendEl.value = String(parseAmt(sendEl.value) || '');
       sizeSendInput();
@@ -451,28 +422,13 @@
       currentCcy = ccySel.value;
       ccyCode.textContent = currentCcy;
       ccyFlag.textContent = META[currentCcy].flag;
-      sendCurEl.textContent = senderCcy();
-      recCurEl.textContent  = receiverCcy();
+      recCurEl.textContent = currentCcy;
       sizeSendInput();
       refreshHero();
     });
 
-    swapBtn.addEventListener('click', () => {
-      direction = (direction === 'inr-to-fx') ? 'fx-to-inr' : 'inr-to-fx';
-      swapBtn.classList.toggle('spun');
-      const cur = parseAmt(sendEl.value);
-      if (direction === 'fx-to-inr') {
-        sendEl.value = fmtAmount(currentRate ? Math.max(1, Math.round(cur / currentRate)) : 100, currentCcy);
-      } else {
-        sendEl.value = fmtAmount(currentRate ? Math.max(1, Math.round(cur * currentRate)) : 1000, 'INR');
-      }
-      placeChips();
-      sizeSendInput();
-      paint();
-    });
-
-    placeChips();
     sizeSendInput();
+    paint();
     refreshHero();
     setInterval(refreshHero, 30_000);
 
