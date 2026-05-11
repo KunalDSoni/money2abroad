@@ -3,934 +3,108 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="Money2Abroad — Outbound remittance, built for India's travel agents. RBI authorised. Trusted by 4 million Indians worldwide." />
+<meta name="description" content="Money2Abroad — Live FX and digital outward remittance for India’s travel trade. Start here, then explore the product story and travel-agent program." />
 <meta name="theme-color" content="#f5f1e8" />
-<title>Money2Abroad — Outbound remittance, built for India's travel agents</title>
-
+<title>Money2Abroad — Outward remittance for travel agents</title>
 <link rel="icon" type="image/jpeg" href="Money2Abroad Logo.jpg" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-<style>
-  :root {
-    --bg: #f5f1e8;
-    --bg-soft: #efe9da;
-    --bg-deep: #0d0d0c;
-    --ink: #15140f;
-    --ink-2: #3a382f;
-    --ink-3: #6b6859;
-    --line: rgba(20,18,12,0.10);
-    --line-strong: rgba(20,18,12,0.18);
-    --accent: #f9b115;        /* amber */
-    --accent-deep: #c88a00;
-    --accent-on: #0d0d0c;
-    --warn: #ff5a2e;
-    --positive: #1d8a4b;
-    --pad: clamp(20px, 4vw, 56px);
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  ::selection { background: var(--accent); color: var(--accent-on); }
-
-  /* ---------- Type ---------- */
-  .serif { font-family: 'Instrument Serif', 'Times New Roman', serif; font-weight: 400; letter-spacing: -0.01em; }
-  .mono { font-family: 'Geist Mono', ui-monospace, monospace; font-feature-settings: 'tnum' 1, 'cv11' 1; }
-  .eyebrow {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .eyebrow::before {
-    content: ""; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent-deep); display: inline-block;
-  }
-  h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.02em; }
-  p { margin: 0; }
-
-  .display {
-    font-family: 'Geist', sans-serif;
-    font-weight: 500;
-    font-size: clamp(44px, 7vw, 104px);
-    line-height: 0.96;
-    letter-spacing: -0.035em;
-  }
-  .display em {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.015em;
-  }
-
-  /* ---------- Layout ---------- */
-  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--pad); }
-  .row { display: flex; }
-  .col { display: flex; flex-direction: column; }
-  .grid { display: grid; }
-
-  /* ---------- Nav ---------- */
-  nav.top {
-    position: sticky; top: 0; z-index: 50;
-    background: color-mix(in oklab, var(--bg) 88%, transparent);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-  }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px var(--pad);
-    max-width: 1440px; margin: 0 auto;
-  }
-  .brand {
-    display: flex; align-items: center; gap: 10px;
-    font-weight: 600; letter-spacing: -0.02em; font-size: 18px;
-  }
-  .brand-mark {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--ink); position: relative; overflow: hidden;
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .brand-mark::before {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(circle at 30% 30%, var(--accent) 0%, transparent 60%);
-  }
-  .brand-mark::after {
-    content: "₹"; position: relative;
-    color: var(--bg); font-family: 'Instrument Serif', serif;
-    font-style: italic; font-size: 18px; line-height: 1;
-  }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a {
-    color: var(--ink-2); text-decoration: none; font-size: 14px;
-    display: inline-flex; align-items: center; gap: 4px;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta { display: flex; gap: 10px; align-items: center; }
-
-  /* ---------- Buttons ---------- */
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 18px; border-radius: 999px; font-size: 14px;
-    font-weight: 500; text-decoration: none; cursor: pointer; border: 1px solid transparent;
-    transition: transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
-    white-space: nowrap;
-  }
-  .btn:active { transform: translateY(1px); }
-  .btn-primary { background: var(--ink); color: var(--bg); }
-  .btn-primary:hover { background: #2a2820; }
-  .btn-accent { background: var(--accent); color: var(--accent-on); }
-  .btn-accent:hover { background: var(--accent-deep); }
-  .btn-ghost { color: var(--ink); border-color: var(--line-strong); }
-  .btn-ghost:hover { background: var(--bg-soft); }
-  .btn-link { color: var(--ink); padding: 0; background: transparent; }
-  .arrow { transition: transform .2s ease; }
-  .btn:hover .arrow { transform: translateX(3px); }
-
-  /* ---------- HERO ---------- */
-  .hero { padding: 60px var(--pad) 40px; position: relative; }
-  .hero-grid {
-    display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start;
-  }
-  @media (max-width: 1000px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
-
-  .hero h1 .strike {
-    position: relative; display: inline-block; color: var(--ink-3);
-  }
-  .hero h1 .strike::after {
-    content: ""; position: absolute; left: -2%; right: -2%; top: 52%;
-    height: 6px; background: var(--accent); transform: skewY(-2deg);
-  }
-
-  .hero-meta {
-    display: flex; gap: 24px; flex-wrap: wrap; padding-top: 32px;
-    border-top: 1px solid var(--line); margin-top: 40px;
-  }
-  .hero-meta .stat .n { font-family: 'Geist', sans-serif; font-size: 32px; letter-spacing: -0.02em; font-weight: 500; }
-  .hero-meta .stat .l { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
-
-  /* Hero card — quote / live transfer */
-  .hero-card {
-    background: var(--bg-deep); color: #efe9da;
-    border-radius: 24px; padding: 24px;
-    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.35);
-    position: relative; overflow: hidden;
-  }
-  .hero-card::before {
-    content: ""; position: absolute; top: -40%; right: -20%;
-    width: 360px; height: 360px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,255,58,0.18), transparent 70%);
-    pointer-events: none;
-  }
-  .hc-head {
-    display: flex; justify-content: space-between; align-items: center;
-    color: rgba(239,233,218,0.6); font-size: 12px;
-  }
-  .hc-head .live { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-family: 'Geist Mono'; }
-  .hc-head .live .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(200,255,58,0.7);
-    animation: pulse 1.6s infinite;
-  }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(200,255,58,0.7); }
-    70%  { box-shadow: 0 0 0 8px rgba(200,255,58,0); }
-    100% { box-shadow: 0 0 0 0 rgba(200,255,58,0); }
-  }
-  .hc-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 0; border-bottom: 1px dashed rgba(239,233,218,0.12);
-  }
-  .hc-row:last-of-type { border-bottom: 0; }
-  .hc-label { color: rgba(239,233,218,0.5); font-size: 12px; }
-  .hc-amount {
-    font-family: 'Geist', sans-serif; font-weight: 500;
-    font-size: 36px; letter-spacing: -0.02em; line-height: 1;
-  }
-  .hc-amount .cur { color: rgba(239,233,218,0.5); font-size: 16px; margin-left: 6px; }
-  .hc-fx {
-    display: flex; gap: 16px; padding: 14px; border-radius: 14px;
-    background: rgba(239,233,218,0.04);
-    border: 1px solid rgba(239,233,218,0.08);
-    margin: 10px 0;
-  }
-  .hc-fx .lbl { font-size: 11px; color: rgba(239,233,218,0.5); }
-  .hc-fx .val { font-family: 'Geist Mono'; font-size: 14px; }
-  .hc-cta {
-    display: flex; gap: 8px; align-items: center; justify-content: space-between;
-    margin-top: 14px; padding: 14px 16px;
-    background: var(--accent); color: var(--accent-on);
-    border-radius: 12px; font-weight: 500; font-size: 14px;
-    cursor: pointer;
-  }
-  .swap {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(239,233,218,0.06); border: 1px solid rgba(239,233,218,0.12);
-    color: #efe9da; font-size: 14px;
-    display: inline-flex; align-items: center; justify-content: center;
-    margin: 0 auto; position: relative; top: -32px; z-index: 2;
-    cursor: pointer; padding: 0;
-    transition: transform .35s ease, background .2s ease, border-color .2s ease;
-  }
-  .swap:hover {
-    background: rgba(239,233,218,0.12);
-    border-color: rgba(239,233,218,0.22);
-  }
-  .swap:active { transform: rotate(180deg) scale(0.95); }
-  .swap.spun { transform: rotate(180deg); }
-  .ccy-flag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(239,233,218,0.06); padding: 6px 10px; border-radius: 999px;
-    font-family: 'Geist Mono'; font-size: 12px;
-  }
-  .ccy-select {
-    position: relative;
-    background: rgba(239,233,218,0.06);
-    border: 1px solid rgba(239,233,218,0.10);
-    border-radius: 999px;
-    padding: 6px 28px 6px 10px;
-    font-family: 'Geist Mono'; font-size: 12px;
-    color: #efe9da; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .ccy-select:hover { background: rgba(239,233,218,0.10); }
-  .ccy-select select {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer;
-    width: 100%; height: 100%; border: 0; appearance: none;
-  }
-  .ccy-select::after {
-    content: "▾"; position: absolute; right: 10px; top: 50%;
-    transform: translateY(-50%); font-size: 10px;
-    color: rgba(239,233,218,0.55); pointer-events: none;
-  }
-  .hc-input {
-    background: transparent; border: 0; outline: none;
-    color: inherit; font: inherit; padding: 0;
-    width: var(--hc-input-width, 5.5ch);
-    max-width: calc(100% - 4.5ch); min-width: 1ch;
-    flex: 0 1 auto;
-    font-family: 'Geist', sans-serif; font-weight: 500;
-    font-size: 36px; letter-spacing: -0.02em; line-height: 1;
-    font-feature-settings: 'tnum' 1, 'cv11' 1;
-    -moz-appearance: textfield;
-  }
-  .hc-input::-webkit-outer-spin-button,
-  .hc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-  .hc-input:focus { outline: none; }
-  .hc-input-wrap { display: inline-flex; align-items: baseline; gap: 6px; max-width: 100%; }
-  .hc-input-wrap .cur { color: rgba(239,233,218,0.5); font-size: 16px; font-family: 'Geist'; font-weight: 500; flex: 0 0 auto; }
-  .hc-fresh {
-    font-family: 'Geist Mono'; font-size: 10px;
-    color: rgba(239,233,218,0.45); margin-top: 4px;
-  }
-  .hc-change-up { color: var(--accent); }
-  .hc-change-down { color: #ff8a64; }
-  @media (max-width: 760px) {
-    .hc-input { font-size: 28px; }
-  }
-
-  /* Tag chips */
-  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line-strong);
-    font-size: 12px; color: var(--ink-2); background: rgba(255,255,255,0.4);
-  }
-  .chip .d { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-deep); }
-
-  /* ---------- FX Ticker ---------- */
-  .ticker {
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: var(--ink); color: var(--bg);
-    overflow: hidden;
-    padding: 14px 0;
-  }
-  .ticker-track {
-    display: flex; gap: 56px; white-space: nowrap;
-    animation: ticker 50s linear infinite;
-    width: max-content;
-    font-family: 'Geist Mono'; font-size: 14px;
-  }
-  .ticker-item { display: inline-flex; align-items: center; gap: 12px; }
-  .ticker-item .pair { color: rgba(245,241,232,0.55); }
-  .ticker-item .px { color: var(--bg); }
-  .ticker-item .ch { font-size: 12px; padding: 2px 8px; border-radius: 999px; }
-  .ticker-item .ch.up { color: var(--accent); background: rgba(200,255,58,0.10); }
-  .ticker-item .ch.down { color: #ff8a64; background: rgba(255,90,46,0.08); }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* ---------- Section ---------- */
-  section { padding: 100px var(--pad); }
-  section.tight { padding: 80px var(--pad); }
-  .section-head {
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px;
-    margin-bottom: 56px; align-items: end;
-  }
-  @media (max-width: 900px) { .section-head { grid-template-columns: 1fr; } }
-  .section-title {
-    font-size: clamp(36px, 5vw, 64px); line-height: 1.02;
-    letter-spacing: -0.03em; font-weight: 500;
-  }
-  .section-title em { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; }
-  .section-sub { color: var(--ink-2); font-size: 17px; max-width: 60ch; }
-
-  /* ---------- Built for ---------- */
-  .built-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-    background: var(--line); border: 1px solid var(--line);
-    border-radius: 24px; overflow: hidden;
-  }
-  @media (max-width: 1100px) { .built-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px)  { .built-grid { grid-template-columns: 1fr; } }
-  .built-cell {
-    background: var(--bg); padding: 32px; min-height: 240px;
-    display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
-    transition: background .2s ease;
-  }
-  .built-cell:hover { background: var(--bg-soft); }
-  .built-cell .num {
-    font-family: 'Geist Mono'; font-size: 12px; color: var(--ink-3);
-  }
-  .built-cell h3 {
-    font-size: 22px; line-height: 1.15; letter-spacing: -0.02em;
-  }
-  .built-cell p { color: var(--ink-2); font-size: 14px; line-height: 1.5; }
-  .built-cell .icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: var(--bg-soft); border: 1px solid var(--line);
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-
-  /* ---------- Product showcase ---------- */
-  .product {
-    background: var(--bg-deep); color: var(--bg);
-    border-radius: 28px; margin: 0 var(--pad); padding: 80px 56px;
-    position: relative; overflow: hidden;
-  }
-  @media (max-width: 700px) { .product { padding: 56px 24px; margin: 0 16px; } }
-  .product::before {
-    content: ""; position: absolute; top: -10%; right: -10%; width: 600px; height: 600px;
-    border-radius: 50%; background: radial-gradient(circle, rgba(200,255,58,0.10), transparent 60%);
-  }
-  .product-head { max-width: 800px; position: relative; }
-  .product-head .eyebrow { color: rgba(245,241,232,0.5); }
-  .product-head .eyebrow::before { background: var(--accent); }
-  .product-head h2 {
-    font-size: clamp(36px, 5vw, 68px); line-height: 1.02; margin-top: 16px;
-    letter-spacing: -0.025em;
-  }
-  .product-head h2 em { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; }
-  .product-head p { color: rgba(245,241,232,0.65); margin-top: 16px; max-width: 60ch; }
-
-  /* Mock dashboard */
-  .dash {
-    margin-top: 56px;
-    background: #1a1a17; border-radius: 18px; overflow: hidden;
-    border: 1px solid rgba(245,241,232,0.08);
-    box-shadow: 0 60px 120px -40px rgba(0,0,0,0.6);
-    display: grid; grid-template-columns: 220px 1fr;
-    min-height: 580px;
-    position: relative;
-  }
-  @media (max-width: 800px) { .dash { grid-template-columns: 1fr; min-height: 520px; } }
-  .dash-side {
-    padding: 18px 12px; border-right: 1px solid rgba(245,241,232,0.06);
-    background: #131311;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  @media (max-width: 800px) { .dash-side { display: none; } }
-  .dash-side .agency {
-    display: flex; align-items: center; gap: 10px; padding: 8px;
-    background: rgba(245,241,232,0.04); border-radius: 10px; margin-bottom: 12px;
-  }
-  .agency-logo {
-    width: 28px; height: 28px; border-radius: 7px; background: var(--accent);
-    color: var(--accent-on); font-weight: 600; font-size: 12px;
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .agency-meta .name { font-size: 12px; font-weight: 500; }
-  .agency-meta .id { font-size: 10px; color: rgba(245,241,232,0.45); font-family: 'Geist Mono'; }
-  .dash-side .item {
-    display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px;
-    color: rgba(245,241,232,0.6); font-size: 13px; cursor: pointer;
-  }
-  .dash-side .item.active { background: rgba(200,255,58,0.10); color: var(--accent); }
-  .dash-side .item .ico {
-    width: 16px; height: 16px; border-radius: 4px; background: rgba(245,241,232,0.1);
-    display: inline-block;
-  }
-  .dash-side .item.active .ico { background: var(--accent); }
-  .dash-side .label {
-    font-family: 'Geist Mono'; font-size: 10px; color: rgba(245,241,232,0.35);
-    text-transform: uppercase; letter-spacing: 0.1em; padding: 16px 10px 6px;
-  }
-
-  .dash-main { padding: 22px; overflow: hidden; position: relative; }
-  .dash-tab {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 22px;
-  }
-  .dash-tab h3 { font-size: 18px; font-weight: 500; }
-  .dash-tab .filters { display: flex; gap: 8px; }
-  .pill {
-    font-family: 'Geist Mono'; font-size: 11px;
-    padding: 6px 10px; border-radius: 999px;
-    background: rgba(245,241,232,0.06); color: rgba(245,241,232,0.7);
-    border: 1px solid rgba(245,241,232,0.08);
-  }
-  .pill.active { background: var(--accent); color: var(--accent-on); border-color: var(--accent); }
-
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
-  @media (max-width: 700px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
-  .kpi {
-    padding: 14px; background: rgba(245,241,232,0.03);
-    border: 1px solid rgba(245,241,232,0.06); border-radius: 12px;
-  }
-  .kpi .l { font-size: 11px; color: rgba(245,241,232,0.5); font-family: 'Geist Mono'; text-transform: uppercase; letter-spacing: 0.08em; }
-  .kpi .v { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; margin-top: 6px; }
-  .kpi .delta { font-size: 11px; font-family: 'Geist Mono'; color: var(--accent); margin-top: 4px; }
-  .kpi .delta.down { color: #ff8a64; }
-
-  .panels { display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px; }
-  @media (max-width: 800px) { .panels { grid-template-columns: 1fr; } }
-  .panel {
-    background: rgba(245,241,232,0.03); border: 1px solid rgba(245,241,232,0.06);
-    border-radius: 12px; padding: 16px;
-  }
-  .panel h4 { font-size: 13px; font-weight: 500; color: rgba(245,241,232,0.85); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-  .txn {
-    display: grid; grid-template-columns: 1fr auto auto auto; gap: 14px; align-items: center;
-    padding: 10px 0; border-top: 1px solid rgba(245,241,232,0.06); font-size: 12px;
-  }
-  .txn:first-of-type { border-top: 0; }
-  .txn .who { display: flex; align-items: center; gap: 10px; }
-  .txn .who .av {
-    width: 26px; height: 26px; border-radius: 50%;
-    background: rgba(245,241,232,0.08); display: inline-flex;
-    align-items: center; justify-content: center; font-size: 11px;
-    font-family: 'Geist Mono'; color: rgba(245,241,232,0.85);
-  }
-  .txn .who .nm { font-size: 13px; }
-  .txn .who .sub { font-size: 11px; color: rgba(245,241,232,0.45); font-family: 'Geist Mono'; }
-  .txn .am { font-family: 'Geist Mono'; font-size: 13px; text-align: right; }
-  .txn .am .sub { font-size: 11px; color: rgba(245,241,232,0.45); }
-  .txn .st {
-    font-family: 'Geist Mono'; font-size: 10px; padding: 3px 8px; border-radius: 999px;
-    background: rgba(245,241,232,0.06); color: rgba(245,241,232,0.65);
-  }
-  .txn .st.done { background: rgba(200,255,58,0.12); color: var(--accent); }
-  .txn .st.prog { background: rgba(255,165,80,0.12); color: #ffaa57; }
-
-  .chart-wrap { height: 140px; margin-bottom: 12px; position: relative; }
-  .chart-wrap svg { display: block; width: 100%; height: 100%; }
-  .currencies { display: flex; flex-direction: column; gap: 10px; }
-  .ccy {
-    display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
-    padding: 8px 0;
-  }
-  .ccy .flag {
-    width: 28px; height: 20px; border-radius: 3px; background: rgba(245,241,232,0.08);
-    font-family: 'Geist Mono'; font-size: 10px; color: rgba(245,241,232,0.7);
-    display: inline-flex; align-items: center; justify-content: center;
-  }
-  .ccy .meta .nm { font-size: 13px; }
-  .ccy .meta .sub { font-size: 11px; color: rgba(245,241,232,0.5); font-family: 'Geist Mono'; }
-  .ccy .bal { font-family: 'Geist Mono'; text-align: right; font-size: 13px; }
-
-  /* Floating annotations on dashboard */
-  .annot {
-    position: absolute; pointer-events: none;
-    display: flex; align-items: center; gap: 8px;
-    background: var(--accent); color: var(--accent-on);
-    padding: 8px 12px; border-radius: 999px;
-    font-size: 11px; font-family: 'Geist Mono'; font-weight: 500;
-    box-shadow: 0 8px 24px rgba(200,255,58,0.20);
-    z-index: 5;
-  }
-  .annot::before {
-    content: ""; position: absolute; width: 8px; height: 8px;
-    background: var(--accent); border-radius: 50%;
-  }
-  .annot.a1 { top: 32%; right: -8px; }
-  .annot.a1::before { left: -16px; top: 50%; transform: translateY(-50%); box-shadow: 0 0 0 4px rgba(200,255,58,0.20); }
-  .annot.a2 { bottom: 24%; left: 200px; }
-  .annot.a2::before { right: -16px; top: 50%; transform: translateY(-50%); box-shadow: 0 0 0 4px rgba(200,255,58,0.20); }
-  @media (max-width: 1100px) { .annot { display: none; } }
-
-  /* ---------- Use cases ---------- */
-  .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 1000px) { .cases { grid-template-columns: 1fr; } }
-  .case {
-    border: 1px solid var(--line); border-radius: 18px; padding: 28px;
-    background: var(--bg); display: flex; flex-direction: column; gap: 16px;
-    min-height: 320px; position: relative; overflow: hidden;
-    transition: transform .3s ease, box-shadow .3s ease;
-  }
-  .case:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.15); }
-  .case .tag {
-    font-family: 'Geist Mono'; font-size: 11px; color: var(--ink-3);
-    text-transform: uppercase; letter-spacing: 0.1em;
-  }
-  .case h3 {
-    font-size: 26px; line-height: 1.1; letter-spacing: -0.02em;
-  }
-  .case h3 em { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; }
-  .case p { color: var(--ink-2); font-size: 14px; }
-  .case .sample {
-    margin-top: auto;
-    background: var(--bg-soft); border-radius: 12px; padding: 14px;
-    border: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .case .sample .l { font-size: 11px; color: var(--ink-3); font-family: 'Geist Mono'; }
-  .case .sample .v { font-family: 'Geist Mono'; font-size: 14px; font-weight: 500; }
-
-  /* ---------- Calculator ---------- */
-  .calc {
-    background: var(--bg-soft); border: 1px solid var(--line);
-    border-radius: 24px; padding: 40px;
-    display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px;
-    align-items: center;
-  }
-  @media (max-width: 900px) { .calc { grid-template-columns: 1fr; padding: 28px; } }
-  .calc-input { display: flex; flex-direction: column; gap: 24px; }
-  .calc-field label {
-    font-family: 'Geist Mono'; font-size: 11px; color: var(--ink-3);
-    text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 10px;
-  }
-  .calc-field .control {
-    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
-    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
-  }
-  .calc-field input[type="range"] { width: 100%; accent-color: var(--ink); }
-  .calc-amt {
-    font-size: 36px; font-weight: 500; letter-spacing: -0.02em;
-    font-family: 'Geist'; line-height: 1;
-  }
-  .calc-amt .cur { color: var(--ink-3); font-size: 20px; margin-right: 6px; }
-  .ccy-pick { display: flex; gap: 6px; flex-wrap: wrap; }
-  .ccy-pick button {
-    padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--bg); font-family: 'Geist Mono'; font-size: 12px;
-    cursor: pointer; transition: all .15s ease;
-  }
-  .ccy-pick button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-
-  .calc-result {
-    background: var(--ink); color: var(--bg);
-    border-radius: 18px; padding: 28px;
-    display: flex; flex-direction: column; gap: 18px;
-  }
-  .calc-result .row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding-bottom: 14px; border-bottom: 1px dashed rgba(245,241,232,0.15);
-  }
-  .calc-result .row:last-of-type { border-bottom: 0; padding-bottom: 0; }
-  .calc-result .lbl { color: rgba(245,241,232,0.6); font-size: 13px; }
-  .calc-result .val { font-family: 'Geist Mono'; font-size: 16px; }
-  .calc-result .savings {
-    background: var(--accent); color: var(--accent-on);
-    padding: 16px; border-radius: 12px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .calc-result .savings .v { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; font-family: 'Geist'; }
-  .calc-result .savings .l { font-family: 'Geist Mono'; font-size: 12px; max-width: 120px; text-align: right; }
-
-  /* ---------- Compliance ---------- */
-  .compliance {
-    background: var(--bg);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .badges {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
-    border-left: 1px solid var(--line);
-  }
-  @media (max-width: 900px) { .badges { grid-template-columns: repeat(2, 1fr); } }
-  .badge {
-    border-right: 1px solid var(--line);
-    padding: 28px 24px; display: flex; flex-direction: column; gap: 8px;
-  }
-  .badge .b-ico {
-    width: 64px; height: 64px; border: 1px solid var(--line-strong);
-    border-radius: 12px; display: inline-flex; align-items: center; justify-content: center;
-    background: #fff; padding: 8px; overflow: hidden;
-  }
-  .badge .b-ico img,
-  .badge .b-ico svg {
-    max-width: 100%; max-height: 100%;
-    object-fit: contain; display: block;
-  }
-  .badge .b-name { font-size: 14px; font-weight: 500; margin-top: 14px; }
-  .badge .b-sub { font-size: 12px; color: var(--ink-3); }
-
-  /* ---------- Testimonials ---------- */
-  .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 1000px) { .quotes { grid-template-columns: 1fr; } }
-  .quote-card {
-    border: 1px solid var(--line); border-radius: 18px; padding: 28px;
-    background: var(--bg); display: flex; flex-direction: column; gap: 20px;
-    min-height: 280px;
-  }
-  .quote-card .q {
-    font-family: 'Instrument Serif'; font-size: 24px; line-height: 1.25;
-    letter-spacing: -0.01em;
-  }
-  .quote-card .author {
-    display: flex; align-items: center; gap: 12px; margin-top: auto;
-    padding-top: 20px; border-top: 1px solid var(--line);
-  }
-  .quote-card .av {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--bg-soft); border: 1px solid var(--line);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 500; font-size: 14px; color: var(--ink-2);
-  }
-  .quote-card .a-name { font-size: 14px; font-weight: 500; }
-  .quote-card .a-meta { font-size: 12px; color: var(--ink-3); }
-
-  /* ---------- Big stats ---------- */
-  .megastats {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  @media (max-width: 900px) { .megastats { grid-template-columns: repeat(2, 1fr); } }
-  .megastat {
-    padding: 48px var(--pad); border-right: 1px solid var(--line);
-  }
-  .megastat:last-child { border-right: 0; }
-  .megastat .v {
-    font-size: clamp(40px, 5vw, 64px); font-weight: 500; letter-spacing: -0.03em;
-    line-height: 1;
-  }
-  .megastat .v em { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; }
-  .megastat .l { font-size: 13px; color: var(--ink-3); margin-top: 12px; }
-
-  /* ---------- Final CTA ---------- */
-  .final-cta {
-    background: var(--bg-deep); color: var(--bg);
-    border-radius: 28px; margin: 0 var(--pad);
-    padding: 100px 56px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  @media (max-width: 700px) { .final-cta { padding: 64px 24px; margin: 0 16px; } }
-  .final-cta::before {
-    content: ""; position: absolute; bottom: -50%; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 800px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,255,58,0.15), transparent 60%);
-  }
-  .final-cta h2 {
-    font-size: clamp(40px, 6vw, 80px); line-height: 1; letter-spacing: -0.03em;
-    max-width: 16ch; margin: 0 auto; position: relative; font-weight: 500;
-  }
-  .final-cta h2 em { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; }
-  .final-cta p {
-    color: rgba(245,241,232,0.6); margin: 24px auto 36px; max-width: 50ch;
-    position: relative;
-  }
-  .final-cta .ctas {
-    display: inline-flex; gap: 12px; position: relative; flex-wrap: wrap; justify-content: center;
-  }
-
-  /* ---------- Footer ---------- */
-  footer {
-    padding: 80px var(--pad) 40px;
-    border-top: 1px solid var(--line);
-    margin-top: 80px;
-  }
-  .foot-grid {
-    display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 40px;
-    padding-bottom: 56px; border-bottom: 1px solid var(--line);
-  }
-  @media (max-width: 900px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
-  .foot-col h5 {
-    font-family: 'Geist Mono'; font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.12em; color: var(--ink-3); margin-bottom: 20px;
-    font-weight: 500;
-  }
-  .foot-col a {
-    display: block; color: var(--ink-2); text-decoration: none;
-    font-size: 14px; padding: 6px 0;
-  }
-  .foot-col a:hover { color: var(--ink); }
-  .foot-blurb { font-size: 13px; color: var(--ink-3); max-width: 36ch; margin-top: 16px; }
-  .foot-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 32px; flex-wrap: wrap; gap: 20px;
-  }
-  .foot-bottom .legal { font-size: 12px; color: var(--ink-3); font-family: 'Geist Mono'; }
-
-  /* ---------- Subtle bg grid in hero ---------- */
-  .grid-bg {
-    position: absolute; inset: 0; pointer-events: none;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 80px 80px;
-    mask-image: radial-gradient(ellipse at center top, rgba(0,0,0,0.6), transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center top, rgba(0,0,0,0.6), transparent 70%);
-  }
-
-  /* utility */
-  .spacer-sm { height: 16px; }
-  .spacer-md { height: 32px; }
-  .spacer-lg { height: 56px; }
-
-  /* ---------- Mobile nav (hamburger) ---------- */
-  .nav-toggle {
-    display: none;
-    width: 40px; height: 40px; border-radius: 10px;
-    border: 1px solid var(--line-strong); background: var(--bg);
-    align-items: center; justify-content: center; cursor: pointer; padding: 0;
-  }
-  .nav-toggle .bars { position: relative; width: 18px; height: 12px; }
-  .nav-toggle .bars::before,
-  .nav-toggle .bars::after,
-  .nav-toggle .bars span {
-    content: ""; position: absolute; left: 0; right: 0; height: 1.5px;
-    background: var(--ink); border-radius: 2px;
-    transition: transform .25s ease, opacity .2s ease, top .25s ease;
-  }
-  .nav-toggle .bars::before { top: 0; }
-  .nav-toggle .bars span     { top: 5px; }
-  .nav-toggle .bars::after  { top: 10px; }
-  .nav-toggle[aria-expanded="true"] .bars::before { top: 5px; transform: rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] .bars::after  { top: 5px; transform: rotate(-45deg); }
-  .nav-toggle[aria-expanded="true"] .bars span    { opacity: 0; }
-
-  .mobile-menu {
-    display: none;
-    border-top: 1px solid var(--line);
-    background: color-mix(in oklab, var(--bg) 96%, transparent);
-    padding: 12px var(--pad) 20px;
-  }
-  .mobile-menu.open { display: block; }
-  .mobile-menu a {
-    display: block; padding: 14px 4px;
-    color: var(--ink); text-decoration: none;
-    font-size: 17px; letter-spacing: -0.01em;
-    border-bottom: 1px solid var(--line);
-  }
-  .mobile-menu a:last-of-type { border-bottom: 0; }
-  .mobile-menu .mobile-cta {
-    display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;
-  }
-  .mobile-menu .mobile-cta .btn { flex: 1; justify-content: center; min-width: 140px; }
-
-  /* ---------- Mobile-friendly tightening ---------- */
-  @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .nav-cta .btn-link { display: none; }
-    .nav-toggle { display: inline-flex; }
-    .nav-cta { gap: 8px; }
-    .nav-cta .btn-accent { padding: 10px 14px; font-size: 13px; }
-  }
-  @media (max-width: 760px) {
-    section { padding: 64px var(--pad); }
-    section.tight { padding: 56px var(--pad); }
-    .hero { padding: 36px var(--pad) 24px; }
-    .section-head { margin-bottom: 36px; gap: 24px; }
-    .section-title { font-size: clamp(30px, 8vw, 44px); }
-    .section-sub { font-size: 15px; }
-    footer { padding: 56px var(--pad) 28px; margin-top: 48px; }
-    .foot-grid { gap: 28px; padding-bottom: 36px; }
-    .megastat { padding: 32px var(--pad); }
-    .megastat .v { font-size: clamp(32px, 9vw, 44px); }
-    .calc { padding: 22px; gap: 28px; }
-    .calc-result { padding: 22px; }
-    .calc-amt { font-size: 30px; }
-    .case { padding: 22px; min-height: 0; }
-    .case h3 { font-size: 22px; }
-    .built-cell { padding: 24px; min-height: 0; }
-    .quote-card { padding: 22px; min-height: 0; }
-    .quote-card .q { font-size: 20px; }
-    .product { padding: 48px 22px; margin: 0 16px; border-radius: 22px; }
-    .product-head h2 { font-size: clamp(30px, 7vw, 44px); }
-    .dash-main { padding: 16px; }
-    .dash-tab { margin-bottom: 16px; }
-    .dash-tab .filters { gap: 6px; }
-    .pill { padding: 5px 8px; font-size: 10px; }
-    .hero-card { padding: 20px; }
-    .hc-amount { font-size: 28px; }
-    .hero-meta { gap: 16px 24px; padding-top: 24px; margin-top: 28px; }
-    .hero-meta .stat .n { font-size: 24px; }
-    .display { font-size: clamp(36px, 10vw, 56px); }
-    .final-cta h2 { font-size: clamp(32px, 8vw, 48px); }
-    .final-cta { padding: 56px 22px; margin: 0 16px; }
-    .badge { padding: 22px 18px; }
-  }
-  @media (max-width: 520px) {
-    :root { --pad: 18px; }
-    .megastats { grid-template-columns: 1fr; }
-    .megastat { border-right: 0; border-bottom: 1px solid var(--line); }
-    .megastat:last-child { border-bottom: 0; }
-    .foot-grid { grid-template-columns: 1fr; gap: 24px; }
-    .badges { grid-template-columns: 1fr; }
-    .badge { border-right: 0; border-bottom: 1px solid var(--line); }
-    .badge:last-child { border-bottom: 0; }
-    .hero-meta { flex-direction: column; gap: 14px; }
-    .ticker-track { gap: 32px; font-size: 12px; }
-    .nav-inner { padding: 14px var(--pad); }
-    .brand { font-size: 16px; }
-    .foot-bottom { flex-direction: column; align-items: flex-start; }
-  }
-  @media (hover: none) {
-    .case:hover { transform: none; box-shadow: none; }
-    .built-cell:hover { background: var(--bg); }
-  }
-</style>
+<link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
-<!-- =========== NAV =========== -->
 <nav class="top">
   <div class="nav-inner">
-    <div class="brand">
+    <a class="brand" href="index.html">
       <span class="brand-mark"></span>
       <span>Money2Abroad</span>
-    </div>
+    </a>
     <div class="nav-links">
-      <a href="#product">Product <span style="font-size:10px;">▾</span></a>
-      <a href="#cases">Use cases</a>
-      <a href="#calc">Pricing</a>
-      <a href="#compliance">Compliance</a>
-      <a href="#partners">Partners</a>
+      <span class="current" aria-current="page">Home</span>
+      <a href="remittance-for-travel-agents/index.html">Travel agents</a>
+      <a href="about-us/index.html">About us</a>
+      <a href="contact-us/index.html">Contact us</a>
     </div>
     <div class="nav-cta">
       <a href="#" class="btn btn-link" style="font-size:14px;">Agent login</a>
-      <a href="#" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
+      <a href="contact-us/index.html" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
         <span class="bars"><span></span></span>
       </button>
     </div>
   </div>
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#product">Product</a>
-    <a href="#cases">Use cases</a>
-    <a href="#calc">Pricing</a>
-    <a href="#compliance">Compliance</a>
-    <a href="#partners">Partners</a>
+    <span class="current" aria-current="page">Home</span>
+    <a href="remittance-for-travel-agents/index.html">Travel agents</a>
+    <a href="about-us/index.html">About us</a>
+    <a href="contact-us/index.html">Contact us</a>
     <div class="mobile-cta">
       <a href="#" class="btn btn-ghost">Agent login</a>
-      <a href="#" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
+      <a href="contact-us/index.html" class="btn btn-accent">Get onboarded</a>
     </div>
   </div>
 </nav>
 <script>
-  (function(){
-    var btn = document.querySelector('.nav-toggle');
-    var menu = document.getElementById('mobile-menu');
-    if (!btn || !menu) return;
-    function close(){ btn.setAttribute('aria-expanded','false'); menu.classList.remove('open'); }
-    btn.addEventListener('click', function(){
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      menu.classList.toggle('open', !open);
-    });
-    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
-  })();
+(function(){
+  var btn = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  function close(){ btn.setAttribute('aria-expanded','false'); menu.classList.remove('open'); }
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('open', !open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+})();
 </script>
 
-<!-- =========== TICKER =========== -->
 <div class="ticker">
   <div class="ticker-track" id="ticker-track">
-    <span class="ticker-item"><span class="pair">Loading live FX from Yahoo Finance…</span></span>
+    <span class="ticker-item"><span class="pair">Loading live FX…</span></span>
   </div>
 </div>
 
-<!-- =========== HERO =========== -->
 <header class="hero">
   <div class="grid-bg"></div>
   <div class="wrap" style="position:relative;">
     <div class="hero-grid">
       <div>
         <h1 class="display">
-          Send your travelers'<br/>
-          money <em>anywhere.</em><br/>
-          <span class="strike">Faster than they board.</span>
+          Outward remittance<br/>
+          for <em>travel agents.</em><br/>
+          <span class="strike">Built for tour payments.</span>
         </h1>
+        <p class="hero-copy">
+          Check live FX, run a digital desk for DMCs and overseas vendors, and track confirmations — without losing your day to branch queues.
+        </p>
+        <div class="hero-actions">
+          <a href="about-us/index.html" class="btn btn-primary">Explore the product <span class="arrow">→</span></a>
+          <a href="remittance-for-travel-agents/index.html" class="btn btn-ghost">Travel agent program</a>
+        </div>
         <div class="chips">
-          <span class="chip"><span class="d"></span>Live LRS &amp; A2 forms</span>
-          <span class="chip"><span class="d"></span>47 currencies</span>
-          <span class="chip"><span class="d"></span>SWIFT + local rails</span>
-          <span class="chip"><span class="d"></span>Bulk payouts</span>
+          <span class="chip"><span class="d"></span>Live FX on every visit</span>
+          <span class="chip"><span class="d"></span>Guided KYC &amp; A2</span>
+          <span class="chip"><span class="d"></span>SWIFT-ready tracking</span>
+          <span class="chip"><span class="d"></span>Made for Indian agencies</span>
         </div>
         <div class="hero-meta">
           <div class="stat">
-            <div class="n mono">₹2,420 Cr</div>
-            <div class="l">Remitted by partner agents · FY25</div>
+            <div class="n mono">Multi-page</div>
+            <div class="l">Clean URLs — home, about, agents, contact</div>
           </div>
           <div class="stat">
-            <div class="n mono">8,500+</div>
-            <div class="l">Travel agencies onboarded</div>
+            <div class="n mono">47+ ccys</div>
+            <div class="l">Tour, visa, education &amp; vendor corridors</div>
           </div>
           <div class="stat">
-            <div class="n mono">28 sec</div>
-            <div class="l">Median quote-to-debit</div>
+            <div class="n mono">Live FX</div>
+            <div class="l">Rates refresh while you quote</div>
           </div>
         </div>
       </div>
 
-      <!-- Live transfer card -->
       <div class="hero-card">
         <div class="hc-row" id="hc-row-send" style="border-bottom:0;padding-bottom:6px;">
           <div style="flex:1;min-width:0;">
@@ -953,7 +127,6 @@
           <span id="hc-chip-slot-bot"></span>
         </div>
 
-        <!-- Chips that get moved between rows by the swap button -->
         <span class="ccy-flag" id="hc-inr-chip" style="display:none;">🇮🇳 INR</span>
         <label class="ccy-select" id="hc-ccy-wrap" style="display:none;">
           <span id="hc-ccy-flag">🇺🇸</span>
@@ -972,642 +145,111 @@
             <div class="val" id="hc-change">—</div>
           </div>
         </div>
-        <div class="hc-cta">
-          <span>Lock rate &amp; debit wallet</span>
+        <a href="contact-us/index.html" class="hc-cta" style="text-decoration:none;color:inherit;">
+          <span>Talk to the desk</span>
           <span>→</span>
-        </div>
+        </a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- =========== BUILT FOR =========== -->
-<section id="why">
+<div class="home-stats-band" aria-hidden="true">
+  <div class="home-stat">
+    <div class="v">RBI-led <em>rails</em></div>
+    <div class="l">Outward flows via licensed AD partner banks</div>
+  </div>
+  <div class="home-stat">
+    <div class="v">One <em>workspace</em></div>
+    <div class="l">Quotes, documents &amp; status in one journey</div>
+  </div>
+  <div class="home-stat">
+    <div class="v">LRS-aware</div>
+    <div class="l">Purpose codes &amp; Form A2, guided in flow</div>
+  </div>
+  <div class="home-stat">
+    <div class="v">Travel <em>first</em></div>
+    <div class="l">Built for tour desks &amp; outbound counters</div>
+  </div>
+</div>
+
+<section class="home-gateway">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="eyebrow">Built for travel agents</div>
+        <div class="eyebrow">Continue</div>
         <div class="spacer-sm"></div>
-        <h2 class="section-title">Not another bank portal.<br/><em>A trade desk.</em></h2>
+        <h2 class="section-title">Go deeper on<br/><em>your next click.</em></h2>
       </div>
-      <p class="section-sub">
-        We rebuilt outbound forex from the ground up for IATA, TAAI &amp; OTOAI agencies who run on margin, deadlines, and trust. No branch visits. No fax-quality A2 forms. No "the rate has moved, sir."
-      </p>
+      <p class="section-sub">The full story is split across dedicated pages so each URL stays focused — richer typography, faster scanning, room to grow.</p>
     </div>
 
-    <div class="built-grid">
-      <div class="built-cell">
-        <div>
-          <div class="num">01</div>
-          <div class="spacer-sm"></div>
-          <h3>Lock rates two hours before debit</h3>
-        </div>
-        <p>Quote a customer, lock the FX, then collect rupees on your timeline. Rate-shift risk is on us, not on you.</p>
-      </div>
-      <div class="built-cell">
-        <div>
-          <div class="num">02</div>
-          <div class="spacer-sm"></div>
-          <h3>A2 forms auto-filled from PNR</h3>
-        </div>
-        <p>Paste the booking, we fill purpose code, declaration, and the underlying contract reference. Reviewed by a compliance officer, not a regex.</p>
-      </div>
-      <div class="built-cell">
-        <div>
-          <div class="num">03</div>
-          <div class="spacer-sm"></div>
-          <h3>Bulk payouts to 178 countries</h3>
-        </div>
-        <p>One CSV, fifty hotel vendors, four currencies. SWIFT GPI tracking with a real arrival ETA — not "3–5 working days".</p>
-      </div>
-      <div class="built-cell">
-        <div>
-          <div class="num">04</div>
-          <div class="spacer-sm"></div>
-          <h3>Margin you keep, on every ticket</h3>
-        </div>
-        <p>Set your own markup per agent, per branch, per use case. We invoice the customer at your rate; you settle at ours.</p>
-      </div>
+    <div class="gateway-grid">
+      <a class="gw-card" href="about-us/index.html">
+        <span class="gw-eyebrow">Product &amp; proof</span>
+        <h3>About <em>Money2Abroad</em></h3>
+        <p>Process, dashboard, remittance types, advantage model, compliance — everything that explains how the desk works.</p>
+        <span class="gw-more">Open about us <span class="arrow">→</span></span>
+      </a>
+      <a class="gw-card" href="remittance-for-travel-agents/index.html">
+        <span class="gw-eyebrow">Travel trade</span>
+        <h3>Remittance for <em>agents</em></h3>
+        <p>The travel-agent narrative: pains we solve, corridors, vision — tuned for B2B agency teams.</p>
+        <span class="gw-more">View travel agents <span class="arrow">→</span></span>
+      </a>
+      <a class="gw-card" href="contact-us/index.html">
+        <span class="gw-eyebrow">Onboarding</span>
+        <h3>Contact <em>only</em></h3>
+        <p>Email, phone, office &amp; entity details on a single, distraction-free page.</p>
+        <span class="gw-more">Get in touch <span class="arrow">→</span></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- =========== PRODUCT =========== -->
-<section id="product" class="tight" style="padding-top: 24px;">
-  <div class="product">
-    <div class="product-head">
-      <div class="eyebrow">The agency dashboard</div>
-      <h2>One screen for the whole<br/><em>outbound desk.</em></h2>
-      <p>Quotes, KYC, A2 forms, beneficiary book, multi-currency wallet, SWIFT tracking and reconciliation — for every counter staff, every branch, every customer ledger. Built for the speed of a 4 PM tour-group payout.</p>
-    </div>
-
-    <!-- Mock dashboard -->
-    <div class="dash">
-      <aside class="dash-side">
-        <div class="agency">
-          <div class="agency-logo">SK</div>
-          <div class="agency-meta">
-            <div class="name">Skywings Travel</div>
-            <div class="id">IATA · 14-3 76512</div>
-          </div>
-        </div>
-        <div class="label">Workspace</div>
-        <div class="item active"><span class="ico"></span>Live quotes</div>
-        <div class="item"><span class="ico"></span>Beneficiary book</div>
-        <div class="item"><span class="ico"></span>A2 / LRS forms</div>
-        <div class="item"><span class="ico"></span>Bulk payouts</div>
-        <div class="item"><span class="ico"></span>FX wallet</div>
-        <div class="label">Compliance</div>
-        <div class="item"><span class="ico"></span>KYC vault</div>
-        <div class="item"><span class="ico"></span>Audit log</div>
-        <div class="item"><span class="ico"></span>Reports</div>
-        <div class="label">Branches</div>
-        <div class="item"><span class="ico"></span>Mumbai · BKC</div>
-        <div class="item"><span class="ico"></span>Pune · FC Road</div>
-        <div class="item"><span class="ico"></span>Surat · Adajan</div>
-      </aside>
-
-      <main class="dash-main">
-        <div class="dash-tab">
-          <h3>Outbound desk · Today</h3>
-          <div class="filters">
-            <span class="pill active">Today</span>
-            <span class="pill">7d</span>
-            <span class="pill">30d</span>
-            <span class="pill">FY</span>
-          </div>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi">
-            <div class="l">Volume sent</div>
-            <div class="v mono">$ 1.42M</div>
-            <div class="delta">▲ 12.4% vs yesterday</div>
-          </div>
-          <div class="kpi">
-            <div class="l">Avg rate vs market</div>
-            <div class="v mono">+₹1.74</div>
-            <div class="delta">per dollar advantage</div>
-          </div>
-          <div class="kpi">
-            <div class="l">Live quotes</div>
-            <div class="v mono">23</div>
-            <div class="delta">8 awaiting customer</div>
-          </div>
-          <div class="kpi">
-            <div class="l">Margin booked</div>
-            <div class="v mono">₹ 2,18,420</div>
-            <div class="delta">▲ 4.1% MoM</div>
-          </div>
-        </div>
-
-        <div class="panels">
-          <div class="panel">
-            <h4>
-              <span>Recent transfers</span>
-              <span style="font-family:'Geist Mono';font-size:11px;color:rgba(245,241,232,0.5);">14 today</span>
-            </h4>
-            <div class="txn">
-              <div class="who">
-                <div class="av">RV</div>
-                <div>
-                  <div class="nm">Rajesh Vyas — Tuition · Univ. of Toronto</div>
-                  <div class="sub">A2 · Education · LRS-EDU-04</div>
-                </div>
-              </div>
-              <div class="am">
-                CAD 18,400.00
-                <div class="sub">@ 61.082</div>
-              </div>
-              <div class="am">
-                ₹11,23,909
-                <div class="sub">debit · 12:42</div>
-              </div>
-              <div class="st done">SETTLED</div>
-            </div>
-            <div class="txn">
-              <div class="who">
-                <div class="av">DM</div>
-                <div>
-                  <div class="nm">DMC Anantara Bangkok — 18 pax group</div>
-                  <div class="sub">A2 · Business · TT-BUS-02</div>
-                </div>
-              </div>
-              <div class="am">
-                THB 8,40,000
-                <div class="sub">@ 2.469</div>
-              </div>
-              <div class="am">
-                ₹20,73,960
-                <div class="sub">debit · 11:08</div>
-              </div>
-              <div class="st prog">SWIFT IN-FLIGHT</div>
-            </div>
-            <div class="txn">
-              <div class="who">
-                <div class="av">PA</div>
-                <div>
-                  <div class="nm">Patel family — Schengen visa fees</div>
-                  <div class="sub">A2 · Travel · LRS-TRV-01</div>
-                </div>
-              </div>
-              <div class="am">
-                EUR 480.00
-                <div class="sub">@ 91.218</div>
-              </div>
-              <div class="am">
-                ₹43,784
-                <div class="sub">debit · 10:21</div>
-              </div>
-              <div class="st done">SETTLED</div>
-            </div>
-            <div class="txn">
-              <div class="who">
-                <div class="av">SA</div>
-                <div>
-                  <div class="nm">Saudia Cargo — air ticket vendor settlement</div>
-                  <div class="sub">A2 · BSP · TT-BSP-09</div>
-                </div>
-              </div>
-              <div class="am">
-                SAR 96,500
-                <div class="sub">@ 22.514</div>
-              </div>
-              <div class="am">
-                ₹21,72,601
-                <div class="sub">debit · 09:47</div>
-              </div>
-              <div class="st done">SETTLED</div>
-            </div>
-            <div class="txn">
-              <div class="who">
-                <div class="av">EM</div>
-                <div>
-                  <div class="nm">Emerald DMC Dubai — Burj package</div>
-                  <div class="sub">A2 · Business · TT-BUS-02</div>
-                </div>
-              </div>
-              <div class="am">
-                AED 47,200
-                <div class="sub">@ 23.012</div>
-              </div>
-              <div class="am">
-                ₹10,86,166
-                <div class="sub">queued · 16:00</div>
-              </div>
-              <div class="st prog">RATE LOCKED</div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <h4>FX wallet · Multi-ccy</h4>
-            <div class="chart-wrap">
-              <svg viewBox="0 0 300 140" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#c8ff3a" stop-opacity="0.4"/>
-                    <stop offset="100%" stop-color="#c8ff3a" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path d="M0,100 C 30,80 50,90 70,72 C 95,52 120,68 145,55 C 170,42 195,48 220,30 C 250,12 275,22 300,20 L 300,140 L 0,140 Z" fill="url(#g1)"/>
-                <path d="M0,100 C 30,80 50,90 70,72 C 95,52 120,68 145,55 C 170,42 195,48 220,30 C 250,12 275,22 300,20" fill="none" stroke="#c8ff3a" stroke-width="1.4"/>
-                <!-- gridline -->
-                <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(245,241,232,0.05)" stroke-dasharray="2,3"/>
-              </svg>
-            </div>
-            <div class="currencies">
-              <div class="ccy">
-                <div class="flag">USD</div>
-                <div class="meta">
-                  <div class="nm">US Dollar</div>
-                  <div class="sub">@ avg 84.21 acquired</div>
-                </div>
-                <div class="bal">$ 142,400</div>
-              </div>
-              <div class="ccy">
-                <div class="flag">EUR</div>
-                <div class="meta">
-                  <div class="nm">Euro</div>
-                  <div class="sub">@ avg 90.88 acquired</div>
-                </div>
-                <div class="bal">€ 38,700</div>
-              </div>
-              <div class="ccy">
-                <div class="flag">AED</div>
-                <div class="meta">
-                  <div class="nm">UAE Dirham</div>
-                  <div class="sub">@ avg 22.91 acquired</div>
-                </div>
-                <div class="bal">د.إ 218,400</div>
-              </div>
-              <div class="ccy">
-                <div class="flag">GBP</div>
-                <div class="meta">
-                  <div class="nm">Pound Sterling</div>
-                  <div class="sub">@ avg 106.42 acquired</div>
-                </div>
-                <div class="bal">£ 24,180</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- floating annotations -->
-        <div class="annot a1">A2 form auto-filled in 4 sec</div>
-        <div class="annot a2">SWIFT GPI · arrives 16:42 IST</div>
-      </main>
-    </div>
-
-    <!-- caption row -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;color:rgba(245,241,232,0.65);font-size:13px;">
-      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Per-branch ledgers.</strong>Reconcile counters, not spreadsheets.</div>
-      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Roles &amp; maker-checker.</strong>Counter creates, manager approves, partner audits.</div>
-      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Open API.</strong>Webhooks for every status. Plug into your CRM.</div>
-      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Mobile, too.</strong>Check rates &amp; approve transfers from the airport lounge.</div>
-    </div>
-  </div>
-</section>
-
-<!-- =========== USE CASES =========== -->
-<section id="cases">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">Use cases</div>
-        <div class="spacer-sm"></div>
-        <h2 class="section-title">Every <em>outbound</em><br/>your agency handles.</h2>
-      </div>
-      <p class="section-sub">
-        From a single tuition transfer to a 200-pax tour group hotel float, every payment is correctly purpose-coded against the right LRS / TT / BSP rail. Compliance baked in at quote time.
-      </p>
-    </div>
-
-    <div class="cases">
-      <div class="case">
-        <span class="tag">A2 · LRS · Education</span>
-        <h3>Tuition &amp; living expenses for <em>students abroad.</em></h3>
-        <p>Direct-to-university SWIFT, with the Form-A2, sanction letter and I-20 attached. Track until the registrar marks "received."</p>
-        <div class="sample">
-          <div><div class="l">Avg ticket</div><div class="v">CAD 14,200</div></div>
-          <div><div class="l">Median delivery</div><div class="v">14h 22m</div></div>
-        </div>
-      </div>
-
-      <div class="case">
-        <span class="tag">A2 · BSP · Business</span>
-        <h3>Hotel &amp; <em>DMC settlements</em> for tour ops.</h3>
-        <p>Bulk pay 80 vendors in one CSV. Reconcile against your itinerary IDs, not bank narrations. Vendor sees their PO number.</p>
-        <div class="sample">
-          <div><div class="l">Markets</div><div class="v">178 countries</div></div>
-          <div><div class="l">Bulk file</div><div class="v">CSV / API</div></div>
-        </div>
-      </div>
-
-      <div class="case">
-        <span class="tag">A2 · Travel</span>
-        <h3>Visa fees, TCS &amp; <em>group leisure</em> floats.</h3>
-        <p>Pre-load a tour wallet in EUR, debit per visa appointment, refund unused balance back at our buy rate. No more pooled rupee accounts.</p>
-        <div class="sample">
-          <div><div class="l">Refund window</div><div class="v">90 days</div></div>
-          <div><div class="l">Wallet ccys</div><div class="v">47 supported</div></div>
-        </div>
-      </div>
-
-      <div class="case">
-        <span class="tag">A2 · BSP-Air</span>
-        <h3><em>Airline &amp; cargo</em> vendor payouts.</h3>
-        <p>BSP and non-BSP carriers, freight vendors, GDS top-ups — settled at interbank, debited from your wallet, GST captured.</p>
-        <div class="sample">
-          <div><div class="l">Carriers paid</div><div class="v">312 IATA</div></div>
-          <div><div class="l">Cycle time</div><div class="v">Same-day</div></div>
-        </div>
-      </div>
-
-      <div class="case">
-        <span class="tag">A2 · Medical</span>
-        <h3>Medical travel &amp; <em>emergency</em> transfers.</h3>
-        <p>Verified hospital invoice, flagged purpose code, escalated compliance review — funds at the hospital cashier within 4 hours, Mon–Sun.</p>
-        <div class="sample">
-          <div><div class="l">SLA</div><div class="v">4 hours</div></div>
-          <div><div class="l">Coverage</div><div class="v">24×7</div></div>
-        </div>
-      </div>
-
-      <div class="case">
-        <span class="tag">A2 · Conference / Events</span>
-        <h3>Conference fees &amp; <em>MICE</em> deposits.</h3>
-        <p>Registration fees, booth rentals, AV vendor advances — all under one event ID. Reconcile at month-end with one click.</p>
-        <div class="sample">
-          <div><div class="l">Event tracking</div><div class="v">Per-PO</div></div>
-          <div><div class="l">Currencies</div><div class="v">All 47</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========== CALCULATOR =========== -->
-<section id="calc" style="padding-top:0;">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">Savings calculator</div>
-        <div class="spacer-sm"></div>
-        <h2 class="section-title">Margin you can <em>actually</em> keep.</h2>
-      </div>
-      <p class="section-sub">
-        Most agencies lose ₹1.50–2.50 per dollar to bank card-rate fees and TT charges. Move volume to Money2Abroad — the spread becomes your margin.
-      </p>
-    </div>
-
-    <div class="calc" id="calc-widget">
-      <div class="calc-input">
-        <div class="calc-field">
-          <label>Monthly outbound volume</label>
-          <div class="calc-amt"><span class="cur">$</span><span id="cv">250,000</span></div>
-          <div style="margin-top:14px;">
-            <input id="vol" type="range" min="50000" max="2000000" step="10000" value="250000" />
-            <div style="display:flex;justify-content:space-between;font-family:'Geist Mono';font-size:11px;color:var(--ink-3);margin-top:6px;">
-              <span>$50K</span><span>$2M</span>
-            </div>
-          </div>
-        </div>
-        <div class="calc-field">
-          <label>Currency mix</label>
-          <div class="ccy-pick" id="ccy-pick">
-            <button class="on" data-ccy="USD">USD</button>
-            <button data-ccy="EUR">EUR</button>
-            <button data-ccy="GBP">GBP</button>
-            <button data-ccy="AED">AED</button>
-            <button data-ccy="THB">THB</button>
-            <button data-ccy="SGD">SGD</button>
-          </div>
-        </div>
-        <div class="calc-field">
-          <label>Avg ticket size</label>
-          <div class="calc-amt"><span class="cur">$</span><span id="tv">3,200</span></div>
-          <div style="margin-top:14px;">
-            <input id="tick" type="range" min="500" max="50000" step="100" value="3200" />
-            <div style="display:flex;justify-content:space-between;font-family:'Geist Mono';font-size:11px;color:var(--ink-3);margin-top:6px;">
-              <span>$500</span><span>$50K</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-result">
-        <div class="row">
-          <span class="lbl">Tickets / month</span>
-          <span class="val" id="r-tickets">78</span>
-        </div>
-        <div class="row">
-          <span class="lbl">Avg rate advantage vs bank card-rate</span>
-          <span class="val" style="color:var(--accent);">+ ₹1.92 / $</span>
-        </div>
-        <div class="row">
-          <span class="lbl">TT / SWIFT charges saved</span>
-          <span class="val" id="r-tt">₹ 39,000</span>
-        </div>
-        <div class="row">
-          <span class="lbl">Annual margin captured</span>
-          <span class="val" id="r-annual">₹ 62.4 L</span>
-        </div>
-        <div class="savings">
-          <div>
-            <div style="font-size:12px;font-family:'Geist Mono';opacity:0.7;">YOU KEEP</div>
-            <div class="v" id="r-keep">₹ 5.20 L / mo</div>
-          </div>
-          <div class="l">Compared to running the same volume through a bank's outbound desk.</div>
-        </div>
-        <a href="#" class="btn btn-primary" style="background: var(--bg); color: var(--ink); justify-content:center;">Schedule a desk-walkthrough <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========== COMPLIANCE =========== -->
-<section id="compliance" class="compliance tight">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">Compliance &amp; trust</div>
-        <div class="spacer-sm"></div>
-        <h2 class="section-title">Boring on <em>purpose.</em></h2>
-      </div>
-      <p class="section-sub">
-        We are an Authorised Dealer Category-II partnered platform. Every transfer flies through real RBI-licensed AD-I bank rails. Your customer's money never sits on our balance sheet.
-      </p>
-    </div>
-
-    <div class="badges">
-      <div class="badge">
-        <span class="b-ico">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Reserve_Bank_of_India_logo.svg/500px-Reserve_Bank_of_India_logo.svg.png"
-               alt="Reserve Bank of India" loading="lazy" decoding="async" />
-        </span>
-        <span class="b-name">RBI · AD-II rails</span>
-        <span class="b-sub">Routed via partner AD-I scheduled banks</span>
-      </div>
-      <div class="badge">
-        <span class="b-ico">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/500px-Emblem_of_India.svg.png"
-               alt="Government of India · FEMA" loading="lazy" decoding="async" />
-        </span>
-        <span class="b-name">FEMA &amp; LRS aligned</span>
-        <span class="b-sub">Auto-validated against latest master directions</span>
-      </div>
-      <div class="badge">
-        <span class="b-ico">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ISO_Logo_%28Red_square%29.svg/500px-ISO_Logo_%28Red_square%29.svg.png"
-               alt="ISO 27001" loading="lazy" decoding="async" />
-        </span>
-        <span class="b-name">ISO 27001:2022</span>
-        <span class="b-sub">Certified · audited annually</span>
-      </div>
-      <div class="badge">
-        <span class="b-ico">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/AICPA_logo.png"
-               alt="AICPA SOC 2" loading="lazy" decoding="async" />
-        </span>
-        <span class="b-name">SOC 2 Type II</span>
-        <span class="b-sub">Independent attestation · ongoing</span>
-      </div>
-      <div class="badge">
-        <span class="b-ico">
-          <!-- PCI Security Standards Council mark (inline SVG — no public CDN copy) -->
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PCI DSS">
-            <defs>
-              <linearGradient id="pci-g" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0f7bc4"/>
-                <stop offset="100%" stop-color="#0a5fa0"/>
-              </linearGradient>
-            </defs>
-            <path d="M100 8 L180 38 V108 C180 150 145 178 100 192 C55 178 20 150 20 108 V38 Z"
-                  fill="url(#pci-g)" stroke="#08406d" stroke-width="2"/>
-            <text x="100" y="86" text-anchor="middle"
-                  font-family="Helvetica, Arial, sans-serif" font-weight="700"
-                  font-size="42" fill="#fff" letter-spacing="-1">PCI</text>
-            <text x="100" y="128" text-anchor="middle"
-                  font-family="Helvetica, Arial, sans-serif" font-weight="600"
-                  font-size="22" fill="#fff" letter-spacing="1">DSS</text>
-            <text x="100" y="158" text-anchor="middle"
-                  font-family="Helvetica, Arial, sans-serif" font-weight="500"
-                  font-size="13" fill="#cfe6f7" letter-spacing="2">COMPLIANT</text>
-          </svg>
-        </span>
-        <span class="b-name">PCI-DSS L1</span>
-        <span class="b-sub">For card-funded settlement flows</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========== TESTIMONIALS =========== -->
-<section id="partners">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">From the desks</div>
-        <div class="spacer-sm"></div>
-        <h2 class="section-title">Agencies who left the <em>card-rate.</em></h2>
-      </div>
-      <p class="section-sub">
-        Real partners across IATA, TAAI and OTOAI. The kind of operators who run six branches and settle 80 vendors a day, every day.
-      </p>
-    </div>
-
-    <div class="quotes">
-      <div class="quote-card">
-        <p class="q">"Used to keep three relationship managers at three banks just to chase TT confirmations. Now my counter staff sees 'arrived' on screen before the customer leaves the office."</p>
-        <div class="author">
-          <div class="av">RP</div>
-          <div>
-            <div class="a-name">Rohan Parekh</div>
-            <div class="a-meta">Director · Skywings Travel · Mumbai</div>
-          </div>
-        </div>
-      </div>
-      <div class="quote-card">
-        <p class="q">"The A2 form auto-fill is the only reason I survived the May–July student-fee rush. We did 1,400 university transfers without a single FEMA query."</p>
-        <div class="author">
-          <div class="av">AP</div>
-          <div>
-            <div class="a-name">Anjali Pillai</div>
-            <div class="a-meta">Founder · Beyond-Borders Education Tours</div>
-          </div>
-        </div>
-      </div>
-      <div class="quote-card">
-        <p class="q">"Locked Euro at 91.08 at noon. Customer paid us at 5 PM at 91.62. That ₹0.54 × 4,200 EUR was my dinner — repeat that 30 times a month and you understand the business."</p>
-        <div class="author">
-          <div class="av">VS</div>
-          <div>
-            <div class="a-name">Vipul Shah</div>
-            <div class="a-meta">Partner · Eastbound Holidays · Surat</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========== FINAL CTA =========== -->
-<section style="padding-top:0;padding-bottom:80px;">
-  <div class="final-cta">
-    <h2>Open your <em>outbound desk</em><br/>this week.</h2>
-    <p>Onboarding is 48 hours. Bring your IATA / TAAI / OTOAI number, three months of bank statements, and one director's ID. We'll handle the rest — including porting your existing AD-I relationship.</p>
-    <div class="ctas">
-      <a href="#" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
-      <a href="#" class="btn" style="border-color:rgba(245,241,232,0.2);color:var(--bg);">Book a 20-minute walkthrough</a>
-    </div>
-  </div>
-</section>
-
-<!-- =========== FOOTER =========== -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="brand">
+        <a class="brand" href="index.html">
           <span class="brand-mark"></span>
           <span>Money2Abroad</span>
-        </div>
-        <p class="foot-blurb">B2B outbound remittance for India's travel trade. Built for IATA, TAAI &amp; OTOAI agencies who refuse to lose margin to a bank card-rate.</p>
+        </a>
+        <p class="foot-blurb">Digital outward remittance for India's travel trade. Built for agents who need live rates, guided documents and reliable confirmation for overseas payments.</p>
         <div style="display:flex;gap:8px;margin-top:18px;">
           <span class="chip">🇮🇳 Made in Mumbai</span>
         </div>
       </div>
       <div class="foot-col">
-        <h5>Product</h5>
-        <a href="#">Outbound desk</a>
-        <a href="#">FX wallet</a>
-        <a href="#">Bulk payouts</a>
-        <a href="#">A2 / LRS forms</a>
-        <a href="#">Open API</a>
+        <h5>Site</h5>
+        <a href="index.html">Home</a>
+        <a href="remittance-for-travel-agents/index.html">Travel agents</a>
+        <a href="about-us/index.html">About us</a>
+        <a href="contact-us/index.html">Contact us</a>
       </div>
       <div class="foot-col">
         <h5>For agencies</h5>
-        <a href="#">Tuition transfers</a>
-        <a href="#">Hotel &amp; DMC</a>
-        <a href="#">Visa fees</a>
-        <a href="#">Group floats</a>
-        <a href="#">Air &amp; cargo</a>
+        <a href="about-us/index.html#cases">Tour cost</a>
+        <a href="about-us/index.html#cases">Hotel &amp; DMC</a>
+        <a href="about-us/index.html#cases">Visa fees</a>
+        <a href="about-us/index.html#cases">Education</a>
+        <a href="about-us/index.html#cases">Maintenance remittance</a>
       </div>
       <div class="foot-col">
         <h5>Company</h5>
-        <a href="#">About</a>
-        <a href="#">Compliance</a>
+        <a href="about-us/index.html">About</a>
+        <a href="about-us/index.html#compliance">Compliance</a>
         <a href="#">Pricing</a>
         <a href="#">Careers</a>
         <a href="#">Press</a>
       </div>
       <div class="foot-col">
         <h5>Talk to us</h5>
-        <a href="#">desk@money2abroad.in</a>
-        <a href="#">+91 22 6970 4000</a>
+        <a href="mailto:desk@money2abroad.in">desk@money2abroad.in</a>
+        <a href="tel:+912269704000">+91 22 6970 4000</a>
         <a href="#">Mumbai · BKC</a>
         <a href="#">Status &amp; uptime</a>
-        <a href="#">Help centre</a>
+        <a href="contact-us/index.html">Contact us</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -1617,12 +259,10 @@
   </div>
 </footer>
 
-<!-- =========== Scripts =========== -->
 <script>
   /* ============================================================
    * Live FX — Yahoo Finance (chart endpoint, CORS-enabled)
    * Powers: hero quote card + global ticker
-   * Major currencies supported below. INR is the base / quote.
    * ============================================================ */
   (function(){
     const CCYS = [
@@ -1644,13 +284,9 @@
       { code: 'ZAR', flag: '🇿🇦', name: 'South African Rand' }
     ];
     const META = Object.fromEntries(CCYS.map(c => [c.code, c]));
-    const fmtIN = n => new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(n);
     const fmtRate = n => n >= 10 ? n.toFixed(4) : n.toFixed(6);
     const parseAmt = s => Number(String(s).replace(/[^\d.]/g, '')) || 0;
 
-    // ----- Yahoo Finance fetch (primary) -----
-    // Endpoint returns regularMarketPrice + chartPreviousClose.
-    // Symbol form: USDINR=X (price = INR per 1 USD).
     async function yahoo(ccy) {
       const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' +
                   encodeURIComponent(ccy + 'INR=X') +
@@ -1667,7 +303,6 @@
       };
     }
 
-    // ----- Fallback: open.er-api.com (free, CORS, no key) -----
     let fallbackCache = null;
     async function fallbackAll() {
       if (fallbackCache && (Date.now() - fallbackCache.ts < 60_000)) return fallbackCache.data;
@@ -1681,7 +316,6 @@
     async function fallback(ccy) {
       const rates = await fallbackAll();
       if (!rates[ccy]) throw new Error('fallback: missing ' + ccy);
-      // rates[ccy] is INR→ccy, invert to ccy→INR.
       const price = 1 / rates[ccy];
       return { price, prev: price, source: 'open.er-api.com' };
     }
@@ -1691,7 +325,6 @@
       catch (e) { return await fallback(ccy); }
     }
 
-    /* =================== HERO CARD =================== */
     const sendEl     = document.getElementById('hc-send');
     const sendCurEl  = document.getElementById('hc-send-cur');
     const recEl      = document.getElementById('hc-rec');
@@ -1708,7 +341,6 @@
     const inrChip    = document.getElementById('hc-inr-chip');
     const fxChip     = document.getElementById('hc-ccy-wrap');
 
-    // Populate the dropdown
     CCYS.forEach(c => {
       const opt = document.createElement('option');
       opt.value = c.code;
@@ -1718,9 +350,9 @@
     ccySel.value = 'USD';
 
     let currentCcy  = 'USD';
-    let currentRate = null;            // INR per 1 unit of currentCcy
+    let currentRate = null;
     let currentPrev = null;
-    let direction   = 'inr-to-fx';     // 'inr-to-fx' = send INR, receive FX. 'fx-to-inr' = reverse.
+    let direction   = 'inr-to-fx';
     let lastFetch   = 0;
 
     function senderCcy()   { return direction === 'inr-to-fx' ? 'INR' : currentCcy; }
@@ -1768,8 +400,8 @@
       if (!currentRate) return;
       const sendAmt = parseAmt(sendEl.value);
       const recv = direction === 'inr-to-fx'
-        ? sendAmt / currentRate     // INR → FX
-        : sendAmt * currentRate;    // FX → INR
+        ? sendAmt / currentRate
+        : sendAmt * currentRate;
       recEl.firstChild.nodeValue = fmtAmount(recv, receiverCcy()) + ' ';
 
       ccyFlag.textContent = META[currentCcy].flag;
@@ -1828,13 +460,10 @@
     swapBtn.addEventListener('click', () => {
       direction = (direction === 'inr-to-fx') ? 'fx-to-inr' : 'inr-to-fx';
       swapBtn.classList.toggle('spun');
-      // Sensible default amounts when flipping so the field doesn't show ₹1,00,000+ in USD or 0.000012 INR.
       const cur = parseAmt(sendEl.value);
       if (direction === 'fx-to-inr') {
-        // Was sending INR; now sending FX. Default to 100 of the FX, or convert.
         sendEl.value = fmtAmount(currentRate ? Math.max(1, Math.round(cur / currentRate)) : 100, currentCcy);
       } else {
-        // Was sending FX; now sending INR. Convert back to INR equivalent.
         sendEl.value = fmtAmount(currentRate ? Math.max(1, Math.round(cur * currentRate)) : 1000, 'INR');
       }
       placeChips();
@@ -1847,7 +476,6 @@
     refreshHero();
     setInterval(refreshHero, 30_000);
 
-    /* =================== TICKER =================== */
     const track = document.getElementById('ticker-track');
 
     function tickerItem(code, price, prev) {
@@ -1877,58 +505,10 @@
       const good = results.filter(Boolean);
       if (!good.length) return;
       track.innerHTML = '';
-      // duplicate the list for seamless infinite-scroll loop
       [...good, ...good].forEach(r => track.appendChild(tickerItem(r.code, r.price, r.prev)));
     }
     refreshTicker();
     setInterval(refreshTicker, 60_000);
-  })();
-
-  // Calculator
-  (function(){
-    const vol = document.getElementById('vol');
-    const tick = document.getElementById('tick');
-    const cv = document.getElementById('cv');
-    const tv = document.getElementById('tv');
-    const rTickets = document.getElementById('r-tickets');
-    const rTT = document.getElementById('r-tt');
-    const rAnnual = document.getElementById('r-annual');
-    const rKeep = document.getElementById('r-keep');
-    const fmtUSD = n => new Intl.NumberFormat('en-US').format(Math.round(n));
-    const fmtINR = n => '₹ ' + new Intl.NumberFormat('en-IN').format(Math.round(n));
-    const fmtINRShort = n => {
-      if (n >= 1e7) return '₹ ' + (n/1e7).toFixed(2) + ' Cr';
-      if (n >= 1e5) return '₹ ' + (n/1e5).toFixed(2) + ' L';
-      return fmtINR(n);
-    };
-
-    function recompute() {
-      const v = +vol.value;
-      const t = +tick.value;
-      cv.textContent = new Intl.NumberFormat('en-US').format(v);
-      tv.textContent = new Intl.NumberFormat('en-US').format(t);
-      const tickets = Math.max(1, Math.round(v / t));
-      const advPerDollar = 1.92; // ₹ vs bank card-rate
-      const monthlyAdv = v * advPerDollar;
-      const ttSaved = tickets * 500; // ~₹500 per TT saved
-      const monthlyTotal = monthlyAdv + ttSaved;
-      const annual = monthlyTotal * 12;
-      rTickets.textContent = tickets;
-      rTT.textContent = fmtINR(ttSaved);
-      rAnnual.textContent = fmtINRShort(annual);
-      rKeep.textContent = fmtINRShort(monthlyTotal) + ' / mo';
-    }
-    vol.addEventListener('input', recompute);
-    tick.addEventListener('input', recompute);
-
-    // currency chips
-    document.querySelectorAll('#ccy-pick button').forEach(b => {
-      b.addEventListener('click', () => {
-        b.classList.toggle('on');
-      });
-    });
-
-    recompute();
   })();
 </script>
 

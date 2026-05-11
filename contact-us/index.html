@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Contact Money2Abroad — email, phone, and office details for the outward remittance desk." />
+<meta name="theme-color" content="#f5f1e8" />
+<title>Contact — Money2Abroad</title>
+<link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="contact-shell">
+
+<nav class="top">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark"></span>
+      <span>Money2Abroad</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+      <a href="../about-us/index.html">About us</a>
+      <span class="current" aria-current="page">Contact us</span>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-link" style="font-size:14px;">Agent login</a>
+      <a href="mailto:desk@money2abroad.in" class="btn btn-accent">Email us <span class="arrow">→</span></a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="bars"><span></span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+    <a href="../about-us/index.html">About us</a>
+    <span class="current" aria-current="page">Contact us</span>
+    <div class="mobile-cta">
+      <a href="#" class="btn btn-ghost">Agent login</a>
+      <a href="mailto:desk@money2abroad.in" class="btn btn-accent">Email us</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var btn = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  function close(){ btn.setAttribute('aria-expanded','false'); menu.classList.remove('open'); }
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('open', !open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+})();
+</script>
+
+<header class="contact-hero" aria-labelledby="contact-title">
+  <div class="wrap">
+    <h1 id="contact-title">Let’s <em>talk remittance.</em></h1>
+    <p class="lead">Reach the Money2Abroad desk for agency onboarding, corridor questions, and outward payment support. No forms on this page — just the channels we monitor.</p>
+  </div>
+</header>
+
+<main class="contact-cards-wrap">
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="label">Email</div>
+      <a class="value" href="mailto:desk@money2abroad.in">desk@money2abroad.in</a>
+      <p class="sub">We aim to respond within one business day. Include your agency name and IATA / registration detail if applicable.</p>
+    </div>
+    <div class="contact-card">
+      <div class="label">Phone</div>
+      <a class="value" href="tel:+912269704000">+91 22 6970 4000</a>
+      <p class="sub">Weekdays, India Standard Time — ask for the outward remittance desk.</p>
+    </div>
+    <div class="contact-card span-2">
+      <div class="label">Office</div>
+      <div class="value">Mumbai · Bandra Kurla Complex (BKC)</div>
+      <p class="sub">Exact suite and directions are shared after your visit is scheduled. Servicing agencies across India digitally.</p>
+    </div>
+    <div class="contact-card span-2">
+      <div class="label">Registered entity</div>
+      <div class="value">MONEY2ABROAD TECHNOLOGIES PVT LTD</div>
+      <p class="sub">CIN U67200MH2024PTC400112 · Remittances routed through RBI-licensed AD-I partner banks. FEMA-aligned processes.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html">
+          <span class="brand-mark"></span>
+          <span>Money2Abroad</span>
+        </a>
+        <p class="foot-blurb">Digital outward remittance for India's travel trade. Built for agents who need live rates, guided documents and reliable confirmation for overseas payments.</p>
+        <div style="display:flex;gap:8px;margin-top:18px;">
+          <span class="chip">🇮🇳 Made in Mumbai</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="../index.html">Home</a>
+        <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+        <a href="../about-us/index.html">About us</a>
+        <a href="index.html">Contact us</a>
+      </div>
+      <div class="foot-col">
+        <h5>For agencies</h5>
+        <a href="../about-us/index.html#cases">Tour cost</a>
+        <a href="../about-us/index.html#cases">Hotel &amp; DMC</a>
+        <a href="../about-us/index.html#cases">Visa fees</a>
+        <a href="../about-us/index.html#cases">Education</a>
+        <a href="../about-us/index.html#cases">Maintenance remittance</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="../about-us/index.html">About</a>
+        <a href="../about-us/index.html#compliance">Compliance</a>
+        <a href="#">Pricing</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="foot-col">
+        <h5>Talk to us</h5>
+        <a href="mailto:desk@money2abroad.in">desk@money2abroad.in</a>
+        <a href="tel:+912269704000">+91 22 6970 4000</a>
+        <a href="#">Mumbai · BKC</a>
+        <a href="#">Status &amp; uptime</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="legal">© 2026 MONEY2ABROAD TECHNOLOGIES PVT LTD · CIN U67200MH2024PTC400112</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned · ISO 27001:2022</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
