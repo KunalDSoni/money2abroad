@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="TCS calculator for foreign exchange and LRS remittances — Tax Collected at Source by purpose, with the ₹10 lakh threshold per financial year." />
+<meta name="theme-color" content="#ffffff" />
+<title>TCS on Foreign Exchange — Money2Abroad</title>
+<link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css" />
+<style>
+  .calc-shell{padding:48px var(--pad) 96px;max-width:1080px;margin:0 auto;}
+  .calc-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:32px;box-shadow:0 4px 16px rgba(0,0,0,0.04);}
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  @media (max-width:760px){.calc-grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+  .field label{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
+  .field input,.field select{font-family:'Inter',sans-serif;font-size:18px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink);}
+  .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .result-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .result-row .lbl{color:var(--ink-2);font-size:14px;}
+  .result-row .val{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--ink);}
+  .result-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;margin-top:6px;border-top:2px solid var(--ink);}
+  .result-total .lbl{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);}
+  .result-total .val{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:var(--accent);}
+  .slab-table{width:100%;border-collapse:collapse;margin-top:24px;}
+  .slab-table th,.slab-table td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);font-size:14px;}
+  .slab-table th{font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);background:var(--bg);}
+  .slab-table td.rate{font-family:'JetBrains Mono',monospace;}
+  .note{background:var(--bg);border-left:3px solid var(--accent);padding:18px 22px;margin-top:24px;border-radius:0 6px 6px 0;}
+  .note p{color:var(--ink-2);font-size:14px;line-height:1.7;margin:0;}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark"></span>
+      <span>Money2Abroad</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+      <a href="../about-us/index.html">About us</a>
+      <a href="../faq/index.html">FAQ</a>
+      <a href="../gst-calculator/index.html">GST</a>
+      <span class="current" aria-current="page">TCS</span>
+      <a href="../rbi-guidelines/index.html">RBI</a>
+      <a href="../contact-us/index.html">Contact us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-link" style="font-size:14px;">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="bars"><span></span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+    <a href="../about-us/index.html">About us</a>
+    <a href="../faq/index.html">FAQ</a>
+    <a href="../gst-calculator/index.html">GST</a>
+    <span class="current" aria-current="page">TCS</span>
+    <a href="../rbi-guidelines/index.html">RBI</a>
+    <a href="../contact-us/index.html">Contact us</a>
+    <div class="mobile-cta">
+      <a href="#" class="btn btn-ghost">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get onboarded</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var btn=document.querySelector('.nav-toggle');var menu=document.getElementById('mobile-menu');if(!btn||!menu)return;
+  function close(){btn.setAttribute('aria-expanded','false');menu.classList.remove('open');}
+  btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+<header class="about-hero">
+  <div class="wrap">
+    <div class="eyebrow">Tools</div>
+    <div class="spacer-sm"></div>
+    <h1>TCS on foreign exchange transactions.</h1>
+    <p class="lead">Tax Collected at Source (TCS) is an advance tax — not an extra cost. It applies above a ₹10 lakh-per-financial-year threshold on LRS remittances, with the rate depending on the purpose. Use the calculator to see what TCS your transaction will attract.</p>
+  </div>
+</header>
+
+<main class="calc-shell">
+
+  <div class="calc-card">
+    <div class="calc-grid">
+      <div>
+        <div class="field">
+          <label for="tcs-purpose">Purpose of remittance</label>
+          <select id="tcs-purpose">
+            <option value="edu-loan">Education — funded by an education loan</option>
+            <option value="edu-self">Education — self-funded</option>
+            <option value="medical">Medical treatment abroad</option>
+            <option value="tour" selected>Overseas tour package</option>
+            <option value="other">Other (gifts, maintenance, investment, visit)</option>
+            <option value="business">Business travel (company-sponsored)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tcs-amt">Transaction amount this FY (INR)</label>
+          <input id="tcs-amt" type="text" inputmode="decimal" value="15,00,000" />
+        </div>
+        <div class="field">
+          <label for="tcs-prev">Already remitted this FY (INR, optional)</label>
+          <input id="tcs-prev" type="text" inputmode="decimal" value="0" />
+        </div>
+        <p style="font-size:13px;color:var(--ink-3);line-height:1.6;">TCS threshold is ₹10,00,000 per financial year per individual (PAN-level).</p>
+      </div>
+      <div>
+        <div class="result-row"><span class="lbl">Cumulative this FY</span><span class="val" id="tcs-cum">—</span></div>
+        <div class="result-row"><span class="lbl">Amount below ₹10L threshold</span><span class="val" id="tcs-below">—</span></div>
+        <div class="result-row"><span class="lbl">Amount above ₹10L threshold</span><span class="val" id="tcs-above">—</span></div>
+        <div class="result-row"><span class="lbl">Applicable TCS rate</span><span class="val" id="tcs-rate">—</span></div>
+        <div class="result-total"><span class="lbl">TCS payable</span><span class="val" id="tcs-total">₹0</span></div>
+        <p style="font-size:13px;color:var(--ink-3);line-height:1.6;margin-top:14px;">TCS is adjustable against your final income tax liability, or refundable through your ITR.</p>
+      </div>
+    </div>
+  </div>
+
+  <section style="margin-top:64px;">
+    <div class="eyebrow">TCS rates</div>
+    <div class="spacer-sm"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:600;margin-bottom:8px;">Rate by purpose.</h2>
+    <p style="color:var(--ink-2);max-width:60ch;">Under Section 206C(1G) of the Income Tax Act, an AD bank collects TCS on outward remittances above the threshold. The rate depends on what the money is being sent for.</p>
+
+    <table class="slab-table" aria-label="TCS rates by purpose">
+      <thead>
+        <tr><th>Purpose</th><th>Up to ₹10,00,000 / FY</th><th>Above ₹10,00,000 / FY</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Education — funded by an education loan</td><td class="rate">0%</td><td class="rate">0%</td></tr>
+        <tr><td>Education — self-funded</td><td class="rate">0%</td><td class="rate">5%</td></tr>
+        <tr><td>Medical treatment</td><td class="rate">0%</td><td class="rate">5%</td></tr>
+        <tr><td>Overseas tour package</td><td class="rate">5%</td><td class="rate">20%</td></tr>
+        <tr><td>Other (gifts, maintenance, investment, visit)</td><td class="rate">0%</td><td class="rate">20%</td></tr>
+        <tr><td>Business travel — company-sponsored</td><td class="rate">0%</td><td class="rate">0%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <p><strong>Tour packages are special:</strong> TCS applies from the very first rupee at 5%, with no threshold benefit. Above ₹10 lakh in the financial year, the rate steps up to 20%.</p>
+    </div>
+  </section>
+
+  <section style="margin-top:64px;">
+    <div class="eyebrow">How TCS works</div>
+    <div class="spacer-sm"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:600;margin-bottom:16px;">Advance tax, not a new cost.</h2>
+    <ul style="color:var(--ink-2);max-width:70ch;line-height:1.8;padding-left:18px;">
+      <li>The AD bank collects TCS at the time of remittance and deposits it with the government by the 7th of the following month.</li>
+      <li>The amount appears in your <strong>Form 26AS</strong> and can be adjusted against your income tax liability — or refunded — when you file your ITR.</li>
+      <li>The ₹10 lakh threshold is per PAN, per financial year, aggregated across all AD banks.</li>
+      <li>For overseas tour packages, there is <em>no</em> threshold — TCS applies from rupee one.</li>
+      <li>Customers are required to self-declare cumulative remittances under LRS, since no central monitoring is automatic.</li>
+    </ul>
+  </section>
+
+  <section style="margin-top:48px;">
+    <div class="eyebrow">Notes</div>
+    <div class="spacer-sm"></div>
+    <p style="color:var(--ink-2);max-width:70ch;">Indicative only. Final TCS is calculated by the AD bank at the time of settlement based on your self-declaration and Form 60 / PAN records. See the related <a href="../gst-calculator/index.html">GST calculator</a> for GST charged on the same transaction.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html">
+          <span class="brand-mark"></span>
+          <span>Money2Abroad</span>
+        </a>
+        <p class="foot-blurb">Digital outward remittance for India's travel trade.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="../index.html">Home</a>
+        <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+        <a href="../about-us/index.html">About us</a>
+        <a href="../faq/index.html">FAQ</a>
+        <a href="../contact-us/index.html">Contact us</a>
+      </div>
+      <div class="foot-col">
+        <h5>Tools</h5>
+        <a href="../gst-calculator/index.html">GST calculator</a>
+        <a href="index.html">TCS calculator</a>
+      </div>
+      <div class="foot-col">
+        <h5>Talk to us</h5>
+        <a href="mailto:info@finwaveforex.com">info@finwaveforex.com</a>
+        <a href="tel:+917948916100">+91 79 4891 6100</a>
+        <a href="tel:+919898906133">+91 98989 06133</a>
+        <a href="#">Ahmedabad · Navrangpura</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="legal">© 2026 FINWAVE FOREX PVT LTD</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var purpose=document.getElementById('tcs-purpose');
+  var amt=document.getElementById('tcs-amt');
+  var prev=document.getElementById('tcs-prev');
+  var cumOut=document.getElementById('tcs-cum');
+  var belowOut=document.getElementById('tcs-below');
+  var aboveOut=document.getElementById('tcs-above');
+  var rateOut=document.getElementById('tcs-rate');
+  var totalOut=document.getElementById('tcs-total');
+
+  var THRESHOLD=1000000;
+  // Rates: [below threshold, above threshold]
+  var RATES={
+    'edu-loan':[0,0],
+    'edu-self':[0,0.05],
+    'medical':[0,0.05],
+    'tour':[0.05,0.20],
+    'other':[0,0.20],
+    'business':[0,0]
+  };
+
+  function parseAmt(s){return parseFloat(String(s||'').replace(/[^\d.]/g,''))||0;}
+  function fmtINR(n){return '₹'+new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(n);}
+  function fmtPct(p){return (p*100).toFixed(p>=0.01?0:2)+'%';}
+
+  function recompute(){
+    var p=purpose.value;
+    var v=parseAmt(amt.value);
+    var already=parseAmt(prev.value);
+    var rates=RATES[p];
+
+    var below,above;
+    if(p==='tour'){
+      // No threshold benefit, but rate steps up above 10L cumulative
+      var cum=already+v;
+      if(already>=THRESHOLD){
+        below=0;above=v;
+      } else if(cum<=THRESHOLD){
+        below=v;above=0;
+      } else {
+        below=THRESHOLD-already;above=cum-THRESHOLD;
+      }
+    } else {
+      var cum=already+v;
+      if(already>=THRESHOLD){
+        below=0;above=v;
+      } else if(cum<=THRESHOLD){
+        below=v;above=0;
+      } else {
+        below=THRESHOLD-already;above=cum-THRESHOLD;
+      }
+    }
+    var tcs=below*rates[0]+above*rates[1];
+
+    cumOut.textContent=fmtINR(already+v);
+    belowOut.textContent=fmtINR(below)+' @ '+fmtPct(rates[0]);
+    aboveOut.textContent=fmtINR(above)+' @ '+fmtPct(rates[1]);
+    rateOut.textContent=rates[0]===rates[1]?fmtPct(rates[0]):fmtPct(rates[0])+' / '+fmtPct(rates[1]);
+    totalOut.textContent=fmtINR(tcs);
+  }
+  function pretty(el){var v=parseAmt(el.value);if(v>0)el.value=new Intl.NumberFormat('en-IN').format(v);}
+  purpose.addEventListener('change',recompute);
+  amt.addEventListener('input',recompute);
+  prev.addEventListener('input',recompute);
+  amt.addEventListener('blur',function(){pretty(amt);recompute();});
+  prev.addEventListener('blur',function(){pretty(prev);recompute();});
+  recompute();
+})();
+</script>
+
+</body>
+</html>

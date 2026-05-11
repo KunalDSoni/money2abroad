@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Money2Abroad — Outward remittance for travel agents in India. Live FX, digital KYC, tour payments to DMCs and partners — like a dedicated remittance desk for your agency." />
+<meta name="theme-color" content="#ffffff" />
+<title>Remittance for Travel Agents — Money2Abroad</title>
+<link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css" />
+</head>
+<body class="page-travel">
+
+<!-- Site nav: Home · About us · Travel agents · Contact -->
+<nav class="top">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark"></span>
+      <span>Money2Abroad</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <span class="current" aria-current="page">Travel agents</span>
+      <a href="../about-us/index.html">About us</a>
+      <a href="../faq/index.html">FAQ</a>
+      <a href="../gst-calculator/index.html">GST</a>
+      <a href="../tcs-calculator/index.html">TCS</a>
+      <a href="../rbi-guidelines/index.html">RBI</a>
+      <a href="../contact-us/index.html">Contact us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost" style="font-size:14px;">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get started <span class="arrow">→</span></a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="bars"><span></span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <span class="current" aria-current="page">Travel agents</span>
+    <a href="../about-us/index.html">About us</a>
+    <a href="../faq/index.html">FAQ</a>
+    <a href="../gst-calculator/index.html">GST</a>
+    <a href="../tcs-calculator/index.html">TCS</a>
+    <a href="../rbi-guidelines/index.html">RBI</a>
+    <a href="../contact-us/index.html">Contact us</a>
+    <div class="mobile-cta">
+      <a href="#" class="btn btn-ghost">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get started</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var btn = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  function close(){ btn.setAttribute('aria-expanded','false'); menu.classList.remove('open'); }
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('open', !open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+})();
+</script>
+
+<header class="about-hero">
+  <div class="wrap">
+    <div class="eyebrow">Dear travel agents</div>
+    <div class="spacer-sm"></div>
+    <h1>Remittance for travel agents in India.</h1>
+    <p class="lead">A digital remittance desk brings tour payments, DMC settlements and overseas vendor payouts under one roof. No more scattered email threads and branch runs just to move money abroad compliantly.</p>
+  </div>
+</header>
+
+<section class="tight" style="padding-top:32px;">
+  <div class="wrap">
+    <ul class="pain-list">
+      <li>Tired of running around to process tour payments and overseas invoices?</li>
+      <li>Banks and local forex desks making outward remittance feel like a nightmare?</li>
+      <li>Not sure you are seeing fair, <strong>live</strong> exchange rates before you quote the customer?</li>
+    </ul>
+    <div class="hero-actions" style="margin-top:24px;">
+      <a href="../contact-us/index.html" class="btn btn-primary">Talk to the desk <span class="arrow">→</span></a>
+      <a href="../index.html" class="btn btn-ghost">Live FX · home</a>
+    </div>
+    <p class="notice" style="margin-top:24px;">
+      <strong class="mono" style="color:var(--ink-2);">Service hours (typical):</strong> Many partner desks operate on business hours and weekday schedules. If you need 7:00 AM–midnight coverage, confirm with the Money2Abroad desk when you register — we align with RBI-licensed partner processing windows.
+    </p>
+  </div>
+</section>
+
+<main id="overview">
+<section id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Who we are</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">We help move money from<br /><em>India to the world.</em></h2>
+      </div>
+      <p class="section-sub">
+        Money2Abroad is built for the travel trade: a digital outward remittance experience with live FX visibility, guided KYC and documentation, online payment, and confirmation tracking. Pay DMCs, hotels, visa processors, universities and overseas partners without losing your team to paperwork chaos.
+      </p>
+    </div>
+    <p class="section-sub" style="max-width:none;">
+      We focus on simplicity: register, see live rates, upload invoices and beneficiary bank details, complete digital KYC, pay online (NEFT, RTGS or approved gateways where available), and receive remittance confirmations you can share with your customer.
+    </p>
+  </div>
+</section>
+
+<section id="process" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">How our process works</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Easy to understand,<br /><em>built for agents.</em></h2>
+      </div>
+      <p class="section-sub">
+        The flow mirrors how agencies actually work: quote the traveler, collect documents, submit the overseas beneficiary once, and track every milestone until SWIFT or partner confirmation is in hand.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <h4>Register</h4>
+          <p>Register online and sign in to your agency workspace. Add branches or users as your operations scale.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <h4>Live FX rates</h4>
+          <p>Check live remittance rates on your dashboard before you promise a quote or lock funds with the customer.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <h4>Invoice and bank details</h4>
+          <p>Upload the commercial invoice and save beneficiary details for DMCs, hotels, universities or visa payments.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <h4>Digital KYC</h4>
+          <p>Complete digital KYC, purpose codes, Form A2 and LRS checks with guidance in the same journey.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div>
+          <h4>Online payment</h4>
+          <p>View live rates, lock when ready, and pay via NEFT, RTGS or approved online collection — no physical queue.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">6</div>
+        <div>
+          <h4>Confirmation</h4>
+          <p>Receive remittance confirmations, alerts at each stage, and SWIFT or partner references for your records.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="types">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Types of remittances</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Purpose-led payouts<br /><em>we guide end-to-end.</em></h2>
+      </div>
+      <p class="section-sub">
+        Each purpose has different KYC and documentation expectations. Money2Abroad helps you map the right category before funds move, so operations and compliance stay aligned.
+      </p>
+    </div>
+    <div class="cases">
+      <div class="case">
+        <span class="tag">Tour cost</span>
+        <h3>Tour cost remittance <em>(incl. advance)</em></h3>
+        <p>Deposits and final tour payments to DMCs and hotels with invoices and beneficiary history in one place.</p>
+      </div>
+      <div class="case">
+        <span class="tag">Education</span>
+        <h3>Overseas education <em>remittance</em></h3>
+        <p>Tuition and living expenses with admission letters, fee invoices and education-purpose documentation.</p>
+      </div>
+      <div class="case">
+        <span class="tag">Visa</span>
+        <h3>Visa processing fee <em>remittance</em></h3>
+        <p>Embassy-linked and visa-service payments with clean purpose mapping and retrievable records for your desk.</p>
+      </div>
+      <div class="case">
+        <span class="tag">Family</span>
+        <h3>Maintenance of close <em>relatives</em></h3>
+        <p>Permitted maintenance transfers with guided documentation under LRS rules where applicable.</p>
+      </div>
+    </div>
+    <p class="section-sub" style="margin-top:24px;">Additional categories can be configured as your outbound mix grows — ask the desk during onboarding.</p>
+  </div>
+</section>
+
+<section id="why" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Why we are right for you</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Fair rates, clear steps,<br /><em>RBI-aligned partners.</em></h2>
+      </div>
+      <p class="section-sub">
+        We understand that outward remittance is both a sales promise and a compliance task. You get transparency on rates and milestones so you can answer customer questions with confidence.
+      </p>
+    </div>
+    <div class="built-grid">
+      <div class="built-cell">
+        <div>
+          <div class="num">01</div>
+          <h3>Safe and secure workflow</h3>
+        </div>
+        <p>Beneficiary data, documents and status live in a controlled digital flow routed through RBI-licensed AD partner banks.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">02</div>
+          <h3>Live remittance rates</h3>
+        </div>
+        <p>See exchange levels before you commit — compare executable remittance pricing before you quote the customer.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">03</div>
+          <h3>Option to lock rates</h3>
+        </div>
+        <p>When the customer is ready to pay, reduce uncertainty by locking the chosen rate for eligible corridors.</p>
+      </div>
+      <div class="built-cell" style="grid-column: 1 / -1;">
+        <div>
+          <div class="num">04</div>
+          <h3>Complete online process</h3>
+        </div>
+        <p>Register, upload documents, finish KYC, pay and track confirmations without standing in branch queues — the same seamless story highlighted on leading agent remittance pages.</p>
+      </div>
+    </div>
+    <ul class="bullets" style="margin-top:28px;">
+      <li>Rates you can trail on the dashboard before deciding.</li>
+      <li>Access to each milestone of the journey — so your money is tracked, not guessed.</li>
+      <li>Partners authorized for cross-border remittance under RBI rules, with FEMA-aligned processes.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="advantage">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Our advantage</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Versus traditional<br /><em>remittance providers.</em></h2>
+      </div>
+      <p class="section-sub">
+        Traditional channels often mean long queues, opaque spreads, and disconnected paperwork. A purpose-built portal cuts through that — fewer clicks from invoice to confirmation.
+      </p>
+    </div>
+    <div class="compare">
+      <p>
+        Traditional remittance can be slow and heavy on manual follow-up. Money2Abroad is designed so your team spends time selling and servicing travelers — not chasing branch stamps and rate callbacks.
+      </p>
+      <p>
+        Within a few clicks you can compare executable remittance levels, complete digital steps, and track SWIFT or partner settlement status. If you are looking for a faster, more transparent way to process tour and vendor payments, start with our desk and the live product experience on the <a href="../index.html" style="color:var(--ink);font-weight:500;">home page</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="vision" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Vision and motto</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Smoother remittance,<br /><em>happier travel desks.</em></h2>
+      </div>
+      <p class="section-sub">
+        We believe the happier your customer is with clarity on rates and status, the more productive your agency becomes. Every day we work toward simpler tour-cost remittance for Indian travel agents.
+      </p>
+    </div>
+    <div class="quote-card">
+      <p class="q">Simplifying outward remittance for travel agents — so your motto can stay about great trips, not paperwork.</p>
+      <p class="meta">Money2Abroad · Travel trade desk</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="travel-next" aria-labelledby="travel-next-h">
+  <div class="wrap">
+    <h2 id="travel-next-h">Ready to <em>onboard?</em></h2>
+    <p>Contact details, office hours, and registered entity information live on a single page — no duplicate forms here.</p>
+    <a href="../contact-us/index.html" class="btn btn-primary">Open contact page <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html">
+          <span class="brand-mark"></span>
+          <span>Money2Abroad</span>
+        </a>
+        <p class="foot-blurb">Digital outward remittance for India's travel trade. Built for agents who need live rates, guided documents and reliable confirmation for overseas payments.</p>
+        <div style="display:flex;gap:8px;margin-top:18px;">
+          <span class="chip">🇮🇳 Made in Mumbai</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="../index.html">Home</a>
+        <a href="index.html">Travel agents</a>
+        <a href="../about-us/index.html">About us</a>
+        <a href="../contact-us/index.html">Contact us</a>
+      </div>
+      <div class="foot-col">
+        <h5>For agencies</h5>
+        <a href="../about-us/index.html#cases">Tour cost</a>
+        <a href="../about-us/index.html#cases">Hotel &amp; DMC</a>
+        <a href="../about-us/index.html#cases">Visa fees</a>
+        <a href="../about-us/index.html#cases">Education</a>
+        <a href="../about-us/index.html#cases">Maintenance remittance</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="../about-us/index.html">About</a>
+        <a href="../about-us/index.html#compliance">Compliance</a>
+        <a href="#">Pricing</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="foot-col">
+        <h5>Talk to us</h5>
+        <a href="mailto:info@finwaveforex.com">info@finwaveforex.com</a>
+        <a href="tel:+917948916100">+91 79 4891 6100</a>
+        <a href="tel:+919898906133">+91 98989 06133</a>
+        <a href="#">Ahmedabad · Navrangpura</a>
+        <a href="#">Status &amp; uptime</a>
+        <a href="../contact-us/index.html">Contact us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="legal">© 2026 MONEY2ABROAD TECHNOLOGIES PVT LTD · CIN U67200MH2024PTC400112</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned · ISO 27001:2022</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

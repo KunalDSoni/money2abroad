@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="About Money2Abroad — digital outward remittance for India’s travel trade: process, portal, remittance types, and compliance." />
+<meta name="theme-color" content="#ffffff" />
+<title>About us — Money2Abroad</title>
+<link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark"></span>
+      <span>Money2Abroad</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+      <span class="current" aria-current="page">About us</span>
+      <a href="../faq/index.html">FAQ</a>
+      <a href="../gst-calculator/index.html">GST</a>
+      <a href="../tcs-calculator/index.html">TCS</a>
+      <a href="../rbi-guidelines/index.html">RBI</a>
+      <a href="../contact-us/index.html">Contact us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-link" style="font-size:14px;">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="bars"><span></span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+    <span class="current" aria-current="page">About us</span>
+    <a href="../faq/index.html">FAQ</a>
+    <a href="../gst-calculator/index.html">GST</a>
+    <a href="../tcs-calculator/index.html">TCS</a>
+    <a href="../rbi-guidelines/index.html">RBI</a>
+    <a href="../contact-us/index.html">Contact us</a>
+    <div class="mobile-cta">
+      <a href="#" class="btn btn-ghost">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get onboarded</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var btn = document.querySelector('.nav-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  function close(){ btn.setAttribute('aria-expanded','false'); menu.classList.remove('open'); }
+  btn.addEventListener('click', function(){
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    menu.classList.toggle('open', !open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+})();
+</script>
+
+<header class="about-hero">
+  <div class="wrap">
+    <div class="eyebrow">About Money2Abroad</div>
+    <div class="spacer-sm"></div>
+    <h1>The remittance desk <em>built for agencies.</em></h1>
+    <p class="lead">Who we are, how the workflow runs, what the portal looks like, which remittance types we support, and why teams switch from branch queues to a digital desk.</p>
+  </div>
+</header>
+
+<!-- =========== TRAVEL AGENTS =========== -->
+<section id="overview" class="tight">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Dear travel agents</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Tour payments should not<br/><em>slow your desk down.</em></h2>
+      </div>
+      <p class="section-sub">
+        Money2Abroad is for agencies that process outward remittances for DMCs, overseas hotels, visa processors, universities and close-relative support. Your team should be able to see the rate, collect documents and track confirmation without chasing multiple offline counters.
+      </p>
+    </div>
+
+    <div class="built-grid">
+      <div class="built-cell">
+        <div>
+          <div class="num">PAIN 01</div>
+          <div class="spacer-sm"></div>
+          <h3>Tour payments get stuck in manual follow-ups</h3>
+        </div>
+        <p>Invoice, beneficiary, purpose code, KYC and bank confirmation often sit in different email threads. We bring the journey into one digital workspace.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">PAIN 02</div>
+          <div class="spacer-sm"></div>
+          <h3>Banks and local forex desks make rate discovery opaque</h3>
+        </div>
+        <p>Your counter can view live FX, compare the cost before committing, and lock the rate when the customer is ready.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">PAIN 03</div>
+          <div class="spacer-sm"></div>
+          <h3>Customers want confirmation, not explanations</h3>
+        </div>
+        <p>Status updates, remittance references and confirmation records stay tied to the booking so operations can respond quickly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== WHO WE ARE =========== -->
+<section id="who" class="tight" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Who we are</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">A digital remittance desk<br/><em>for India to the world.</em></h2>
+      </div>
+      <p class="section-sub">
+        Money2Abroad helps Indian travel businesses manage outward remittance requests with live rates, guided documentation, online payment and confirmation tracking. The page is built for agents handling tour cost remittance, visa fees, overseas education and family-maintenance transfers.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PROCESS =========== -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">How it works</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">From invoice to confirmation,<br/><em>without branch runs.</em></h2>
+      </div>
+      <p class="section-sub">
+        The flow mirrors how travel agencies actually work: quote the customer, add the overseas beneficiary, upload the commercial document, finish digital KYC, pay online and receive confirmation when the remittance moves.
+      </p>
+    </div>
+
+    <div class="built-grid">
+      <div class="built-cell">
+        <div>
+          <div class="num">01</div>
+          <div class="spacer-sm"></div>
+          <h3>Register your agency desk</h3>
+        </div>
+        <p>Create your agency profile, add branch users, and keep your onboarding documents in one secure workspace.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">02</div>
+          <div class="spacer-sm"></div>
+          <h3>Check live remittance rates</h3>
+        </div>
+        <p>See live currency rates before you promise a quote to the customer or commit a DMC payment.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">03</div>
+          <div class="spacer-sm"></div>
+          <h3>Upload invoice and bank details</h3>
+        </div>
+        <p>Add the DMC, hotel, university or visa beneficiary once, attach the invoice, and reuse verified details later.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">04</div>
+          <div class="spacer-sm"></div>
+          <h3>Complete digital KYC and A2</h3>
+        </div>
+        <p>Purpose code, Form A2, LRS checks and supporting documents are guided inside the same journey.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">05</div>
+          <div class="spacer-sm"></div>
+          <h3>Lock rate and pay online</h3>
+        </div>
+        <p>Block the chosen rate and complete payment through NEFT, RTGS or approved online collection flows.</p>
+      </div>
+      <div class="built-cell">
+        <div>
+          <div class="num">06</div>
+          <div class="spacer-sm"></div>
+          <h3>Track confirmation</h3>
+        </div>
+        <p>Receive status alerts, SWIFT references and settlement confirmations your operations team can share back with the customer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PORTAL =========== -->
+<section id="portal" class="tight" style="padding-top: 24px;">
+    <div class="product">
+    <div class="product-head">
+      <div class="eyebrow">Digital agent portal</div>
+      <h2>One dashboard for tour<br/><em>payments abroad.</em></h2>
+      <p>Manage quotes, live FX rates, beneficiary bank details, invoice uploads, KYC checks, payment status and SWIFT confirmation from a single desk your sales and operations teams can both understand.</p>
+    </div>
+
+    <!-- Mock dashboard -->
+    <div class="dash">
+      <aside class="dash-side">
+        <div class="agency">
+          <div class="agency-logo">SK</div>
+          <div class="agency-meta">
+            <div class="name">Skywings Travel</div>
+            <div class="id">IATA · 14-3 76512</div>
+          </div>
+        </div>
+        <div class="label">Workspace</div>
+        <div class="item active"><span class="ico"></span>Live quotes</div>
+        <div class="item"><span class="ico"></span>Beneficiary book</div>
+        <div class="item"><span class="ico"></span>A2 / LRS forms</div>
+        <div class="item"><span class="ico"></span>Bulk payouts</div>
+        <div class="item"><span class="ico"></span>FX wallet</div>
+        <div class="label">Compliance</div>
+        <div class="item"><span class="ico"></span>KYC vault</div>
+        <div class="item"><span class="ico"></span>Audit log</div>
+        <div class="item"><span class="ico"></span>Reports</div>
+        <div class="label">Branches</div>
+        <div class="item"><span class="ico"></span>Mumbai · BKC</div>
+        <div class="item"><span class="ico"></span>Pune · FC Road</div>
+        <div class="item"><span class="ico"></span>Surat · Adajan</div>
+      </aside>
+
+      <main class="dash-main">
+        <div class="dash-tab">
+          <h3>Outbound desk · Today</h3>
+          <div class="filters">
+            <span class="pill active">Today</span>
+            <span class="pill">7d</span>
+            <span class="pill">30d</span>
+            <span class="pill">FY</span>
+          </div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="l">Volume sent</div>
+            <div class="v mono">$ 1.42M</div>
+            <div class="delta">▲ 12.4% vs yesterday</div>
+          </div>
+          <div class="kpi">
+            <div class="l">Avg rate vs market</div>
+            <div class="v mono">+₹1.74</div>
+            <div class="delta">per dollar advantage</div>
+          </div>
+          <div class="kpi">
+            <div class="l">Live quotes</div>
+            <div class="v mono">23</div>
+            <div class="delta">8 awaiting customer</div>
+          </div>
+          <div class="kpi">
+            <div class="l">Margin booked</div>
+            <div class="v mono">₹ 2,18,420</div>
+            <div class="delta">▲ 4.1% MoM</div>
+          </div>
+        </div>
+
+        <div class="panels">
+          <div class="panel">
+            <h4>
+              <span>Recent transfers</span>
+              <span style="font-family:'Geist Mono';font-size:11px;color:rgba(245,241,232,0.5);">14 today</span>
+            </h4>
+            <div class="txn">
+              <div class="who">
+                <div class="av">RV</div>
+                <div>
+                  <div class="nm">Rajesh Vyas — Tuition · Univ. of Toronto</div>
+                  <div class="sub">A2 · Education · LRS-EDU-04</div>
+                </div>
+              </div>
+              <div class="am">
+                CAD 18,400.00
+                <div class="sub">@ 61.082</div>
+              </div>
+              <div class="am">
+                ₹11,23,909
+                <div class="sub">debit · 12:42</div>
+              </div>
+              <div class="st done">SETTLED</div>
+            </div>
+            <div class="txn">
+              <div class="who">
+                <div class="av">DM</div>
+                <div>
+                  <div class="nm">DMC Anantara Bangkok — 18 pax group</div>
+                  <div class="sub">A2 · Business · TT-BUS-02</div>
+                </div>
+              </div>
+              <div class="am">
+                THB 8,40,000
+                <div class="sub">@ 2.469</div>
+              </div>
+              <div class="am">
+                ₹20,73,960
+                <div class="sub">debit · 11:08</div>
+              </div>
+              <div class="st prog">SWIFT IN-FLIGHT</div>
+            </div>
+            <div class="txn">
+              <div class="who">
+                <div class="av">PA</div>
+                <div>
+                  <div class="nm">Patel family — Schengen visa fees</div>
+                  <div class="sub">A2 · Travel · LRS-TRV-01</div>
+                </div>
+              </div>
+              <div class="am">
+                EUR 480.00
+                <div class="sub">@ 91.218</div>
+              </div>
+              <div class="am">
+                ₹43,784
+                <div class="sub">debit · 10:21</div>
+              </div>
+              <div class="st done">SETTLED</div>
+            </div>
+            <div class="txn">
+              <div class="who">
+                <div class="av">SA</div>
+                <div>
+                  <div class="nm">Saudia Cargo — air ticket vendor settlement</div>
+                  <div class="sub">A2 · BSP · TT-BSP-09</div>
+                </div>
+              </div>
+              <div class="am">
+                SAR 96,500
+                <div class="sub">@ 22.514</div>
+              </div>
+              <div class="am">
+                ₹21,72,601
+                <div class="sub">debit · 09:47</div>
+              </div>
+              <div class="st done">SETTLED</div>
+            </div>
+            <div class="txn">
+              <div class="who">
+                <div class="av">EM</div>
+                <div>
+                  <div class="nm">Emerald DMC Dubai — Burj package</div>
+                  <div class="sub">A2 · Business · TT-BUS-02</div>
+                </div>
+              </div>
+              <div class="am">
+                AED 47,200
+                <div class="sub">@ 23.012</div>
+              </div>
+              <div class="am">
+                ₹10,86,166
+                <div class="sub">queued · 16:00</div>
+              </div>
+              <div class="st prog">RATE LOCKED</div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h4>FX wallet · Multi-ccy</h4>
+            <div class="chart-wrap">
+              <svg viewBox="0 0 300 140" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#c8ff3a" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#c8ff3a" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,100 C 30,80 50,90 70,72 C 95,52 120,68 145,55 C 170,42 195,48 220,30 C 250,12 275,22 300,20 L 300,140 L 0,140 Z" fill="url(#g1)"/>
+                <path d="M0,100 C 30,80 50,90 70,72 C 95,52 120,68 145,55 C 170,42 195,48 220,30 C 250,12 275,22 300,20" fill="none" stroke="#c8ff3a" stroke-width="1.4"/>
+                <!-- gridline -->
+                <line x1="0" y1="70" x2="300" y2="70" stroke="rgba(245,241,232,0.05)" stroke-dasharray="2,3"/>
+              </svg>
+            </div>
+            <div class="currencies">
+              <div class="ccy">
+                <div class="flag">USD</div>
+                <div class="meta">
+                  <div class="nm">US Dollar</div>
+                  <div class="sub">@ avg 84.21 acquired</div>
+                </div>
+                <div class="bal">$ 142,400</div>
+              </div>
+              <div class="ccy">
+                <div class="flag">EUR</div>
+                <div class="meta">
+                  <div class="nm">Euro</div>
+                  <div class="sub">@ avg 90.88 acquired</div>
+                </div>
+                <div class="bal">€ 38,700</div>
+              </div>
+              <div class="ccy">
+                <div class="flag">AED</div>
+                <div class="meta">
+                  <div class="nm">UAE Dirham</div>
+                  <div class="sub">@ avg 22.91 acquired</div>
+                </div>
+                <div class="bal">د.إ 218,400</div>
+              </div>
+              <div class="ccy">
+                <div class="flag">GBP</div>
+                <div class="meta">
+                  <div class="nm">Pound Sterling</div>
+                  <div class="sub">@ avg 106.42 acquired</div>
+                </div>
+                <div class="bal">£ 24,180</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- floating annotations -->
+        <div class="annot a1">A2 form auto-filled in 4 sec</div>
+        <div class="annot a2">SWIFT GPI · arrives 16:42 IST</div>
+      </main>
+    </div>
+
+    <!-- caption row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;color:rgba(245,241,232,0.65);font-size:13px;">
+      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Per-branch ledgers.</strong>Reconcile counters, not spreadsheets.</div>
+      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Roles &amp; maker-checker.</strong>Counter creates, manager approves, partner audits.</div>
+      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Open API.</strong>Webhooks for every status. Plug into your CRM.</div>
+      <div><strong style="color:var(--bg);display:block;margin-bottom:6px;">Mobile, too.</strong>Check rates &amp; approve transfers from the airport lounge.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== USE CASES =========== -->
+<section id="cases">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Remittance types</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Purpose-coded for the work<br/><em>travel agents do.</em></h2>
+      </div>
+      <p class="section-sub">
+        Tour cost, visa processing, overseas education and family-support remittances each need different documents. Money2Abroad guides the KYC requirement and purpose code before the payment reaches operations.
+      </p>
+    </div>
+
+    <div class="cases">
+      <div class="case">
+        <span class="tag">Tour cost · DMC</span>
+        <h3>Advance tour cost for <em>DMCs and hotels.</em></h3>
+        <p>Send deposits and final tour payments to overseas partners with invoices, beneficiary details and confirmation history attached.</p>
+        <div class="sample">
+          <div><div class="l">Documents</div><div class="v">Invoice</div></div>
+          <div><div class="l">Tracking</div><div class="v">SWIFT</div></div>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="tag">Visa · Processing fee</span>
+        <h3>Visa fees and embassy-linked <em>service payments.</em></h3>
+        <p>Handle visa processing remittances with clean purpose mapping and a record your counter staff can retrieve later.</p>
+        <div class="sample">
+          <div><div class="l">Use case</div><div class="v">Visa</div></div>
+          <div><div class="l">Flow</div><div class="v">Digital</div></div>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="tag">Education · University</span>
+        <h3>Tuition and living expenses for <em>students abroad.</em></h3>
+        <p>Process education remittances with admission letters, fee invoices and Form A2 support in the same journey.</p>
+        <div class="sample">
+          <div><div class="l">Purpose</div><div class="v">Education</div></div>
+          <div><div class="l">Support</div><div class="v">A2 / LRS</div></div>
+        </div>
+      </div>
+
+      <div class="case">
+        <span class="tag">Close relatives · Maintenance</span>
+        <h3>Maintenance remittance for <em>families overseas.</em></h3>
+        <p>Support customers sending permitted maintenance funds to close relatives with guided documentation and status visibility.</p>
+        <div class="sample">
+          <div><div class="l">Category</div><div class="v">LRS</div></div>
+          <div><div class="l">Docs</div><div class="v">Guided</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="section-sub" style="margin-top:22px;">More purpose categories can be configured as your agency's outbound requirements grow.</p>
+  </div>
+</section>
+
+<!-- =========== CALCULATOR =========== -->
+<section id="calc" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Advantage</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Better than traditional<br/><em>remittance runs.</em></h2>
+      </div>
+      <p class="section-sub">
+        Traditional providers ask your team to chase rates, documents, branch approvals and confirmations separately. A digital desk makes the rate visible, the paperwork guided and the status trackable.
+      </p>
+    </div>
+
+    <div class="calc" id="calc-widget">
+      <div class="calc-input">
+        <div class="calc-field">
+          <label>Monthly outbound volume</label>
+          <div class="calc-amt"><span class="cur">$</span><span id="cv">250,000</span></div>
+          <div style="margin-top:14px;">
+            <input id="vol" type="range" min="50000" max="2000000" step="10000" value="250000" />
+            <div style="display:flex;justify-content:space-between;font-family:'Geist Mono';font-size:11px;color:var(--ink-3);margin-top:6px;">
+              <span>$50K</span><span>$2M</span>
+            </div>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Currency mix</label>
+          <div class="ccy-pick" id="ccy-pick">
+            <button class="on" data-ccy="USD">USD</button>
+            <button data-ccy="EUR">EUR</button>
+            <button data-ccy="GBP">GBP</button>
+            <button data-ccy="AED">AED</button>
+            <button data-ccy="THB">THB</button>
+            <button data-ccy="SGD">SGD</button>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Avg ticket size</label>
+          <div class="calc-amt"><span class="cur">$</span><span id="tv">3,200</span></div>
+          <div style="margin-top:14px;">
+            <input id="tick" type="range" min="500" max="50000" step="100" value="3200" />
+            <div style="display:flex;justify-content:space-between;font-family:'Geist Mono';font-size:11px;color:var(--ink-3);margin-top:6px;">
+              <span>$500</span><span>$50K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div class="row">
+          <span class="lbl">Tickets / month</span>
+          <span class="val" id="r-tickets">78</span>
+        </div>
+        <div class="row">
+          <span class="lbl">Avg rate advantage vs traditional provider</span>
+          <span class="val" style="color:var(--accent);">+ ₹1.92 / $</span>
+        </div>
+        <div class="row">
+          <span class="lbl">TT / SWIFT charges saved</span>
+          <span class="val" id="r-tt">₹ 39,000</span>
+        </div>
+        <div class="row">
+          <span class="lbl">Annual margin captured</span>
+          <span class="val" id="r-annual">₹ 62.4 L</span>
+        </div>
+        <div class="savings">
+          <div>
+            <div style="font-size:12px;font-family:'Geist Mono';opacity:0.7;">YOU KEEP</div>
+            <div class="v" id="r-keep">₹ 5.20 L / mo</div>
+          </div>
+          <div class="l">Compared to running the same volume through a bank's outbound desk.</div>
+        </div>
+        <a href="../contact-us/index.html" class="btn btn-primary" style="background: var(--bg); color: var(--ink); justify-content:center;">Become a partner <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== COMPLIANCE & TRUST =========== -->
+<section id="compliance" class="compliance-trust" aria-labelledby="compliance-trust-heading">
+  <div class="wrap">
+    <div class="compliance-trust-head">
+      <div>
+        <div class="eyebrow">Compliance &amp; trust</div>
+        <div class="spacer-sm"></div>
+        <h2 id="compliance-trust-heading" class="compliance-trust-title">Boring on <em>purpose.</em></h2>
+      </div>
+      <p class="compliance-trust-lead">
+        We are an Authorised Dealer Category-II partnered platform. Every transfer flies through real RBI-licensed AD-I bank rails. Your customer’s money never sits on our balance sheet.
+      </p>
+    </div>
+
+    <div class="badges trust-badges" role="list">
+      <div class="badge" role="listitem">
+        <div class="b-ico" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6 L52 14 V32 C52 44 43 54 32 58 C21 54 12 44 12 32 V14 Z" fill="#0a1a3f" stroke="#0a1a3f" stroke-width="1"/>
+            <path d="M32 12 L46 17 V32 C46 41 39 49 32 52 C25 49 18 41 18 32 V17 Z" fill="#fff"/>
+            <path d="M28 24 C28 22 30 20 32 20 C34 20 36 22 36 24 V30 C36 32 34 34 32 34 C30 34 28 32 28 30 Z" fill="#c89b2a"/>
+            <path d="M22 38 C24 36 28 35 32 35 C36 35 40 36 42 38 L40 44 C38 43 35 42 32 42 C29 42 26 43 24 44 Z" fill="#c89b2a"/>
+            <text x="32" y="50" text-anchor="middle" font-size="5" font-weight="700" fill="#0a1a3f" font-family="Georgia,serif">RBI</text>
+          </svg>
+        </div>
+        <div class="b-name">RBI · AD-II rails</div>
+        <p class="b-sub">Routed via partner AD-I scheduled banks</p>
+      </div>
+      <div class="badge" role="listitem">
+        <div class="b-ico" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="22" fill="#fff" stroke="#0a1a3f" stroke-width="1.5"/>
+            <circle cx="32" cy="32" r="9" fill="none" stroke="#0a1a3f" stroke-width="1.2"/>
+            <g stroke="#0a1a3f" stroke-width="1" stroke-linecap="round">
+              <line x1="32" y1="14" x2="32" y2="50"/>
+              <line x1="14" y1="32" x2="50" y2="32"/>
+              <line x1="19.3" y1="19.3" x2="44.7" y2="44.7"/>
+              <line x1="44.7" y1="19.3" x2="19.3" y2="44.7"/>
+              <line x1="22" y1="16" x2="42" y2="48"/>
+              <line x1="42" y1="16" x2="22" y2="48"/>
+              <line x1="16" y1="22" x2="48" y2="42"/>
+              <line x1="48" y1="22" x2="16" y2="42"/>
+            </g>
+            <circle cx="32" cy="32" r="2" fill="#0a1a3f"/>
+          </svg>
+        </div>
+        <div class="b-name">FEMA &amp; LRS aligned</div>
+        <p class="b-sub">Validated against current master directions</p>
+      </div>
+      <div class="badge" role="listitem">
+        <div class="b-ico" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="14" width="52" height="36" rx="2" fill="#e30613"/>
+            <text x="32" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#fff" font-family="Arial,sans-serif" letter-spacing="-0.5">ISO</text>
+            <text x="32" y="58" text-anchor="middle" font-size="7" font-weight="600" fill="#0a1a3f" font-family="Arial,sans-serif">27001:2022</text>
+          </svg>
+        </div>
+        <div class="b-name">ISO 27001:2022</div>
+        <p class="b-sub">Certified — audited annually</p>
+      </div>
+      <div class="badge" role="listitem">
+        <div class="b-ico" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="#6b4dc4" stroke-width="2"/>
+            <circle cx="32" cy="32" r="20" fill="#6b4dc4"/>
+            <text x="32" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="Arial,sans-serif">SOC</text>
+            <text x="32" y="42" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Arial,sans-serif">2</text>
+            <text x="32" y="60" text-anchor="middle" font-size="6" font-weight="700" fill="#6b4dc4" font-family="Arial,sans-serif">TYPE II · AICPA</text>
+          </svg>
+        </div>
+        <div class="b-name">SOC 2 Type II</div>
+        <p class="b-sub">Independent attestation · ongoing</p>
+      </div>
+      <div class="badge" role="listitem">
+        <div class="b-ico" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6 L54 14 V32 C54 46 44 56 32 60 C20 56 10 46 10 32 V14 Z" fill="#003b73"/>
+            <path d="M32 12 L48 18 V32 C48 42 41 50 32 53 C23 50 16 42 16 32 V18 Z" fill="#fff"/>
+            <text x="32" y="32" text-anchor="middle" font-size="11" font-weight="800" fill="#003b73" font-family="Arial,sans-serif">PCI</text>
+            <text x="32" y="42" text-anchor="middle" font-size="6" font-weight="700" fill="#003b73" font-family="Arial,sans-serif">DSS L1</text>
+          </svg>
+        </div>
+        <div class="b-name">PCI-DSS L1</div>
+        <p class="b-sub">For card-funded settlement flows</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== VISION =========== -->
+<section id="vision">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Vision and motto</div>
+        <div class="spacer-sm"></div>
+        <h2 class="section-title">Make remittance smoother<br/><em>for every travel desk.</em></h2>
+      </div>
+      <p class="section-sub">
+        Money2Abroad’s travel-agent page is built around one practical goal: simplify tour cost remittance and make overseas payment operations easier for Indian agencies.
+      </p>
+    </div>
+
+    <div class="quotes">
+      <div class="quote-card">
+        <p class="q">A happier customer starts with a confident quote, clean documents and a payment status your team can explain clearly.</p>
+        <div class="author">
+          <div class="av">01</div>
+          <div>
+            <div class="a-name">Customer confidence</div>
+            <div class="a-meta">Live rates and clear confirmations</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <p class="q">A travel agent should not lose productive hours to branch queues, document back-and-forth or unclear remittance milestones.</p>
+        <div class="author">
+          <div class="av">02</div>
+          <div>
+            <div class="a-name">Agent productivity</div>
+            <div class="a-meta">Digital-first workflow</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <p class="q">Tour cost, visa, education and maintenance remittances should be simple enough for daily operations and structured enough for compliance review.</p>
+        <div class="author">
+          <div class="av">03</div>
+          <div>
+            <div class="a-name">Compliance clarity</div>
+            <div class="a-meta">Purpose-led documentation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html">
+          <span class="brand-mark"></span>
+          <span>Money2Abroad</span>
+        </a>
+        <p class="foot-blurb">Digital outward remittance for India's travel trade. Built for agents who need live rates, guided documents and reliable confirmation for overseas payments.</p>
+        <div style="display:flex;gap:8px;margin-top:18px;">
+          <span class="chip">🇮🇳 Made in Mumbai</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="../index.html">Home</a>
+        <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+        <a href="index.html">About us</a>
+        <a href="../contact-us/index.html">Contact us</a>
+      </div>
+      <div class="foot-col">
+        <h5>For agencies</h5>
+        <a href="index.html#cases">Tour cost</a>
+        <a href="index.html#cases">Hotel &amp; DMC</a>
+        <a href="index.html#cases">Visa fees</a>
+        <a href="index.html#cases">Education</a>
+        <a href="index.html#cases">Maintenance remittance</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="index.html">About</a>
+        <a href="index.html#compliance">Compliance</a>
+        <a href="#">Pricing</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="foot-col">
+        <h5>Talk to us</h5>
+        <a href="mailto:info@finwaveforex.com">info@finwaveforex.com</a>
+        <a href="tel:+917948916100">+91 79 4891 6100</a>
+        <a href="tel:+919898906133">+91 98989 06133</a>
+        <a href="#">Ahmedabad · Navrangpura</a>
+        <a href="#">Status &amp; uptime</a>
+        <a href="../contact-us/index.html">Contact us</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="legal">© 2026 MONEY2ABROAD TECHNOLOGIES PVT LTD · CIN U67200MH2024PTC400112</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned · ISO 27001:2022</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Calculator
+  (function(){
+    const vol = document.getElementById('vol');
+    const tick = document.getElementById('tick');
+    const cv = document.getElementById('cv');
+    const tv = document.getElementById('tv');
+    const rTickets = document.getElementById('r-tickets');
+    const rTT = document.getElementById('r-tt');
+    const rAnnual = document.getElementById('r-annual');
+    const rKeep = document.getElementById('r-keep');
+    const fmtUSD = n => new Intl.NumberFormat('en-US').format(Math.round(n));
+    const fmtINR = n => '₹ ' + new Intl.NumberFormat('en-IN').format(Math.round(n));
+    const fmtINRShort = n => {
+      if (n >= 1e7) return '₹ ' + (n/1e7).toFixed(2) + ' Cr';
+      if (n >= 1e5) return '₹ ' + (n/1e5).toFixed(2) + ' L';
+      return fmtINR(n);
+    };
+
+    function recompute() {
+      const v = +vol.value;
+      const t = +tick.value;
+      cv.textContent = new Intl.NumberFormat('en-US').format(v);
+      tv.textContent = new Intl.NumberFormat('en-US').format(t);
+      const tickets = Math.max(1, Math.round(v / t));
+      const advPerDollar = 1.92; // ₹ vs traditional provider
+      const monthlyAdv = v * advPerDollar;
+      const ttSaved = tickets * 500; // ~₹500 per TT saved
+      const monthlyTotal = monthlyAdv + ttSaved;
+      const annual = monthlyTotal * 12;
+      rTickets.textContent = tickets;
+      rTT.textContent = fmtINR(ttSaved);
+      rAnnual.textContent = fmtINRShort(annual);
+      rKeep.textContent = fmtINRShort(monthlyTotal) + ' / mo';
+    }
+    vol.addEventListener('input', recompute);
+    tick.addEventListener('input', recompute);
+
+    // currency chips
+    document.querySelectorAll('#ccy-pick button').forEach(b => {
+      b.addEventListener('click', () => {
+        b.classList.toggle('on');
+      });
+    });
+
+    recompute();
+  })();
+</script>
+
+</body>
+</html>
