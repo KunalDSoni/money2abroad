@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="Money2Abroad — Live FX and digital outward remittance for India’s travel trade. Start here, then explore the product story and travel-agent program." />
+<meta name="description" content="Money2Abroad , Live FX and digital outward remittance for India’s travel trade. Start here, then explore the product story and travel-agent program." />
 <meta name="theme-color" content="#ffffff" />
-<title>Money2Abroad — Outward remittance for travel agents</title>
+<title>Money2Abroad , Outward remittance for travel agents</title>
 <link rel="icon" type="image/jpeg" href="Money2Abroad Logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +83,7 @@
         <div class="spacer-sm"></div>
         <h1 class="home-headline">Remittance for travel agents in India.</h1>
         <p class="hero-copy">
-          Check live FX, run a digital desk for DMCs and overseas vendors, and track confirmations — without losing your day to branch queues.
+          Check live FX, run a digital desk for DMCs and overseas vendors, and track confirmations , without losing your day to branch queues.
         </p>
         <div class="hero-actions">
           <a href="about-us/index.html" class="btn btn-primary">Explore the product <span class="arrow">→</span></a>
@@ -121,7 +121,7 @@
             </label>
           </div>
           <div class="hc-amt-wrap">
-            <div class="hc-amount mono" id="hc-rec">—<span class="cur" id="hc-rec-cur" style="display:none;">USD</span></div>
+            <div class="hc-amount mono" id="hc-rec">,<span class="cur" id="hc-rec-cur" style="display:none;">USD</span></div>
           </div>
         </div>
 
@@ -161,20 +161,20 @@
         <div class="spacer-sm"></div>
         <h2 class="section-title">Go deeper on<br/><em>your next click.</em></h2>
       </div>
-      <p class="section-sub">The full story is split across dedicated pages so each URL stays focused — richer typography, faster scanning, room to grow.</p>
+      <p class="section-sub">The full story is split across dedicated pages so each URL stays focused , richer typography, faster scanning, room to grow.</p>
     </div>
 
     <div class="gateway-grid">
       <a class="gw-card" href="about-us/index.html">
         <span class="gw-eyebrow">Product &amp; proof</span>
         <h3>About <em>Money2Abroad</em></h3>
-        <p>Process, dashboard, remittance types, advantage model, compliance — everything that explains how the desk works.</p>
+        <p>Process, dashboard, remittance types, advantage model, compliance , everything that explains how the desk works.</p>
         <span class="gw-more">Open about us <span class="arrow">→</span></span>
       </a>
       <a class="gw-card" href="remittance-for-travel-agents/index.html">
         <span class="gw-eyebrow">Travel trade</span>
         <h3>Remittance for <em>agents</em></h3>
-        <p>The travel-agent narrative: pains we solve, corridors, vision — tuned for B2B agency teams.</p>
+        <p>The travel-agent narrative: pains we solve, corridors, vision , tuned for B2B agency teams.</p>
         <span class="gw-more">View travel agents <span class="arrow">→</span></span>
       </a>
       <a class="gw-card" href="contact-us/index.html">
@@ -242,7 +242,7 @@
 
 <script>
   /* ============================================================
-   * Live FX — Yahoo Finance (chart endpoint, CORS-enabled)
+   * Live FX , Yahoo Finance (chart endpoint, CORS-enabled)
    * Powers: hero quote card + global ticker
    * ============================================================ */
   (function(){
@@ -284,26 +284,55 @@
       };
     }
 
-    let fallbackCache = null;
-    async function fallbackAll() {
-      if (fallbackCache && (Date.now() - fallbackCache.ts < 60_000)) return fallbackCache.data;
-      const res = await fetch('https://open.er-api.com/v6/latest/INR', { cache: 'no-store' });
-      if (!res.ok) throw new Error('fallback http ' + res.status);
-      const j = await res.json();
-      if (!j.rates) throw new Error('fallback: no rates');
-      fallbackCache = { ts: Date.now(), data: j.rates };
-      return j.rates;
+    const CURRENCY_API_HOSTS = [
+      'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@',
+      'https://currency-api.pages.dev/v1/'
+    ];
+    function ymd(d) { return d.toISOString().slice(0, 10); }
+    async function fetchInrAt(tag) {
+      let lastErr;
+      for (const host of CURRENCY_API_HOSTS) {
+        const url = host.includes('jsdelivr')
+          ? host + tag + '/v1/currencies/inr.json'
+          : host + tag + '/currencies/inr.json';
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) throw new Error('http ' + res.status);
+          const j = await res.json();
+          if (!j.inr) throw new Error('no inr map');
+          return j.inr;
+        } catch (e) { lastErr = e; }
+      }
+      throw lastErr || new Error('currency-api unreachable');
     }
+
+    let inrCache = { latest: null, prev: null, ts: 0 };
+    async function fetchInrRates() {
+      if (inrCache.latest && Date.now() - inrCache.ts < 60_000) return inrCache;
+      const yest = new Date(Date.now() - 24 * 60 * 60 * 1000);
+      const [latest, prev] = await Promise.all([
+        fetchInrAt('latest'),
+        fetchInrAt(ymd(yest))
+      ]);
+      inrCache = { latest, prev, ts: Date.now() };
+      return inrCache;
+    }
+
     async function fallback(ccy) {
-      const rates = await fallbackAll();
-      if (!rates[ccy]) throw new Error('fallback: missing ' + ccy);
-      const price = 1 / rates[ccy];
-      return { price, prev: price, source: 'open.er-api.com' };
+      const { latest, prev } = await fetchInrRates();
+      const lc = ccy.toLowerCase();
+      if (!latest[lc]) throw new Error('fallback: missing ' + ccy);
+      const price = 1 / latest[lc];
+      const prevPrice = prev[lc] ? 1 / prev[lc] : price;
+      return { price, prev: prevPrice, source: 'currency-api' };
     }
 
     async function getRate(ccy) {
-      try { return await yahoo(ccy); }
-      catch (e) { return await fallback(ccy); }
+      try {
+        const r = await fallback(ccy);
+        if (r.prev && r.prev !== r.price) return r;
+      } catch (e) { /* fall through to yahoo */ }
+      return await yahoo(ccy);
     }
 
     const sendEl     = document.getElementById('hc-send');
@@ -316,7 +345,7 @@
     const rateEl     = document.getElementById('hc-rate');
     const freshEl    = document.getElementById('hc-fresh');
     const changeEl   = document.getElementById('hc-change');
-    /* swap removed — INR is fixed on the send side */
+    /* swap removed , INR is fixed on the send side */
 
     CCYS.forEach(c => {
       const opt = document.createElement('option');
@@ -375,7 +404,7 @@
           changeEl.textContent = (up ? '▲ +' : '▼ ') + pct.toFixed(2) + '%';
           changeEl.className = 'val ' + (up ? 'hc-change-up' : 'hc-change-down');
         } else {
-          changeEl.textContent = '—';
+          changeEl.textContent = ',';
           changeEl.className = 'val';
         }
       }
