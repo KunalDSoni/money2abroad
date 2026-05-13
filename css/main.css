@@ -1600,9 +1600,13 @@
     /* Hero converter and grid stack neatly */
     .hero { padding: 28px var(--pad) 24px; }
     .hero-grid { gap: 24px; }
-    .hero-card { padding: 22px; }
-    .hc-amount { font-size: clamp(28px, 9vw, 40px) !important; }
-    .hc-input { font-size: clamp(28px, 9vw, 40px) !important; }
+    .hero-card { padding: 18px; }
+    .hero-card .hc-row-flip { padding: 16px 16px; gap: 10px; }
+    .hc-amount { font-size: clamp(18px, 5.2vw, 26px) !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hc-input { font-size: clamp(18px, 5.2vw, 26px) !important; max-width: 100% !important; width: 100% !important; }
+    .hero-card .hc-amt-wrap { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+    .hero-card .hc-amt-wrap .hc-input-wrap { width: 100%; max-width: 100%; }
+    .hero-card .hc-side { flex: 0 0 auto; }
     .hc-fx { flex-wrap: wrap; gap: 14px; }
     .hc-cta { padding: 14px 16px; font-size: 15px; }
 
