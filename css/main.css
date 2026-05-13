@@ -1330,8 +1330,27 @@
   }
   .btn-accent:hover .arrow { transform: translateX(6px); }
   .btn-accent:active { transform: translateY(1px); }
-  .btn-primary { background: var(--ink); color: #fff; }
-  .btn-primary:hover { background: #222; }
+  .btn-primary {
+    position: relative;
+    overflow: hidden;
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transition: box-shadow .25s ease, transform .15s ease;
+  }
+  .btn-primary::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, var(--accent-deep) 0%, #4a2d10 100%);
+    transform: translateX(-101%) skewX(-12deg);
+    transition: transform .45s cubic-bezier(.7,.05,.25,1);
+    pointer-events: none;
+  }
+  .btn-primary > * { position: relative; z-index: 1; }
+  .btn-primary .arrow { transition: transform .35s cubic-bezier(.7,.05,.25,1); display: inline-block; }
+  .btn-primary:hover { box-shadow: 0 8px 20px rgba(124,77,30,0.25); }
+  .btn-primary:hover::before { transform: translateX(0) skewX(-12deg); }
+  .btn-primary:hover .arrow { transform: translateX(6px); }
 
   /* Inline links lean copper */
   a { color: var(--accent); }
