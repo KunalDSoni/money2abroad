@@ -20,12 +20,14 @@
   @media (max-width:760px){.calc-grid{grid-template-columns:1fr;}}
   .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
   .field label{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
-  .field input,.field select{font-family:'Inter',sans-serif;font-size:18px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink);}
+  .field input,.field select{font-family:'Inter',sans-serif;font-size:18px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink);width:100%;box-sizing:border-box;}
+  .field select{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:40px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='none' stroke='%238b5a2b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5l5 5 5-5'/></svg>");background-repeat:no-repeat;background-position:right 14px center;}
   .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;}
   .result-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .result-row:last-of-type{border-bottom:0;}
   .result-row .lbl{color:var(--ink-2);font-size:14px;}
   .result-row .val{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--ink);}
-  .result-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;margin-top:6px;border-top:1px solid var(--line);}
+  .result-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;margin-top:0;border-top:1px solid var(--line);}
   .result-total .lbl{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);}
   .result-total .val{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:var(--accent);}
   .slab-table{width:100%;border-collapse:collapse;margin-top:24px;}
@@ -108,11 +110,11 @@
         </div>
         <div class="field">
           <label for="tcs-amt">Transaction amount this FY (INR)</label>
-          <input id="tcs-amt" type="text" inputmode="decimal" value="15,00,000" />
+          <input id="tcs-amt" type="text" inputmode="numeric" maxlength="11" value="15,00,000" />
         </div>
         <div class="field">
           <label for="tcs-prev">Already remitted this FY (INR, optional)</label>
-          <input id="tcs-prev" type="text" inputmode="decimal" value="0" />
+          <input id="tcs-prev" type="text" inputmode="numeric" maxlength="11" value="0" />
         </div>
         <p style="font-size:13px;color:var(--ink-3);line-height:1.6;">TCS threshold is ₹10,00,000 per financial year per individual (PAN-level).</p>
       </div>
@@ -233,6 +235,7 @@
   };
 
   function parseAmt(s){return parseFloat(String(s||'').replace(/[^\d.]/g,''))||0;}
+  function clampDigits(el){var d=String(el.value||'').replace(/\D/g,'').slice(0,8);el.value=d?new Intl.NumberFormat('en-IN').format(parseInt(d,10)):'';}
   function fmtINR(n){return '₹'+new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(n);}
   function fmtPct(p){return (p*100).toFixed(p>=0.01?0:2)+'%';}
 
@@ -273,10 +276,8 @@
   }
   function pretty(el){var v=parseAmt(el.value);if(v>0)el.value=new Intl.NumberFormat('en-IN').format(v);}
   purpose.addEventListener('change',recompute);
-  amt.addEventListener('input',recompute);
-  prev.addEventListener('input',recompute);
-  amt.addEventListener('blur',function(){pretty(amt);recompute();});
-  prev.addEventListener('blur',function(){pretty(prev);recompute();});
+  amt.addEventListener('input',function(){clampDigits(amt);recompute();});
+  prev.addEventListener('input',function(){clampDigits(prev);recompute();});
   recompute();
 })();
 </script>
