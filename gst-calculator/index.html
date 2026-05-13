@@ -23,9 +23,10 @@
   .field input,.field select{font-family:'Inter',sans-serif;font-size:18px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink);}
   .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;}
   .result-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .result-row:last-of-type{border-bottom:0;}
   .result-row .lbl{color:var(--ink-2);font-size:14px;}
   .result-row .val{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--ink);}
-  .result-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;margin-top:6px;border-top:1px solid var(--line);}
+  .result-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;margin-top:0;border-top:1px solid var(--line);}
   .result-total .lbl{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);}
   .result-total .val{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:var(--accent);}
   .slab-table{width:100%;border-collapse:collapse;margin-top:24px;}
@@ -99,11 +100,11 @@
       <div>
         <div class="field">
           <label for="gst-amt">Transaction amount (INR)</label>
-          <input id="gst-amt" type="text" inputmode="decimal" value="4,12,900" />
+          <input id="gst-amt" type="text" inputmode="numeric" maxlength="11" value="4,12,900" />
         </div>
         <div class="field">
           <label for="gst-handling">Handling / delivery charges (₹, optional)</label>
-          <input id="gst-handling" type="text" inputmode="decimal" value="0" />
+          <input id="gst-handling" type="text" inputmode="numeric" maxlength="11" value="0" />
         </div>
         <p style="font-size:13px;color:var(--ink-3);line-height:1.6;">Handling and delivery charges are taxed separately at <strong>18% GST</strong>.</p>
       </div>
@@ -220,6 +221,7 @@
 
   function parseAmt(s){return parseFloat(String(s||'').replace(/[^\d.]/g,''))||0;}
   function fmtINR(n){return '₹'+new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(n);}
+  function clampDigits(el){var d=String(el.value||'').replace(/\D/g,'').slice(0,8);el.value=d?new Intl.NumberFormat('en-IN').format(parseInt(d,10)):'';}
 
   function gstOnFx(v){
     if(v<=0)return {slab:',',taxable:0,gst:0};
@@ -250,10 +252,8 @@
     var v=parseAmt(el.value);
     if(v>0)el.value=new Intl.NumberFormat('en-IN').format(v);
   }
-  amt.addEventListener('input',recompute);
-  handling.addEventListener('input',recompute);
-  amt.addEventListener('blur',function(){pretty(amt);recompute();});
-  handling.addEventListener('blur',function(){pretty(handling);recompute();});
+  amt.addEventListener('input',function(){clampDigits(amt);recompute();});
+  handling.addEventListener('input',function(){clampDigits(handling);recompute();});
   recompute();
 })();
 </script>

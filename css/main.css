@@ -137,7 +137,10 @@
   .btn:hover .arrow { transform: translateX(3px); }
 
   /* ---------- HERO ---------- */
-  .hero { padding: 60px var(--pad) 40px; position: relative; }
+  .hero {
+    padding: 60px var(--pad) 40px; position: relative;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  }
   .hero-grid {
     display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start;
   }
@@ -1364,7 +1367,7 @@
   ::selection { background: var(--accent); color: #fff; }
 
   /* JPMC-style restraint on the home page: white canvas, hairline borders */
-  body.page-home { background: #ffffff; }
+  body.page-home { background: var(--bg); }
   body.page-home .ticker {
     background: #ffffff !important;
     color: var(--ink) !important;
@@ -1376,9 +1379,9 @@
   body.page-home .ticker-item .ch.up { color: #15803d !important; background: rgba(22,163,74,0.10) !important; }
   body.page-home .ticker-item .ch.down { color: #b91c1c !important; background: rgba(220,38,38,0.10) !important; }
 
-  body.page-home .hero { background: #ffffff; }
+  body.page-home .hero { background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 55%); }
   body.page-home .grid-bg { display: none; }
-  body.page-home .home-stats-band { background: #ffffff !important; }
+  body.page-home .home-stats-band { background: var(--bg) !important; }
   body.page-home .hero-card {
     background: #ffffff !important;
     color: var(--ink) !important;
