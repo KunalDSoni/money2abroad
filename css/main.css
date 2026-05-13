@@ -1098,6 +1098,7 @@
   }
   @media (max-width: 900px) { .corridor-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .corridor-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px) { .corridor-grid { grid-template-columns: 1fr; } }
   .corridor {
     display: flex; align-items: center; gap: 12px;
     padding: 16px 18px;
@@ -1802,5 +1803,26 @@
     }
     .contact-hero .lead,
     .page-travel .lead { font-size: 16px !important; }
+
+    /* Contact cards fit small viewports — long emails were overflowing */
+    .contact-cards-wrap { padding: 32px var(--pad) 28px; }
+    .contact-cards-wrap .section-title { font-size: clamp(24px, 7vw, 34px) !important; }
+    .contact-card { padding: 20px; border-radius: 16px; }
+    .contact-card .value {
+      font-size: 16px;
+      line-height: 1.35;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .contact-card .label { font-size: 10px; margin-bottom: 8px; }
+    .contact-card .sub { font-size: 13px; margin-top: 10px; }
+
+    /* Corridor grid was overflowing viewport on mobile */
+    .contact-corridors { padding: 40px var(--pad) 48px; }
+    .corridor-grid { gap: 10px; }
+    .corridor { padding: 12px 12px; gap: 8px; min-width: 0; }
+    .corridor-flag { font-size: 18px; }
+    .corridor-code { font-size: 12px; min-width: 0; }
+    .corridor-name { font-size: 12px; min-width: 0; line-height: 1.25; }
   }
 
