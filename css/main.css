@@ -1197,6 +1197,8 @@
     border-radius: 16px;
     padding: 24px;
     background: var(--bg);
+    min-height: 0;
+    gap: 8px;
   }
   .page-travel section.alt .case { background: var(--bg-soft); }
   .page-travel .case .tag {
