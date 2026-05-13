@@ -9,17 +9,19 @@
 <link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css" />
 <style>
   .faq-list{display:grid;gap:14px;margin-top:14px;}
-  .faq-item{border-bottom:1px solid rgba(0,0,0,0.18);border-radius:0;background:transparent;overflow:hidden;}
-  .faq-item summary{cursor:pointer;list-style:none;padding:24px 4px;font-family:'Playfair Display','Source Serif 4',Georgia,serif;font-weight:600;font-size:22px;color:#000;display:flex;justify-content:space-between;align-items:center;gap:18px;}
+  .faq-item{border:1px solid rgba(0,0,0,0.12);border-radius:10px;background:transparent;overflow:hidden;transition:background-color .25s ease, box-shadow .25s ease, transform .2s ease;}
+  .faq-item:hover,
+  .faq-item[open]{background:#fff;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+  .faq-item summary{cursor:pointer;list-style:none;padding:20px 18px;font-family:'Playfair Display','Source Serif 4',Georgia,serif;font-weight:600;font-size:22px;color:#000;display:flex;justify-content:space-between;align-items:center;gap:18px;}
   .faq-item summary::-webkit-details-marker{display:none;}
-  .faq-item summary::after{content:'+';font-family:'Inter',sans-serif;font-size:26px;font-weight:300;color:#8b5a2b;transition:transform .2s;}
+  .faq-item summary::after{content:'+';font-family:'Geist',sans-serif;font-size:26px;font-weight:300;color:#8b5a2b;transition:transform .2s;}
   .faq-item[open] summary::after{content:'–';}
-  .faq-item .a{padding:0 4px 24px;color:#2a2a2a;font-size:16px;line-height:1.7;max-width:780px;}
-  .faq-cat{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8b5a2b;font-weight:600;margin:28px 0 6px;}
+  .faq-item .a{padding:4px 18px 20px;color:#2a2a2a;font-size:15px;line-height:1.6;max-width:780px;}
+  .faq-cat{font-family:'Geist',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8b5a2b;font-weight:600;margin:28px 0 6px;}
   .faq-cat:first-of-type{margin-top:0;}
 </style>
 </head>
@@ -98,7 +100,7 @@
       </details>
       <details class="faq-item">
         <summary>How do we onboard?</summary>
-        <div class="a">Share your agency PAN, GST, IATA/TAFI registration and authorised-signatory KYC. Our partner desk verifies the documents, creates your agency workspace and adds your branch users , typically within 2–3 working days.</div>
+        <div class="a">Share your agency PAN, GST and authorised-signatory KYC documents (along with any sector registrations, where applicable). The partner desk carries out verification in line with the AD bank's KYC and onboarding norms before activating the agency workspace.</div>
       </details>
     </div>
 
@@ -114,11 +116,11 @@
       </details>
       <details class="faq-item">
         <summary>How is payment collected from the customer?</summary>
-        <div class="a">NEFT, RTGS and approved online collection flows are supported. Card-funded settlement is available for permitted use cases under PCI-DSS L1 controls.</div>
+        <div class="a">NEFT, RTGS and approved online collection flows are supported. Card-funded settlement is available for permitted use cases through the AD bank's authorised payment gateways.</div>
       </details>
       <details class="faq-item">
         <summary>How long does a remittance take to settle?</summary>
-        <div class="a">Most transfers reach the overseas beneficiary the same business day or within T+1, depending on the corridor and cut-off times. SWIFT GPI references are available inside the portal.</div>
+        <div class="a">Settlement timing depends on the corridor, the AD bank's processing window, intermediary banks and overseas beneficiary bank cut-offs. SWIFT confirmation is shared inside the portal once the AD bank initiates the transfer.</div>
       </details>
     </div>
 
@@ -138,7 +140,7 @@
       </details>
       <details class="faq-item">
         <summary>What about data security?</summary>
-        <div class="a">ISO 27001:2022 certified, SOC 2 Type II attested and PCI-DSS Level 1 for card-funded flows. KYC documents are stored in an encrypted vault with role-based access.</div>
+        <div class="a">KYC documents are stored in an encrypted vault with role-based access. Remittance flows are routed through RBI-licensed AD-I scheduled banks, and partner systems follow industry-standard information-security controls.</div>
       </details>
     </div>
 
@@ -206,10 +208,20 @@
     </div>
     <div class="foot-bottom">
       <div class="legal">© 2026 MONEY2ABROAD TECHNOLOGIES PVT LTD · CIN U67200MH2024PTC400112</div>
-      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned · ISO 27001:2022</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned</div>
     </div>
   </div>
 </footer>
 
+<script>
+(function(){
+  var items = document.querySelectorAll('details.faq-item');
+  items.forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if (d.open) items.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+})();
+</script>
 </body>
 </html>
