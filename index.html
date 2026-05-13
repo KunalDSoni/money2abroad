@@ -9,7 +9,7 @@
 <link rel="icon" type="image/jpeg" href="Money2Abroad Logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css" />
 </head>
 <body class="page-home">
@@ -218,7 +218,7 @@
     </div>
     <div class="foot-bottom">
       <div class="legal">© 2026 MONEY2ABROAD TECHNOLOGIES PVT LTD · CIN U67200MH2024PTC400112</div>
-      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned · ISO 27001:2022</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned</div>
     </div>
   </div>
 </footer>
@@ -437,11 +437,18 @@
       document.execCommand('insertText', false, cleaned);
     });
     sendEl.addEventListener('blur', () => { clampToLrs(); reformatSendValue(); paint(); });
+    function caretToEnd() {
+      const len = sendEl.value.length;
+      try { sendEl.setSelectionRange(len, len); } catch (e) {}
+    }
     sendEl.addEventListener('focus', () => {
       sendEl.value = String(parseAmt(sendEl.value) || '');
       sizeSendInput();
-      sendEl.select();
+      setTimeout(caretToEnd, 0);
     });
+    sendEl.addEventListener('click', () => { setTimeout(caretToEnd, 0); });
+    sendEl.addEventListener('mouseup', (e) => { e.preventDefault(); caretToEnd(); });
+    sendEl.addEventListener('touchend', () => { setTimeout(caretToEnd, 0); });
 
     ccySel.addEventListener('change', () => {
       currentCcy = ccySel.value;
