@@ -1,5 +1,5 @@
   :root {
-    /* JPMorgan Chase palette — cream body, white nav, black ink, copper accent */
+    /* JPMorgan Chase palette , cream body, white nav, black ink, copper accent */
     --bg: #eee7dc;                   /* JPMC cream */
     --bg-soft: #ffffff;              /* white card / nav */
     --bg-deep: #000000;              /* black for dark sections */
@@ -164,7 +164,7 @@
   .hero-meta .stat .n { font-family: 'Inter', sans-serif; font-size: 32px; letter-spacing: -0.02em; font-weight: 500; }
   .hero-meta .stat .l { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
 
-  /* Hero card — quote / live transfer */
+  /* Hero card , quote / live transfer */
   .hero-card {
     background: var(--bg-deep); color: #efe9da;
     border-radius: 24px; padding: 24px;
@@ -278,8 +278,8 @@
     font-family: 'JetBrains Mono'; font-size: 10px;
     color: rgba(239,233,218,0.45); margin-top: 4px;
   }
-  .hc-change-up { color: var(--accent); }
-  .hc-change-down { color: #ff8a64; }
+  .hc-change-up { color: #16a34a; }
+  .hc-change-down { color: #dc2626; }
   @media (max-width: 760px) {
     .hc-input { font-size: 28px; }
   }
@@ -311,8 +311,8 @@
   .ticker-item .pair { color: rgba(245,241,232,0.55); }
   .ticker-item .px { color: var(--bg); }
   .ticker-item .ch { font-size: 12px; padding: 2px 8px; border-radius: 999px; }
-  .ticker-item .ch.up { color: var(--accent); background: rgba(200,255,58,0.10); }
-  .ticker-item .ch.down { color: #ff8a64; background: rgba(255,90,46,0.08); }
+  .ticker-item .ch.up { color: #16a34a; background: rgba(22,163,74,0.12); }
+  .ticker-item .ch.down { color: #dc2626; background: rgba(220,38,38,0.12); }
   @keyframes ticker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -1297,7 +1297,7 @@
     font-weight: inherit;
   }
 
-  /* JPMC display sizing — bigger, tighter */
+  /* JPMC display sizing , bigger, tighter */
   .display { line-height: 1.0; letter-spacing: -0.02em; }
 
   /* Top nav: solid white */
@@ -1333,8 +1333,8 @@
   }
   .ticker-item .pair { color: var(--ink-3) !important; }
   .ticker-item .px { color: var(--ink) !important; font-weight: 500; }
-  .ticker-item .ch.up { color: var(--accent) !important; background: rgba(139,90,43,0.10) !important; }
-  .ticker-item .ch.down { color: #b03a2e !important; background: rgba(176,58,46,0.10) !important; }
+  .ticker-item .ch.up { color: #15803d !important; background: rgba(22,163,74,0.12) !important; }
+  .ticker-item .ch.down { color: #b91c1c !important; background: rgba(220,38,38,0.12) !important; }
 
   .hero-card {
     background: #ddd0b1 !important;
@@ -1348,8 +1348,8 @@
   .hc-fx .lbl,
   .hc-input-wrap .cur { color: var(--ink-2) !important; }
   .hc-fresh { color: var(--ink-3) !important; }
-  .hc-change-up { color: var(--accent-deep) !important; }
-  .hc-change-down { color: #b03a2e !important; }
+  .hc-change-up { color: #15803d !important; }
+  .hc-change-down { color: #b91c1c !important; }
   .hc-cta {
     background: var(--ink) !important;
     color: #ffffff !important;
@@ -1371,7 +1371,7 @@
   .hero-card .swap,
   #hc-swap { display: none !important; }
 
-  /* Flipped hero rows — each row is its own pill/box */
+  /* Flipped hero rows , each row is its own pill/box */
   .hero-card .hc-row-flip {
     display: flex !important;
     align-items: center;

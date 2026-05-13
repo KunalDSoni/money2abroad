@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="GST calculator for foreign exchange transactions in India — slab-based GST on currency purchase, forex cards and outward remittance." />
+<meta name="description" content="GST calculator for foreign exchange transactions in India , slab-based GST on currency purchase, forex cards and outward remittance." />
 <meta name="theme-color" content="#ffffff" />
-<title>GST Calculator — Money2Abroad</title>
+<title>GST Calculator , Money2Abroad</title>
 <link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +91,7 @@
     <div class="eyebrow">Tools</div>
     <div class="spacer-sm"></div>
     <h1>GST calculator for foreign exchange.</h1>
-    <p class="lead">India levies GST on the taxable value of forex transactions — currency purchase, forex card load and outward remittance. The tax is computed in slabs, not on the full amount. Use the calculator below to see what your transaction will attract.</p>
+    <p class="lead">India levies GST on the taxable value of forex transactions , currency purchase, forex card load and outward remittance. The tax is computed in slabs, not on the full amount. Use the calculator below to see what your transaction will attract.</p>
   </div>
 </header>
 
@@ -111,10 +111,10 @@
         <p style="font-size:13px;color:var(--ink-3);line-height:1.6;">Handling and delivery charges are taxed separately at <strong>18% GST</strong>.</p>
       </div>
       <div>
-        <div class="result-row"><span class="lbl">Slab applied</span><span class="val" id="gst-slab">—</span></div>
-        <div class="result-row"><span class="lbl">Taxable value</span><span class="val" id="gst-taxable">—</span></div>
-        <div class="result-row"><span class="lbl">GST on transaction</span><span class="val" id="gst-tx">—</span></div>
-        <div class="result-row"><span class="lbl">GST on handling @ 18%</span><span class="val" id="gst-handling-out">—</span></div>
+        <div class="result-row"><span class="lbl">Slab applied</span><span class="val" id="gst-slab">,</span></div>
+        <div class="result-row"><span class="lbl">Taxable value</span><span class="val" id="gst-taxable">,</span></div>
+        <div class="result-row"><span class="lbl">GST on transaction</span><span class="val" id="gst-tx">,</span></div>
+        <div class="result-row"><span class="lbl">GST on handling @ 18%</span><span class="val" id="gst-handling-out">,</span></div>
         <div class="result-total"><span class="lbl">Total GST payable</span><span class="val" id="gst-total">₹0</span></div>
       </div>
     </div>
@@ -144,7 +144,7 @@
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:600;margin-bottom:16px;">Two common scenarios.</h2>
 
     <div class="example-card">
-      <h4>Example 1 — Purchase of USD 5,000 @ ₹82.58</h4>
+      <h4>Example 1 , Purchase of USD 5,000 @ ₹82.58</h4>
       <div class="ln"><span>Rupee value of the deal</span><span>₹4,12,900</span></div>
       <div class="ln"><span>GST on first ₹1,00,000 (flat)</span><span>₹180.00</span></div>
       <div class="ln"><span>GST on excess ₹3,12,900 @ 0.09%</span><span>₹281.61</span></div>
@@ -152,7 +152,7 @@
     </div>
 
     <div class="example-card">
-      <h4>Example 2 — Purchase of USD 12,000 @ ₹88.35</h4>
+      <h4>Example 2 , Purchase of USD 12,000 @ ₹88.35</h4>
       <div class="ln"><span>Rupee value of the deal</span><span>₹10,60,200</span></div>
       <div class="ln"><span>GST on first ₹1,00,000 (flat)</span><span>₹180.00</span></div>
       <div class="ln"><span>GST on next ₹9,00,000 @ 0.09%</span><span>₹810.00</span></div>
@@ -167,7 +167,7 @@
     <ul style="color:var(--ink-2);max-width:70ch;line-height:1.75;padding-left:18px;">
       <li>GST is charged on the taxable value, not on the full rupee value of the transaction.</li>
       <li>For amounts up to ₹25,000, the effective minimum GST is ₹45.</li>
-      <li>Indicative figures only — final GST is calculated by the dealing AD bank at the time of settlement.</li>
+      <li>Indicative figures only , final GST is calculated by the dealing AD bank at the time of settlement.</li>
       <li>TCS (Tax Collected at Source) is separate from GST. See our <a href="../tcs-calculator/index.html">TCS calculator</a>.</li>
     </ul>
   </section>
@@ -226,7 +226,7 @@
   function fmtINR(n){return '₹'+new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(n);}
 
   function gstOnFx(v){
-    if(v<=0)return {slab:'—',taxable:0,gst:0};
+    if(v<=0)return {slab:',',taxable:0,gst:0};
     if(v<=100000){
       var g=Math.max(45,v*0.0018);
       return {slab:'Slab 1 (≤ ₹1,00,000)',taxable:v*0.01,gst:g};
