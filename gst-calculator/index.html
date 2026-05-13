@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="GST calculator for foreign exchange transactions in India — slab-based GST on currency purchase, forex cards and outward remittance." />
+<meta name="theme-color" content="#ffffff" />
+<title>GST Calculator — Money2Abroad</title>
+<link rel="icon" type="image/jpeg" href="../Money2Abroad Logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css" />
+<style>
+  .calc-shell{padding:48px var(--pad) 96px;max-width:1080px;margin:0 auto;}
+  .calc-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:32px;box-shadow:0 4px 16px rgba(0,0,0,0.04);}
+  .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  @media (max-width:760px){.calc-grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+  .field label{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);}
+  .field input,.field select{font-family:'Inter',sans-serif;font-size:18px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink);}
+  .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .result-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .result-row .lbl{color:var(--ink-2);font-size:14px;}
+  .result-row .val{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--ink);}
+  .result-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;margin-top:6px;border-top:2px solid var(--ink);}
+  .result-total .lbl{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);}
+  .result-total .val{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:var(--accent);}
+  .slab-table{width:100%;border-collapse:collapse;margin-top:24px;}
+  .slab-table th,.slab-table td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);font-size:14px;}
+  .slab-table th{font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);background:var(--bg);}
+  .slab-table td:last-child{font-family:'JetBrains Mono',monospace;}
+  .example-card{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px;margin-top:16px;}
+  .example-card h4{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:14px;color:var(--ink);}
+  .example-card .ln{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;color:var(--ink-2);}
+  .example-card .ln.tot{border-top:1px solid var(--line);margin-top:8px;padding-top:12px;color:var(--ink);font-weight:600;}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark"></span>
+      <span>Money2Abroad</span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+      <a href="../about-us/index.html">About us</a>
+      <a href="../faq/index.html">FAQ</a>
+      <span class="current" aria-current="page">GST</span>
+      <a href="../tcs-calculator/index.html">TCS</a>
+      <a href="../rbi-guidelines/index.html">RBI</a>
+      <a href="../contact-us/index.html">Contact us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-link" style="font-size:14px;">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get onboarded <span class="arrow">→</span></a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="bars"><span></span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+    <a href="../about-us/index.html">About us</a>
+    <a href="../faq/index.html">FAQ</a>
+    <span class="current" aria-current="page">GST</span>
+    <a href="../tcs-calculator/index.html">TCS</a>
+    <a href="../rbi-guidelines/index.html">RBI</a>
+    <a href="../contact-us/index.html">Contact us</a>
+    <div class="mobile-cta">
+      <a href="#" class="btn btn-ghost">Agent login</a>
+      <a href="../contact-us/index.html" class="btn btn-accent">Get onboarded</a>
+    </div>
+  </div>
+</nav>
+<script>
+(function(){
+  var btn=document.querySelector('.nav-toggle');var menu=document.getElementById('mobile-menu');if(!btn||!menu)return;
+  function close(){btn.setAttribute('aria-expanded','false');menu.classList.remove('open');}
+  btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!open));menu.classList.toggle('open',!open);});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+})();
+</script>
+
+<header class="about-hero">
+  <div class="wrap">
+    <div class="eyebrow">Tools</div>
+    <div class="spacer-sm"></div>
+    <h1>GST calculator for foreign exchange.</h1>
+    <p class="lead">India levies GST on the taxable value of forex transactions — currency purchase, forex card load and outward remittance. The tax is computed in slabs, not on the full amount. Use the calculator below to see what your transaction will attract.</p>
+  </div>
+</header>
+
+<main class="calc-shell">
+
+  <div class="calc-card">
+    <div class="calc-grid">
+      <div>
+        <div class="field">
+          <label for="gst-amt">Transaction amount (INR)</label>
+          <input id="gst-amt" type="text" inputmode="decimal" value="4,12,900" />
+        </div>
+        <div class="field">
+          <label for="gst-handling">Handling / delivery charges (₹, optional)</label>
+          <input id="gst-handling" type="text" inputmode="decimal" value="0" />
+        </div>
+        <p style="font-size:13px;color:var(--ink-3);line-height:1.6;">Handling and delivery charges are taxed separately at <strong>18% GST</strong>.</p>
+      </div>
+      <div>
+        <div class="result-row"><span class="lbl">Slab applied</span><span class="val" id="gst-slab">—</span></div>
+        <div class="result-row"><span class="lbl">Taxable value</span><span class="val" id="gst-taxable">—</span></div>
+        <div class="result-row"><span class="lbl">GST on transaction</span><span class="val" id="gst-tx">—</span></div>
+        <div class="result-row"><span class="lbl">GST on handling @ 18%</span><span class="val" id="gst-handling-out">—</span></div>
+        <div class="result-total"><span class="lbl">Total GST payable</span><span class="val" id="gst-total">₹0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section style="margin-top:64px;">
+    <div class="eyebrow">GST slabs</div>
+    <div class="spacer-sm"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:600;margin-bottom:8px;">How the GST is computed.</h2>
+    <p style="color:var(--ink-2);max-width:60ch;">GST is charged on the "taxable value" of the forex transaction, defined under the CGST Rules. The taxable value rises in tiers based on the rupee value of the deal.</p>
+
+    <table class="slab-table" aria-label="GST slabs for foreign exchange transactions">
+      <thead>
+        <tr><th>Transaction amount (INR)</th><th>GST on taxable value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Up to ₹1,00,000</td><td>0.18% of amount (minimum ₹45)</td></tr>
+        <tr><td>₹1,00,001 to ₹10,00,000</td><td>₹180 + 0.09% of amount exceeding ₹1,00,000</td></tr>
+        <tr><td>Above ₹10,00,000</td><td>₹990 + 0.018% of amount exceeding ₹10,00,000 (max ₹10,800)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section style="margin-top:64px;">
+    <div class="eyebrow">Worked examples</div>
+    <div class="spacer-sm"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:600;margin-bottom:16px;">Two common scenarios.</h2>
+
+    <div class="example-card">
+      <h4>Example 1 — Purchase of USD 5,000 @ ₹82.58</h4>
+      <div class="ln"><span>Rupee value of the deal</span><span>₹4,12,900</span></div>
+      <div class="ln"><span>GST on first ₹1,00,000 (flat)</span><span>₹180.00</span></div>
+      <div class="ln"><span>GST on excess ₹3,12,900 @ 0.09%</span><span>₹281.61</span></div>
+      <div class="ln tot"><span>Total GST</span><span>₹461.61</span></div>
+    </div>
+
+    <div class="example-card">
+      <h4>Example 2 — Purchase of USD 12,000 @ ₹88.35</h4>
+      <div class="ln"><span>Rupee value of the deal</span><span>₹10,60,200</span></div>
+      <div class="ln"><span>GST on first ₹1,00,000 (flat)</span><span>₹180.00</span></div>
+      <div class="ln"><span>GST on next ₹9,00,000 @ 0.09%</span><span>₹810.00</span></div>
+      <div class="ln"><span>GST on excess ₹60,200 @ 0.018%</span><span>₹10.84</span></div>
+      <div class="ln tot"><span>Total GST</span><span>₹1,000.84</span></div>
+    </div>
+  </section>
+
+  <section style="margin-top:64px;">
+    <div class="eyebrow">Notes</div>
+    <div class="spacer-sm"></div>
+    <ul style="color:var(--ink-2);max-width:70ch;line-height:1.75;padding-left:18px;">
+      <li>GST is charged on the taxable value, not on the full rupee value of the transaction.</li>
+      <li>For amounts up to ₹25,000, the effective minimum GST is ₹45.</li>
+      <li>Indicative figures only — final GST is calculated by the dealing AD bank at the time of settlement.</li>
+      <li>TCS (Tax Collected at Source) is separate from GST. See our <a href="../tcs-calculator/index.html">TCS calculator</a>.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html">
+          <span class="brand-mark"></span>
+          <span>Money2Abroad</span>
+        </a>
+        <p class="foot-blurb">Digital outward remittance for India's travel trade.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="../index.html">Home</a>
+        <a href="../remittance-for-travel-agents/index.html">Travel agents</a>
+        <a href="../about-us/index.html">About us</a>
+        <a href="../faq/index.html">FAQ</a>
+        <a href="../contact-us/index.html">Contact us</a>
+      </div>
+      <div class="foot-col">
+        <h5>Tools</h5>
+        <a href="index.html">GST calculator</a>
+        <a href="../tcs-calculator/index.html">TCS calculator</a>
+      </div>
+      <div class="foot-col">
+        <h5>Talk to us</h5>
+        <a href="mailto:info@finwaveforex.com">info@finwaveforex.com</a>
+        <a href="tel:+917948916100">+91 79 4891 6100</a>
+        <a href="tel:+919898906133">+91 98989 06133</a>
+        <a href="#">Ahmedabad · Navrangpura</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="legal">© 2026 FINWAVE FOREX PVT LTD</div>
+      <div class="legal">Routed through RBI-licensed AD-I partner banks · FEMA-aligned</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var amt=document.getElementById('gst-amt');
+  var handling=document.getElementById('gst-handling');
+  var slabOut=document.getElementById('gst-slab');
+  var taxable=document.getElementById('gst-taxable');
+  var txOut=document.getElementById('gst-tx');
+  var handOut=document.getElementById('gst-handling-out');
+  var totalOut=document.getElementById('gst-total');
+
+  function parseAmt(s){return parseFloat(String(s||'').replace(/[^\d.]/g,''))||0;}
+  function fmtINR(n){return '₹'+new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(n);}
+
+  function gstOnFx(v){
+    if(v<=0)return {slab:'—',taxable:0,gst:0};
+    if(v<=100000){
+      var g=Math.max(45,v*0.0018);
+      return {slab:'Slab 1 (≤ ₹1,00,000)',taxable:v*0.01,gst:g};
+    }
+    if(v<=1000000){
+      var g=180+(v-100000)*0.0009;
+      return {slab:'Slab 2 (₹1L – ₹10L)',taxable:1000+(v-100000)*0.005,gst:g};
+    }
+    var g=Math.min(10800,990+(v-1000000)*0.00018);
+    return {slab:'Slab 3 (> ₹10L)',taxable:5500+(v-1000000)*0.001,gst:g};
+  }
+
+  function recompute(){
+    var v=parseAmt(amt.value);
+    var h=parseAmt(handling.value);
+    var r=gstOnFx(v);
+    var handGst=h*0.18;
+    slabOut.textContent=r.slab;
+    taxable.textContent=fmtINR(r.taxable);
+    txOut.textContent=fmtINR(r.gst);
+    handOut.textContent=fmtINR(handGst);
+    totalOut.textContent=fmtINR(r.gst+handGst);
+  }
+  function pretty(el){
+    var v=parseAmt(el.value);
+    if(v>0)el.value=new Intl.NumberFormat('en-IN').format(v);
+  }
+  amt.addEventListener('input',recompute);
+  handling.addEventListener('input',recompute);
+  amt.addEventListener('blur',function(){pretty(amt);recompute();});
+  handling.addEventListener('blur',function(){pretty(handling);recompute();});
+  recompute();
+})();
+</script>
+
+</body>
+</html>
