@@ -87,7 +87,7 @@
   a.brand:hover { color: var(--ink); }
   .brand-mark {
     width: 140px; height: 64px;
-    background: url('../Money2Abroad%20Logo.jpg') left center/contain no-repeat;
+    background: url('../assets/money2abroad-logo.png') left center/contain no-repeat;
     display: inline-block; flex-shrink: 0;
   }
   @media (max-width: 760px) {
