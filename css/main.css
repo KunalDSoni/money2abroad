@@ -86,9 +86,42 @@
   }
   a.brand:hover { color: var(--ink); }
   .brand-mark {
+    position: relative;
     width: 140px; height: 64px;
-    background: url('../Money2Abroad%20Logo.jpg') left center/contain no-repeat;
+    background: none;
     display: inline-block; flex-shrink: 0;
+    perspective: 900px;
+  }
+  .brand-mark::before,
+  .brand-mark::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .brand-mark::before {
+    background-image: url('../assets/m2a-two.png');
+    transform-origin: 34% 87%;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    animation: m2a-two-spin 2.4s cubic-bezier(.5,0,.5,1) .2s 2 both;
+    will-change: transform, filter;
+  }
+  .brand-mark::after {
+    background-image: url('../assets/m2a-text.png');
+  }
+  a.brand:hover .brand-mark::before {
+    animation-play-state: paused;
+    filter: drop-shadow(0 4px 10px rgba(240,140,30,.45));
+  }
+  @keyframes m2a-two-spin {
+    0%   { transform: rotateY(0deg);   filter: brightness(1); }
+    50%  { transform: rotateY(180deg); filter: brightness(1.2); }
+    100% { transform: rotateY(360deg); filter: brightness(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .brand-mark::before { animation: none; }
   }
   @media (max-width: 760px) {
     .brand-mark { width: 110px; height: 52px; }
