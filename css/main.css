@@ -94,17 +94,28 @@
     .brand-mark { width: 110px; height: 52px; }
   }
   .brand span:not(.brand-mark) { display: inline; }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a {
+  .nav-links { display: flex; gap: 6px; align-items: center; margin-left: auto; margin-right: 24px; }
+  .nav-links a,
+  .nav-links span.current {
+    position: relative;
     color: var(--ink-2); text-decoration: none; font-size: 14px;
     display: inline-flex; align-items: center; gap: 4px;
+    padding: 8px 14px; border-radius: 999px;
+    transition: color .18s ease, background-color .18s ease;
   }
-  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover { color: var(--ink); background-color: var(--bg-soft); }
+  .nav-links a:active { background-color: color-mix(in oklab, var(--ink) 10%, transparent); }
   .nav-links a.current,
-  .nav-links span.current { color: var(--ink); font-weight: 500; }
+  .nav-links span.current { color: var(--ink); }
+  .nav-links a.current::after,
+  .nav-links span.current::after {
+    content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px;
+    height: 2px; border-radius: 2px; background: var(--accent);
+  }
   .nav-links span.current { cursor: default; }
   #overview, #reach, #compliance { scroll-margin-top: 80px; }
-  .nav-cta { display: flex; gap: 10px; align-items: center; }
+  .nav-cta { display: flex; gap: 10px; align-items: center; margin-left: 16px; }
+  .nav-cta .btn-accent { min-width: 180px; justify-content: center; }
 
   /* ---------- Buttons ---------- */
   .btn {
@@ -1302,11 +1313,23 @@
 
   /* Copper accent buttons (outlined pill with copper text) */
   .btn-accent {
-    background: transparent;
     color: var(--accent);
     border: 1px solid var(--accent);
+    background-image: linear-gradient(120deg, var(--accent-deep, #6b4520) 0%, var(--accent) 50%, transparent 50.1%);
+    background-size: 220% 100%;
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    transition: background-position .55s cubic-bezier(.7,.05,.25,1), color .25s ease, box-shadow .25s ease, transform .15s ease;
   }
-  .btn-accent:hover { background: var(--accent); color: #fff; }
+  .btn-accent .arrow { transition: transform .35s cubic-bezier(.7,.05,.25,1); display: inline-block; }
+  .btn-accent:hover {
+    color: #fff;
+    background-position: 0 0;
+    box-shadow: 0 8px 20px rgba(124,77,30,0.25);
+  }
+  .btn-accent:hover .arrow { transform: translateX(6px); }
+  .btn-accent:active { transform: translateY(1px); }
   .btn-primary { background: var(--ink); color: #fff; }
   .btn-primary:hover { background: #222; }
 
@@ -1347,11 +1370,33 @@
   .hc-change-up { color: #15803d !important; }
   .hc-change-down { color: #b91c1c !important; }
   .hc-cta {
-    background: var(--ink) !important;
+    position: relative;
+    overflow: hidden;
+    background: var(--accent) !important;
     color: #ffffff !important;
-    border-radius: 6px;
+    border-radius: 999px;
+    padding: 16px 22px;
+    transition: transform .2s ease, box-shadow .25s ease;
   }
-  .hc-cta:hover { filter: brightness(1.1); }
+  .hc-cta::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, var(--accent-deep) 0%, #4a2d10 100%);
+    transform: translateX(-101%) skewX(-12deg);
+    transform-origin: left center;
+    transition: transform .45s cubic-bezier(.7,.05,.25,1);
+    pointer-events: none;
+  }
+  .hc-cta > span {
+    position: relative; z-index: 1;
+    transition: transform .35s cubic-bezier(.7,.05,.25,1);
+    display: inline-block;
+  }
+  .hc-cta:hover { box-shadow: 0 8px 24px rgba(124,77,30,0.3); }
+  .hc-cta:hover::before { transform: translateX(0) skewX(-12deg); }
+  .hc-cta:hover > span:first-child { transform: translateX(4px); }
+  .hc-cta:hover > span:last-child { transform: translateX(6px); }
+  .hc-cta:active { transform: translateY(1px); }
   .hc-input { color: var(--ink) !important; background: transparent; }
   .hc-fx {
     background: rgba(255,255,255,0.45) !important;
