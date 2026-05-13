@@ -1209,6 +1209,9 @@
   .page-travel .case h3 { font-size: 22px; margin-top: 10px; letter-spacing: -0.02em; }
   .page-travel .case h3 em { font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 400; }
   .page-travel .case p { margin-top: 10px; font-size: 14px; color: var(--ink-2); }
+  .page-travel .case { transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .15s ease; }
+  .page-travel .case:hover { background: #ffffff; border-color: var(--line-strong); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .page-travel section.alt .case:hover { background: #ffffff; }
   .page-travel .bullets { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .page-travel .bullets li {
     padding-left: 22px;
@@ -1330,8 +1333,23 @@
   }
   .btn-accent:hover .arrow { transform: translateX(6px); }
   .btn-accent:active { transform: translateY(1px); }
-  .btn-primary { background: var(--ink); color: #fff; }
-  .btn-primary:hover { background: #222; }
+  .btn-primary {
+    color: var(--accent) !important;
+    border: 1px solid var(--accent) !important;
+    background-color: transparent !important;
+    background-image: linear-gradient(120deg, var(--accent-deep, #6b4520) 0%, var(--accent) 50%, transparent 50.1%) !important;
+    background-size: 220% 100% !important;
+    background-position: 100% 0 !important;
+    background-repeat: no-repeat !important;
+    transition: background-position .55s cubic-bezier(.7,.05,.25,1), color .25s ease, box-shadow .25s ease, transform .15s ease;
+  }
+  .btn-primary .arrow { transition: transform .35s cubic-bezier(.7,.05,.25,1); display: inline-block; }
+  .btn-primary:hover {
+    color: #fff !important;
+    background-position: 0 0 !important;
+    box-shadow: 0 8px 20px rgba(124,77,30,0.25);
+  }
+  .btn-primary:hover .arrow { transform: translateX(6px); }
 
   /* Inline links lean copper */
   a { color: var(--accent); }
@@ -1343,23 +1361,27 @@
   .eyebrow::before { background: var(--accent); }
   ::selection { background: var(--accent); color: #fff; }
 
-  /* Visible, brand-tinted treatment for ticker + hero card */
-  .ticker {
-    background: #f3ebda !important;           /* light sand strip on cream page */
+  /* JPMC-style restraint on the home page: white canvas, hairline borders */
+  body.page-home { background: #ffffff; }
+  body.page-home .ticker {
+    background: #ffffff !important;
     color: var(--ink) !important;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .ticker-item .pair { color: var(--ink-3) !important; }
-  .ticker-item .px { color: var(--ink) !important; font-weight: 500; }
-  .ticker-item .ch.up { color: #15803d !important; background: rgba(22,163,74,0.12) !important; }
-  .ticker-item .ch.down { color: #b91c1c !important; background: rgba(220,38,38,0.12) !important; }
+  body.page-home .ticker-item .pair { color: var(--ink-3) !important; }
+  body.page-home .ticker-item .px { color: var(--ink) !important; font-weight: 500; }
+  body.page-home .ticker-item .ch.up { color: #15803d !important; background: rgba(22,163,74,0.10) !important; }
+  body.page-home .ticker-item .ch.down { color: #b91c1c !important; background: rgba(220,38,38,0.10) !important; }
 
-  .hero-card {
-    background: #ddd0b1 !important;
+  body.page-home .hero { background: #ffffff; }
+  body.page-home .grid-bg { display: none; }
+  body.page-home .home-stats-band { background: #ffffff !important; }
+  body.page-home .hero-card {
+    background: #ffffff !important;
     color: var(--ink) !important;
-    border: 1.5px solid var(--accent);
-    box-shadow: 0 12px 36px rgba(0,0,0,0.10);
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.06);
   }
   .hero-card::before { display: none; }
   .hc-label,
@@ -1370,38 +1392,32 @@
   .hc-change-up { color: #15803d !important; }
   .hc-change-down { color: #b91c1c !important; }
   .hc-cta {
-    position: relative;
-    overflow: hidden;
-    background: var(--accent) !important;
-    color: #ffffff !important;
+    color: var(--accent) !important;
+    border: 1px solid var(--accent);
+    background-color: transparent !important;
+    background-image: linear-gradient(120deg, var(--accent-deep) 0%, var(--accent) 50%, transparent 50.1%);
+    background-size: 220% 100%;
+    background-position: 100% 0;
+    background-repeat: no-repeat;
     border-radius: 999px;
     padding: 16px 22px;
-    transition: transform .2s ease, box-shadow .25s ease;
+    transition: background-position .55s cubic-bezier(.7,.05,.25,1), color .25s ease, box-shadow .25s ease, transform .15s ease;
   }
-  .hc-cta::before {
-    content: "";
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, var(--accent-deep) 0%, #4a2d10 100%);
-    transform: translateX(-101%) skewX(-12deg);
-    transform-origin: left center;
-    transition: transform .45s cubic-bezier(.7,.05,.25,1);
-    pointer-events: none;
+  .hc-cta > span { display: inline-block; transition: transform .35s cubic-bezier(.7,.05,.25,1); }
+  .hc-cta:hover {
+    color: #fff !important;
+    background-position: 0 0;
+    box-shadow: 0 8px 24px rgba(124,77,30,0.3);
   }
-  .hc-cta > span {
-    position: relative; z-index: 1;
-    transition: transform .35s cubic-bezier(.7,.05,.25,1);
-    display: inline-block;
-  }
-  .hc-cta:hover { box-shadow: 0 8px 24px rgba(124,77,30,0.3); }
-  .hc-cta:hover::before { transform: translateX(0) skewX(-12deg); }
-  .hc-cta:hover > span:first-child { transform: translateX(4px); }
   .hc-cta:hover > span:last-child { transform: translateX(6px); }
   .hc-cta:active { transform: translateY(1px); }
-  .hc-input { color: var(--ink) !important; background: transparent; }
-  .hc-fx {
-    background: rgba(255,255,255,0.45) !important;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 8px;
+  body.page-home .hc-input { color: var(--ink) !important; background: transparent; }
+  body.page-home .hero-card .hc-row { border-bottom: 1px solid var(--line) !important; }
+  body.page-home .hero-card .hc-row:last-of-type { border-bottom: 0 !important; }
+  body.page-home .hc-fx {
+    background: #fafafa !important;
+    border: 1px solid var(--line);
+    border-radius: 10px;
   }
   /* Ensure all card text reads dark on the sand surface */
   .hero-card .hc-amount,
@@ -1639,7 +1655,7 @@
      ===================================================== */
   .contact-hero,
   .page-travel .page-hero {
-    background: var(--bg) !important;
+    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 55%) !important;
     padding: 40px var(--pad) 28px !important;
     border-bottom: 1px solid var(--line);
     color: var(--ink) !important;
