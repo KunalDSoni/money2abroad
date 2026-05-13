@@ -422,7 +422,20 @@
       }
     }
 
-    sendEl.addEventListener('input', () => { clampToLrs(); paint(); });
+    sendEl.addEventListener('input', () => {
+      const cleaned = sendEl.value.replace(/[^0-9.,]/g, '');
+      if (cleaned !== sendEl.value) sendEl.value = cleaned;
+      clampToLrs(); paint();
+    });
+    sendEl.addEventListener('keypress', (e) => {
+      if (!/[0-9.,]/.test(e.key)) e.preventDefault();
+    });
+    sendEl.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text');
+      const cleaned = text.replace(/[^0-9.,]/g, '');
+      document.execCommand('insertText', false, cleaned);
+    });
     sendEl.addEventListener('blur', () => { clampToLrs(); reformatSendValue(); paint(); });
     sendEl.addEventListener('focus', () => {
       sendEl.value = String(parseAmt(sendEl.value) || '');
