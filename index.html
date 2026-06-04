@@ -501,6 +501,12 @@
       if (!good.length) return;
       track.innerHTML = '';
       [...good, ...good].forEach(r => track.appendChild(tickerItem(r.code, r.price, r.prev)));
+      // Pin the marquee shift to a pixel value (= -50% of the duplicated
+      // track). iOS Safari can resolve a % translate on a max-content element
+      // to 0, leaving the ticker stuck; an explicit px keeps it scrolling.
+      requestAnimationFrame(() => {
+        track.style.setProperty('--ticker-shift', '-' + (track.scrollWidth / 2) + 'px');
+      });
     }
     refreshTicker();
     setInterval(refreshTicker, 60_000);
