@@ -267,23 +267,23 @@
       };
     }
 
-    const CURRENCY_API_HOSTS = [
-      'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@',
-      'https://currency-api.pages.dev/v1/'
-    ];
     function ymd(d) { return d.toISOString().slice(0, 10); }
+    function currencyApiUrls(tag) {
+      // @fawazahmed0/currency-api , two CORS-enabled mirrors
+      return [
+        'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@' + tag + '/v1/currencies/inr.json',
+        'https://' + tag + '.currency-api.pages.dev/v1/currencies/inr.json'
+      ];
+    }
     async function fetchInrAt(tag) {
       let lastErr;
-      for (const host of CURRENCY_API_HOSTS) {
-        const url = host.includes('jsdelivr')
-          ? host + tag + '/v1/currencies/inr.json'
-          : host + tag + '/currencies/inr.json';
+      for (const url of currencyApiUrls(tag)) {
         try {
           const res = await fetch(url, { cache: 'no-store' });
           if (!res.ok) throw new Error('http ' + res.status);
           const j = await res.json();
           if (!j.inr) throw new Error('no inr map');
-          return j.inr;
+          return { date: j.date, inr: j.inr };
         } catch (e) { lastErr = e; }
       }
       throw lastErr || new Error('currency-api unreachable');
@@ -292,12 +292,17 @@
     let inrCache = { latest: null, prev: null, ts: 0 };
     async function fetchInrRates() {
       if (inrCache.latest && Date.now() - inrCache.ts < 60_000) return inrCache;
-      const yest = new Date(Date.now() - 24 * 60 * 60 * 1000);
-      const [latest, prev] = await Promise.all([
-        fetchInrAt('latest'),
-        fetchInrAt(ymd(yest))
-      ]);
-      inrCache = { latest, prev, ts: Date.now() };
+      const latest = await fetchInrAt('latest');
+      // Walk back from the latest file's OWN date , the provider updates once a
+      // day, so "latest" can already equal wall-clock yesterday. Anchoring to
+      // latest.date keeps the day-over-day change real instead of always zero.
+      const base = new Date(latest.date + 'T00:00:00Z');
+      let prev = null;
+      for (let back = 1; back <= 4 && !prev; back++) {
+        const d = new Date(base.getTime() - back * 86400000);
+        try { prev = await fetchInrAt(ymd(d)); } catch (e) { /* try further back */ }
+      }
+      inrCache = { latest: latest.inr, prev: prev ? prev.inr : null, ts: Date.now() };
       return inrCache;
     }
 
@@ -306,16 +311,18 @@
       const lc = ccy.toLowerCase();
       if (!latest[lc]) throw new Error('fallback: missing ' + ccy);
       const price = 1 / latest[lc];
-      const prevPrice = prev[lc] ? 1 / prev[lc] : price;
+      const prevPrice = (prev && prev[lc]) ? 1 / prev[lc] : price;
       return { price, prev: prevPrice, source: 'currency-api' };
     }
 
     async function getRate(ccy) {
+      // currency-api is the reliable, CORS-enabled primary. Yahoo is a last
+      // resort only (its chart endpoint rate-limits / lacks CORS in browsers).
       try {
-        const r = await fallback(ccy);
-        if (r.prev && r.prev !== r.price) return r;
-      } catch (e) { /* fall through to yahoo */ }
-      return await yahoo(ccy);
+        return await fallback(ccy);
+      } catch (e) {
+        return await yahoo(ccy);
+      }
     }
 
     const sendEl     = document.getElementById('hc-send');
