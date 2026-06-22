@@ -1,6 +1,6 @@
 # Money2Abroad
 
-Outward remittance platform for Indian travel agents — a static marketing & utility site with live FX, GST/TCS calculators, RBI guidelines, and onboarding flow.
+Outward remittance platform for Indian travel agents — a static marketing & utility site with live FX, GST/TCS calculators, LRS guidelines, and onboarding flow.
 
 ## Live site
 
@@ -28,7 +28,7 @@ Outward remittance platform for Indian travel agents — a static marketing & ut
 | Remittance for Travel Agents | [`remittance-for-travel-agents/index.html`](remittance-for-travel-agents/index.html) | Primary landing for travel-agent ICP |
 | GST Calculator | [`gst-calculator/index.html`](gst-calculator/index.html) | GST on forex services calculator |
 | TCS Calculator | [`tcs-calculator/index.html`](tcs-calculator/index.html) | TCS on foreign exchange calculator |
-| RBI Guidelines | [`rbi-guidelines/index.html`](rbi-guidelines/index.html) | LRS / outward-remittance compliance reference |
+| LRS Guidelines | [`rbi-guidelines/index.html`](rbi-guidelines/index.html) | LRS / outward-remittance compliance reference |
 | FAQ | [`faq/index.html`](faq/index.html) | Customer-facing Q&A |
 | About | [`about-us/index.html`](about-us/index.html) | Company story |
 | Contact | [`contact-us/index.html`](contact-us/index.html) | Email / get-onboarded CTA |
