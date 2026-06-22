@@ -351,6 +351,9 @@
     animation: ticker 50s linear infinite;
     width: max-content;
     font-family: 'JetBrains Mono'; font-size: 14px;
+    /* Promote to GPU compositor , iOS Safari stalls non-composited marquees */
+    will-change: transform;
+    backface-visibility: hidden;
   }
   .ticker-item { display: inline-flex; align-items: center; gap: 12px; }
   .ticker-item .pair { color: rgba(245,241,232,0.55); }
@@ -359,8 +362,11 @@
   .ticker-item .ch.up { color: #16a34a; background: rgba(22,163,74,0.12); }
   .ticker-item .ch.down { color: #dc2626; background: rgba(220,38,38,0.12); }
   @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    /* --ticker-shift is set in px by JS (= -50% of track width); the -50%
+       fallback covers first paint. Pixel value avoids an iOS Safari bug where
+       a % translate on a max-content element resolves to 0 (no movement). */
+    to { transform: translate3d(var(--ticker-shift, -50%), 0, 0); }
   }
 
   /* ---------- Section ---------- */
