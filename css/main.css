@@ -1896,13 +1896,10 @@
     .wa-fab {
       right: 16px;
       bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-      width: 56px;
-      height: 56px;
-      padding: 0;
-      border-radius: 50%;
-      justify-content: center;
+      padding: 11px 16px;
+      gap: 8px;
+      font-size: 14px;
     }
-    .wa-fab .wa-label { display: none; }
-    .wa-fab svg { width: 28px; height: 28px; }
+    .wa-fab svg { width: 22px; height: 22px; }
   }
 
