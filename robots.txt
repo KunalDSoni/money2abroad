@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://money2abroad.com/sitemap.xml
