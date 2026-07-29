@@ -11,6 +11,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css" />
+<style>
+  /* Page-scoped only: keep each built-grid's row full, no dangling blank cell. */
+  @media (min-width: 1101px) {
+    #grid-positioning, #grid-experience { grid-template-columns: repeat(2, 1fr); }
+    #grid-value, #grid-market, #grid-economics, #grid-investors, #grid-how { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
     <link rel="canonical" href="https://money2abroad.com/partnership/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Bank partnership , Money2Abroad">
@@ -93,7 +100,7 @@
       </p>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-positioning">
       <div class="built-cell">
         <div>
           <div class="num">BANKS OWN</div>
@@ -128,7 +135,7 @@
       </p>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-value">
       <div class="built-cell">
         <div>
           <div class="num">01</div>
@@ -176,7 +183,7 @@
       </div>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-experience">
       <div class="built-cell">
         <div>
           <div class="num">TODAY</div>
@@ -211,7 +218,7 @@
       </p>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-market">
       <div class="built-cell">
         <div>
           <div class="num">$29.56B</div>
@@ -262,7 +269,7 @@
       </p>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-economics">
       <div class="built-cell">
         <div>
           <div class="num">$125K</div>
@@ -313,7 +320,7 @@
       </p>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-investors">
       <div class="built-cell">
         <div>
           <div class="num">$26M</div>
@@ -368,7 +375,7 @@
       </p>
     </div>
 
-    <div class="built-grid">
+    <div class="built-grid" id="grid-how">
       <div class="built-cell">
         <div>
           <div class="num">01</div>
