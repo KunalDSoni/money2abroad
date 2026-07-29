@@ -17,6 +17,28 @@
     #grid-positioning, #grid-experience { grid-template-columns: repeat(2, 1fr); }
     #grid-value, #grid-market, #grid-economics, #grid-investors, #grid-how { grid-template-columns: repeat(4, 1fr); }
   }
+
+  /* Page-scoped only: make market/economics/investor stats read as headline numbers. */
+  .built-cell .num.big-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .share-bar {
+    margin-top: 10px;
+    height: 6px;
+    border-radius: 4px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .share-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--accent);
+  }
 </style>
     <link rel="canonical" href="https://money2abroad.com/partnership/">
     <meta property="og:type" content="website">
@@ -221,7 +243,7 @@
     <div class="built-grid" id="grid-market">
       <div class="built-cell">
         <div>
-          <div class="num">$29.56B</div>
+          <div class="num big-num">$29.56B</div>
           <div class="spacer-sm"></div>
           <h3>FY2024-25 outward LRS volume</h3>
         </div>
@@ -229,7 +251,8 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">58%</div>
+          <div class="num big-num">58%</div>
+          <div class="share-bar"><div class="share-bar-fill" style="width:58%;"></div></div>
           <div class="spacer-sm"></div>
           <h3>International travel</h3>
         </div>
@@ -237,7 +260,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">$3.72B</div>
+          <div class="num big-num">$3.72B</div>
           <div class="spacer-sm"></div>
           <h3>Family maintenance</h3>
         </div>
@@ -245,7 +268,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">$2.92B</div>
+          <div class="num big-num">$2.92B</div>
           <div class="spacer-sm"></div>
           <h3>Overseas education</h3>
         </div>
@@ -272,7 +295,7 @@
     <div class="built-grid" id="grid-economics">
       <div class="built-cell">
         <div>
-          <div class="num">$125K</div>
+          <div class="num big-num">$125K</div>
           <div class="spacer-sm"></div>
           <h3>On US$25M processed</h3>
         </div>
@@ -280,7 +303,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">$500K</div>
+          <div class="num big-num">$500K</div>
           <div class="spacer-sm"></div>
           <h3>On US$100M processed</h3>
         </div>
@@ -288,7 +311,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">$1.25M</div>
+          <div class="num big-num">$1.25M</div>
           <div class="spacer-sm"></div>
           <h3>On US$250M processed</h3>
         </div>
@@ -296,7 +319,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">$2.5M</div>
+          <div class="num big-num">$2.5M</div>
           <div class="spacer-sm"></div>
           <h3>On US$500M processed</h3>
         </div>
@@ -323,7 +346,7 @@
     <div class="built-grid" id="grid-investors">
       <div class="built-cell">
         <div>
-          <div class="num">$26M</div>
+          <div class="num big-num">$26M</div>
           <div class="spacer-sm"></div>
           <h3>At 0.10% of TAM</h3>
         </div>
@@ -331,7 +354,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">$2M-$5M</div>
+          <div class="num big-num">$2M-$5M</div>
           <div class="spacer-sm"></div>
           <h3>Berkus pre-money range</h3>
         </div>
@@ -339,7 +362,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">~$7M</div>
+          <div class="num big-num">~$7M</div>
           <div class="spacer-sm"></div>
           <h3>Base-case DCF (10yr)</h3>
         </div>
@@ -347,7 +370,7 @@
       </div>
       <div class="built-cell">
         <div>
-          <div class="num">0.75%</div>
+          <div class="num big-num">0.75%</div>
           <div class="spacer-sm"></div>
           <h3>Base-case net yield</h3>
         </div>
