@@ -115,6 +115,7 @@
   /* --- Expansion horizons --- */
   .horizons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; align-items: stretch; }
   @media (max-width: 900px) { .horizons { grid-template-columns: 1fr; } }
+  @media (min-width: 901px) { #grid-implications { grid-template-columns: repeat(2, 1fr); } }
   .hz { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--bg); }
   .hz.now { border-color: var(--accent); background: rgba(139,90,43,0.05); }
   .hz-k { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
@@ -1081,7 +1082,7 @@
 
     <!-- ---- 8. Durability ---- -->
     <div class="viz" id="viz-rails">
-      <div class="viz-label">08 &middot; "What if the rails get faster, or crypto eats this?"</div>
+      <div class="viz-label">08 &middot; "What if the rails get faster?"</div>
       <div class="viz-title">The rails are already fast. That is the point.</div>
       <p class="viz-note">The instinctive fear is that faster, cheaper settlement makes an intermediary redundant. The data says settlement was solved some time ago:</p>
 
@@ -1098,7 +1099,7 @@
 
       <p class="viz-note" style="margin-top:34px;">So when an Indian customer's outward transfer takes days, <b>almost none of that is the rail.</b> It is document collection, purpose classification, missing paperwork, resubmission and manual review. The friction we remove and the friction the rails removed are two different problems.</p>
 
-      <div class="horizons" style="margin-top:26px;">
+      <div class="horizons" id="grid-implications" style="margin-top:26px;">
         <div class="hz">
           <div class="hz-k">Implication 1</div>
           <div class="hz-h">Faster rails increase our value</div>
@@ -1108,11 +1109,6 @@
           <div class="hz-k">Implication 2</div>
           <div class="hz-h">Rails commoditise, compliance does not</div>
           <div class="hz-p">Settlement infrastructure competes toward zero margin. Purpose codes, Form A2, relationship evidence and per-country document rules are legal obligations that no amount of infrastructure competition removes.</div>
-        </div>
-        <div class="hz">
-          <div class="hz-k">Implication 3</div>
-          <div class="hz-h">Stablecoins meet the same wall</div>
-          <div class="hz-p">A resident Indian remitting under LRS owes a purpose code, documentation and an authorised dealer regardless of what settles the transaction. The requirement is regulatory, not technological, so changing the medium does not remove it.</div>
         </div>
       </div>
 
