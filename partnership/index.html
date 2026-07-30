@@ -126,9 +126,25 @@
   /* --- Global context strip --- */
   .globe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 28px; }
   @media (max-width: 760px) { .globe { grid-template-columns: 1fr; } }
+  .globe.two { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 760px) { .globe.two { grid-template-columns: 1fr; } }
   .globe-c { background: var(--bg); padding: 24px; }
   .globe-v { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(24px, 3vw, 34px); color: var(--accent); letter-spacing: -0.02em; line-height: 1; }
   .globe-l { margin-top: 11px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  /* --- Section index --- */
+  .index { display: flex; flex-wrap: wrap; gap: 9px 22px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .index a { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--ink-3); text-decoration: none; white-space: nowrap; }
+  .index a b { color: var(--accent); font-weight: 500; }
+  .index a:hover { color: var(--ink); }
+
+  /* --- Pilot scorecard --- */
+  .score { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-top: 26px; }
+  @media (max-width: 800px) { .score { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .score { grid-template-columns: 1fr; } }
+  .score-c { background: var(--bg); padding: 20px; }
+  .score-v { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(19px, 2.1vw, 24px); color: var(--accent); letter-spacing: -0.02em; line-height: 1; }
+  .score-l { margin-top: 10px; font-size: 12.5px; color: var(--ink-2); line-height: 1.45; }
 
   /* --- Take-rate benchmark --- */
   .bench { margin-top: 26px; display: grid; gap: 15px; }
@@ -665,7 +681,7 @@
         <h2 class="section-title">A regulated, high-ticket workflow<br/><em>with public comparables.</em></h2>
       </div>
       <p class="section-sub">
-        Eight questions an investment committee will ask, answered with RBI data, SEC filings and a model that is deliberately conservative against every listed comparable in the category.
+        Eleven questions an investment committee will ask, answered with RBI data, SEC filings and a model that is deliberately conservative against every listed comparable in the category.
       </p>
     </div>
 
@@ -687,6 +703,21 @@
         <div class="tear-l">Mature EBITDA margin at scale, positive from year four</div>
       </div>
     </div>
+
+    <nav class="index" aria-label="Investment case contents">
+      <a href="#viz-market"><b>01</b> Market size</a>
+      <a href="#viz-benchmark"><b>02</b> Revenue assumption</a>
+      <a href="#viz-trajectory"><b>03</b> Trajectory</a>
+      <a href="#viz-revenue"><b>04</b> Revenue model</a>
+      <a href="#viz-capital"><b>05</b> Capital required</a>
+      <a href="#viz-engine"><b>06</b> The engine</a>
+      <a href="#viz-moat"><b>07</b> Moat</a>
+      <a href="#viz-rails"><b>08</b> Durability</a>
+      <a href="#viz-path"><b>09</b> The plan</a>
+      <a href="#viz-valuation"><b>10</b> Valuation</a>
+      <a href="#viz-horizon"><b>11</b> Upside</a>
+      <a href="#viz-close"><b>&mdash;</b> Risk &amp; capital</a>
+    </nav>
 
     <!-- ---- 1. Market funnel ---- -->
     <div class="viz" id="viz-market">
@@ -857,9 +888,86 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 4. The engine ---- -->
+    <!-- ---- 4. Revenue model ---- -->
+    <div class="viz" id="viz-revenue">
+      <div class="viz-label">04 &middot; "How does it actually make money?"</div>
+      <div class="viz-title">Five streams, and deliberately not the exchange rate.</div>
+      <p class="viz-note">The obvious assumption is that a remittance business lives on FX spread. Ours does not, by design. Spread is the most contested, least defensible line in cross-border, and it varies by corridor and by bank. Revenue is built on the workflow instead.</p>
+
+      <div class="pipeline">
+        <div class="pipe">
+          <div class="pipe-n">PRIMARY</div>
+          <div class="pipe-h">Platform fee</div>
+          <div class="pipe-p">A fee per successfully completed transaction. Predictable for the bank to budget, and it scales with volume rather than with pricing aggression.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">SECONDARY</div>
+          <div class="pipe-h">Bank revenue share</div>
+          <div class="pipe-p">A share of net FX and fee revenue above an agreed threshold, which aligns us with the bank's economics instead of competing against them.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">PREMIUM</div>
+          <div class="pipe-h">Assisted service</div>
+          <div class="pipe-p">A fee for high-touch cases, medical and immigration in particular, where urgency and documentation complexity justify hands-on support.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">RECURRING</div>
+          <div class="pipe-h">B2B SaaS</div>
+          <div class="pipe-p">Platform fees for bank and partner dashboards. Contracted, recurring revenue that does not depend on transaction volume at all.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">ECOSYSTEM</div>
+          <div class="pipe-h">Referral</div>
+          <div class="pipe-p">Fees from banks, insurers, travel and education partners, where legally permitted and disclosed to the customer.</div>
+        </div>
+      </div>
+
+      <p class="viz-note" style="margin-top:34px;">And the underlying ticket is large enough that this works without consumer-scale volume:</p>
+      <div class="globe two">
+        <div class="globe-c">
+          <div class="globe-v">~$2,340</div>
+          <div class="globe-l">Average annual education remittance per Indian student abroad. Derived: RBI's US$2.92B studies-abroad total<sup><a href="https://www.business-standard.com/amp/industry/news/overseas-travel-spending-by-indians-falls-to-1-09-billion-126052400289_1.html" target="_blank" rel="noopener noreferrer">[2]</a></sup> divided by the MEA's estimate of 1.25M students<sup><a href="https://www.mea.gov.in/students-registration-portal.htm" target="_blank" rel="noopener noreferrer">[4]</a></sup>. A Money2Abroad calculation, not a published figure.</div>
+        </div>
+        <div class="globe-c">
+          <div class="globe-v">Recurring</div>
+          <div class="globe-l">Repeat is structural, not a retention campaign. Tuition arrives every term, accommodation and living costs every month, family maintenance every month, for as long as the student is enrolled or the dependant is abroad.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 5. Capital efficiency ---- -->
+    <div class="viz" id="viz-capital">
+      <div class="viz-label">05 &middot; "How much capital does this consume?"</div>
+      <div class="viz-title">Very little, because the balance sheet is the bank's.</div>
+      <p class="viz-note">Most cross-border fintechs are expensive to test, because they carry funds, float, credit or an FX book. Money2Abroad carries none of it. The regulated balance sheet stays with the AD-I partner in every scenario, which is what makes the model both cheap to prove and structurally low-risk.</p>
+
+      <div class="globe two">
+        <div class="globe-c">
+          <div class="globe-v">~$0.23M</div>
+          <div class="globe-l">Cumulative EBITDA loss across FY2026-27, FY2027-28 and FY2028-29 before the model turns EBITDA-positive in year four. This is operating loss under the base case, not a statement of total capital requirement, which also depends on working capital and reinvestment.</div>
+        </div>
+        <div class="globe-c">
+          <div class="globe-v">$0</div>
+          <div class="globe-l">Customer funds on our balance sheet at any point. Money moves from the customer to the bank and from the bank to the beneficiary. We never take custody, never hold a position, never lend.</div>
+        </div>
+      </div>
+
+      <p class="viz-note" style="margin-top:34px;"><b>What the bank carries, and we never do:</b></p>
+      <div class="guard">
+        <div class="guard-item"><b>FX execution and pricing.</b> No currency position, no treasury exposure, no rate risk on our books.</div>
+        <div class="guard-item"><b>Customer funds and settlement.</b> No float, no custody, no client-money obligation.</div>
+        <div class="guard-item"><b>FEMA and LRS eligibility.</b> The regulated decision, and the liability that attaches to it, sits with the bank.</div>
+        <div class="guard-item"><b>RBI reporting and STR filing.</b> Statutory reporting duties remain the authorised dealer's throughout.</div>
+      </div>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 6. The engine ---- -->
     <div class="viz" id="viz-engine">
-      <div class="viz-label">04 &middot; "What have you actually built?"</div>
+      <div class="viz-label">06 &middot; "What have you actually built?"</div>
       <div class="viz-title">An engine that turns intent into a bank-ready case.</div>
       <p class="viz-note">A customer arrives with a purpose and a folder of documents. The bank needs a structured, verified, auditable file. Five stages close that gap, and every one of them is machine work that is manual today.</p>
 
@@ -902,9 +1010,9 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 5. Moat ---- -->
+    <!-- ---- 7. Moat ---- -->
     <div class="viz" id="viz-moat">
-      <div class="viz-label">05 &middot; "Why won't the bank just build this?"</div>
+      <div class="viz-label">07 &middot; "Why won't the bank just build this?"</div>
       <div class="viz-title">Because the hard part isn't the software.</div>
       <p class="viz-note">Banks own the licence, the FX and the balance sheet. What they have not built, in twenty years of trying, is a paperless purpose-code and document workflow with distribution attached to it. Four things compound in our favour.</p>
 
@@ -971,9 +1079,51 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 6. Path ---- -->
+    <!-- ---- 8. Durability ---- -->
+    <div class="viz" id="viz-rails">
+      <div class="viz-label">08 &middot; "What if the rails get faster, or crypto eats this?"</div>
+      <div class="viz-title">The rails are already fast. That is the point.</div>
+      <p class="viz-note">The instinctive fear is that faster, cheaper settlement makes an intermediary redundant. The data says settlement was solved some time ago:</p>
+
+      <div class="globe two">
+        <div class="globe-c">
+          <div class="globe-v">92%</div>
+          <div class="globe-l">Of cross-border payments over SWIFT gpi credited to the beneficiary within 24 hours<sup><a href="https://www.swift.com/news-events/news/swift-gpi-driving-payments-revolution" target="_blank" rel="noopener noreferrer">[15]</a></sup></div>
+        </div>
+        <div class="globe-c">
+          <div class="globe-v">40%</div>
+          <div class="globe-l">Credited within 30 minutes<sup><a href="https://www.swift.com/news-events/news/swift-gpi-driving-payments-revolution" target="_blank" rel="noopener noreferrer">[15]</a></sup></div>
+        </div>
+      </div>
+
+      <p class="viz-note" style="margin-top:34px;">So when an Indian customer's outward transfer takes days, <b>almost none of that is the rail.</b> It is document collection, purpose classification, missing paperwork, resubmission and manual review. The friction we remove and the friction the rails removed are two different problems.</p>
+
+      <div class="horizons" style="margin-top:26px;">
+        <div class="hz">
+          <div class="hz-k">Implication 1</div>
+          <div class="hz-h">Faster rails increase our value</div>
+          <div class="hz-p">As settlement time approaches zero, paperwork becomes effectively 100% of the remaining delay. The workflow layer does not get disintermediated by speed, it gets more exposed as the binding constraint.</div>
+        </div>
+        <div class="hz">
+          <div class="hz-k">Implication 2</div>
+          <div class="hz-h">Rails commoditise, compliance does not</div>
+          <div class="hz-p">Settlement infrastructure competes toward zero margin. Purpose codes, Form A2, relationship evidence and per-country document rules are legal obligations that no amount of infrastructure competition removes.</div>
+        </div>
+        <div class="hz">
+          <div class="hz-k">Implication 3</div>
+          <div class="hz-h">Stablecoins meet the same wall</div>
+          <div class="hz-p">A resident Indian remitting under LRS owes a purpose code, documentation and an authorised dealer regardless of what settles the transaction. The requirement is regulatory, not technological, so changing the medium does not remove it.</div>
+        </div>
+      </div>
+
+      <p class="viz-note" style="margin-top:30px;"><b>Which is also the answer to "why now".</b> Every input this business needs has only recently arrived at once: settlement is fast and traceable, document intelligence is finally accurate enough to trust with passports and invoices, the outward market has normalised at roughly US$30B after its post-COVID swing, and 1.25M Indian students are abroad generating recurring, documentation-heavy payments<sup><a href="https://www.mea.gov.in/students-registration-portal.htm" target="_blank" rel="noopener noreferrer">[4]</a></sup>. The workflow is the last piece still done on paper.</p>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 9. Path ---- -->
     <div class="viz" id="viz-path">
-      <div class="viz-label">06 &middot; "What are we funding?"</div>
+      <div class="viz-label">09 &middot; "What are we funding?"</div>
       <div class="viz-title">The next 36 months, not the next decade.</div>
       <p class="viz-note">Capital is deployed against near-term, checkable milestones. Each stage is a decision point, not a promise.</p>
 
@@ -1009,13 +1159,42 @@
           <div class="path-kpi">$250M+ annualised volume</div>
         </div>
       </div>
+
+      <p class="viz-note" style="margin-top:38px;">Volume alone is a weak milestone, so the pilot is graded on whether the bank's operations measurably improve. These are the targets the partnership is judged against:</p>
+      <div class="score">
+        <div class="score-c">
+          <div class="score-v">&gt;80%</div>
+          <div class="score-l">Applications complete at first submission</div>
+        </div>
+        <div class="score-c">
+          <div class="score-v">-30 to -50%</div>
+          <div class="score-l">Document rework versus the bank's manual baseline</div>
+        </div>
+        <div class="score-c">
+          <div class="score-v">-25 to -40%</div>
+          <div class="score-l">Average processing time versus manual baseline</div>
+        </div>
+        <div class="score-c">
+          <div class="score-v">500-1,000</div>
+          <div class="score-l">Completed digital applications in the pilot window</div>
+        </div>
+        <div class="score-c">
+          <div class="score-v">&gt;4.3/5</div>
+          <div class="score-l">Customer satisfaction</div>
+        </div>
+        <div class="score-c">
+          <div class="score-v">&gt;20%</div>
+          <div class="score-l">Repeat or scheduled-transfer setup rate</div>
+        </div>
+      </div>
+      <p class="viz-note" style="margin-top:16px;">Suggested pilot targets; final thresholds are set against the partner bank's own measured baseline.</p>
     </div>
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 7. Berkus staircase ---- -->
+    <!-- ---- 10. Berkus staircase ---- -->
     <div class="viz" id="viz-valuation">
-      <div class="viz-label">07 &middot; "What is it worth?"</div>
+      <div class="viz-label">10 &middot; "What is it worth?"</div>
       <div class="viz-title">What each milestone unlocks.</div>
       <p class="viz-note">Berkus-method pre-money ranges by stage, the standard approach for early-stage companies without revenue history. A signed AD-I bank pilot is the single largest step up in value.</p>
 
@@ -1069,9 +1248,9 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 8. Horizons ---- -->
+    <!-- ---- 11. Horizons ---- -->
     <div class="viz" id="viz-horizon">
-      <div class="viz-label">08 &middot; "How big can this get?"</div>
+      <div class="viz-label">11 &middot; "How big can this get?"</div>
       <div class="viz-title">Consumer LRS is the wedge, not the ceiling.</div>
       <p class="viz-note">Everything in this document describes horizon one. The same engine, once a bank trusts it and the compliance data has compounded, points at progressively larger regulated flows. Each horizon is gated on the one before it working.</p>
 
@@ -1132,9 +1311,13 @@
             <div class="risk-q">Regulatory boundary ambiguity.</div>
             <div class="risk-a">FX execution, LRS eligibility and final approval stay with the AD-I bank in every scenario. We are a preparation and workflow layer, with counsel review and explicit customer disclosure that the bank executes the remittance.</div>
           </div>
-          <div class="risk-item" style="border-bottom:0;">
+          <div class="risk-item">
             <div class="risk-q">Price competition compresses yield.</div>
-            <div class="risk-a">We do not compete on headline FX rate. The wedge is completion, turnaround and documentation quality in categories where a failed or delayed transfer carries real consequence, tuition deadlines, visa filings, hospital deposits.</div>
+            <div class="risk-a">We do not compete on headline FX rate, and revenue is not spread-dependent. The wedge is completion, turnaround and documentation quality in categories where a failed or delayed transfer carries real consequence, tuition deadlines, visa filings, hospital deposits.</div>
+          </div>
+          <div class="risk-item" style="border-bottom:0;">
+            <div class="risk-q">Counterparty concentration on one bank.</div>
+            <div class="risk-a">The most material risk in the model, and it is real while a single AD-I partner carries every transaction. Two things limit it: the platform is bank-agnostic by construction, since purpose rules and document logic are ours rather than the bank's, and multi-bank routing is an explicit deliverable of the scale phase rather than a later idea.</div>
           </div>
         </div>
 
@@ -1364,6 +1547,7 @@
       <li id="src12">Remitly, FY2025 full-year results (send volume and revenue). <a href="https://ir.remitly.com/news-releases/news-release-details/remitly-reports-fourth-quarter-and-full-year-2025-results-above" target="_blank" rel="noopener noreferrer">ir.remitly.com</a></li>
       <li id="src13">Western Union, 2025 Form 10-K (consumer money transfer principal and revenue). <a href="https://www.sec.gov/Archives/edgar/data/1365135/000119312526061340/wu-20251231.htm" target="_blank" rel="noopener noreferrer">sec.gov</a></li>
       <li id="src14">McKinsey, Global Payments Report (global payments revenue, 2024 and 2029 projection). <a href="https://www.mckinsey.com/industries/financial-services/our-insights/global-payments-report" target="_blank" rel="noopener noreferrer">mckinsey.com</a></li>
+      <li id="src15">SWIFT, gpi cross-border payment speed analysis. <a href="https://www.swift.com/news-events/news/swift-gpi-driving-payments-revolution" target="_blank" rel="noopener noreferrer">swift.com</a></li>
     </ol>
   </div>
 </section>
