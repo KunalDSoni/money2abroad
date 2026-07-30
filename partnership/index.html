@@ -39,8 +39,112 @@
   /* Page-scoped only: keep each built-grid's row full, no dangling blank cell. */
   @media (min-width: 1101px) {
     #grid-positioning, #grid-experience, #grid-leadership { grid-template-columns: repeat(2, 1fr); }
-    #grid-value, #grid-economics, #grid-investors, #grid-how, #grid-distribution { grid-template-columns: repeat(4, 1fr); }
+    #grid-value, #grid-economics, #grid-how, #grid-distribution { grid-template-columns: repeat(4, 1fr); }
   }
+
+  /* ===== Page-scoped only: investor visuals ===== */
+  .viz { margin-top: 40px; }
+  .viz-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); margin-bottom: 6px;
+  }
+  .viz-title { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .viz-note { font-size: 14px; color: var(--ink-2); line-height: 1.55; max-width: 68ch; }
+
+  /* --- Market funnel --- */
+  .funnel { display: grid; gap: 16px; margin-top: 24px; }
+  .funnel-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; margin-bottom: 7px;
+  }
+  .funnel-label { font-size: 14px; color: var(--ink-2); }
+  .funnel-val {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: clamp(17px, 2vw, 24px); color: var(--accent);
+    letter-spacing: -0.02em; white-space: nowrap;
+  }
+  .funnel-bar { height: 13px; border-radius: 7px; background: var(--accent); }
+
+  /* --- GMV ramp --- */
+  .gmv {
+    display: flex; align-items: flex-end; gap: clamp(3px, 0.7vw, 11px);
+    height: 230px; margin-top: 26px;
+  }
+  .gmv-col {
+    flex: 1; height: 100%; display: flex; flex-direction: column;
+    justify-content: flex-end; align-items: center; min-width: 0;
+  }
+  .gmv-val {
+    font-family: 'JetBrains Mono', monospace; font-size: clamp(9px, 0.85vw, 11px);
+    color: var(--ink-2); margin-bottom: 6px; white-space: nowrap;
+  }
+  .gmv-bar {
+    width: 100%; min-height: 3px; border-radius: 4px 4px 0 0;
+    background: var(--accent);
+  }
+  .gmv-bar.loss { background: rgba(139, 90, 43, 0.32); }
+  .gmv-years {
+    display: flex; gap: clamp(3px, 0.7vw, 11px);
+    margin-top: 9px; border-top: 1px solid var(--line); padding-top: 9px;
+  }
+  .gmv-yr {
+    flex: 1; min-width: 0; text-align: center;
+    font-family: 'JetBrains Mono', monospace; font-size: clamp(8px, 0.75vw, 10px);
+    color: var(--ink-3); white-space: nowrap;
+  }
+  .gmv-yr.mark { color: var(--accent); font-weight: 500; }
+  .gmv-legend {
+    display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px;
+    font-size: 13px; color: var(--ink-2);
+  }
+  .gmv-key { display: inline-flex; align-items: center; gap: 7px; }
+  .gmv-dot { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+
+  /* --- Berkus staircase --- */
+  .stairs {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; align-items: end; margin-top: 26px;
+  }
+  .stair {
+    border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px; background: var(--bg);
+    display: flex; flex-direction: column; justify-content: flex-end; gap: 10px;
+  }
+  .stair:nth-child(1) { min-height: 148px; }
+  .stair:nth-child(2) { min-height: 182px; }
+  .stair:nth-child(3) { min-height: 216px; }
+  .stair:nth-child(4) { min-height: 250px; }
+  .stair.now { border-color: var(--accent); background: var(--bg-soft); }
+  .stair-badge {
+    align-self: flex-start; font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-on, #fff); background: var(--accent);
+    padding: 4px 9px; border-radius: 999px;
+  }
+  .stair-val {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: clamp(18px, 1.9vw, 23px); color: var(--accent); letter-spacing: -0.02em;
+  }
+  .stair-milestone { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+  @media (max-width: 900px) {
+    .stairs { grid-template-columns: repeat(2, 1fr); }
+    .stair:nth-child(n) { min-height: 0; }
+  }
+  @media (max-width: 560px) { .stairs { grid-template-columns: 1fr; } }
+
+  /* --- Take-rate comparison --- */
+  .rates { display: grid; gap: 14px; margin-top: 22px; max-width: 560px; }
+  .rate-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+  .rate-name { font-size: 14px; color: var(--ink-2); }
+  .rate-name b { color: var(--ink); font-weight: 600; }
+  .rate-val {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px;
+    font-weight: 700; color: var(--accent);
+  }
+  .rate-track { grid-column: 1 / -1; height: 9px; border-radius: 5px; background: var(--line); overflow: hidden; margin-top: -6px; }
+  .rate-fill { height: 100%; border-radius: 5px; background: var(--accent); }
+  .rate-fill.muted { background: rgba(139, 90, 43, 0.32); }
 
   /* Page-scoped only: keep a consistent header-to-body gap regardless of heading length. */
   #grid-market .built-cell {
@@ -375,43 +479,129 @@
       </p>
     </div>
 
-    <div class="built-grid" id="grid-investors">
-      <div class="built-cell">
+    <!-- ---- 1. Market funnel ---- -->
+    <div class="viz" id="viz-market">
+      <div class="viz-label">01 &middot; Market</div>
+      <div class="viz-title">We are not claiming the whole market.</div>
+      <p class="viz-note">From India's total regulated outward-remittance pool down to what Money2Abroad realistically processes by year three, roughly half of one percent of the consumer segment.</p>
+
+      <div class="funnel">
         <div>
-          <div class="num big-num">$26M</div>
-          <div class="spacer-sm"></div>
-          <h3>At 0.10% of TAM</h3>
+          <div class="funnel-head">
+            <span class="funnel-label">Total India LRS outward market, FY2024-25<sup><a href="https://www.business-standard.com/amp/industry/news/overseas-travel-spending-by-indians-falls-to-1-09-billion-126052400289_1.html" target="_blank" rel="noopener noreferrer">[2]</a></sup></span>
+            <span class="funnel-val">$29.6B</span>
+          </div>
+          <div class="funnel-bar" style="width:100%;opacity:0.28;"></div>
         </div>
-        <p>Annual processed volume at 0.10% share of a US$26B consumer-remittance TAM. Money2Abroad estimate, not a forecast commitment.</p>
-      </div>
-      <div class="built-cell">
         <div>
-          <div class="num big-num">$2M-$5M</div>
-          <div class="spacer-sm"></div>
-          <h3>Berkus pre-money range</h3>
+          <div class="funnel-head">
+            <span class="funnel-label">Consumer-use-case TAM, excludes investment &amp; property flows</span>
+            <span class="funnel-val">$26B</span>
+          </div>
+          <div class="funnel-bar" style="width:87%;opacity:0.45;"></div>
         </div>
-        <p>Indicative seed-stage range once an MVP and credible AD-I bank discussions exist, using the Berkus method for early-stage startups without revenue history.</p>
-      </div>
-      <div class="built-cell">
         <div>
-          <div class="num big-num">~$7M</div>
-          <div class="spacer-sm"></div>
-          <h3>Base-case DCF (10yr)</h3>
+          <div class="funnel-head">
+            <span class="funnel-label">Near-term serviceable market, education, family, assisted travel, medical</span>
+            <span class="funnel-val">$5-8B</span>
+          </div>
+          <div class="funnel-bar" style="width:24%;opacity:0.7;"></div>
         </div>
-        <p>Implied enterprise value at a 22% discount rate and 38% mature EBITDA margin, assuming FY2035-36 GMV of US$3.50B. A scenario model, not a fairness valuation.</p>
-      </div>
-      <div class="built-cell">
         <div>
-          <div class="num big-num">0.75%</div>
-          <div class="spacer-sm"></div>
-          <h3>Base-case net yield</h3>
+          <div class="funnel-head">
+            <span class="funnel-label">Year-3 obtainable volume, Money2Abroad base case</span>
+            <span class="funnel-val">$120M</span>
+          </div>
+          <div class="funnel-bar" style="width:6%;opacity:1;"></div>
         </div>
-        <p>Above Wise's mature 0.50-0.63% take rate<sup><a href="https://www.sec.gov/Archives/edgar/data/2099039/000119312526151439/d19735d20fr12b.htm" target="_blank" rel="noopener noreferrer">[7]</a></sup> during the assisted, documentation-heavy early phase, expected to compress toward parity as volume scales.</p>
       </div>
     </div>
 
-    <p class="section-sub" style="margin-top:24px;">
-      These figures are Money2Abroad scenario projections for discussion purposes, not audited financials, a fairness opinion, or investment advice. Full assumptions are available on request.
+    <!-- ---- 2. GMV ramp ---- -->
+    <div class="viz" id="viz-trajectory">
+      <div class="viz-label">02 &middot; Trajectory</div>
+      <div class="viz-title">Processed volume, and where it turns profitable.</div>
+      <p class="viz-note">Base-case GMV ramp. The model crosses into positive EBITDA in FY2029-30, year four, and holds a 38% mature margin from FY2034-35.</p>
+
+      <div class="gmv">
+        <div class="gmv-col"><span class="gmv-val">$15M</span><div class="gmv-bar loss" style="height:0.43%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$45M</span><div class="gmv-bar loss" style="height:1.3%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$120M</span><div class="gmv-bar loss" style="height:3.4%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$275M</span><div class="gmv-bar" style="height:7.9%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$550M</span><div class="gmv-bar" style="height:15.7%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$900M</span><div class="gmv-bar" style="height:25.7%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$1.4B</span><div class="gmv-bar" style="height:40%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$2.0B</span><div class="gmv-bar" style="height:57.1%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$2.7B</span><div class="gmv-bar" style="height:77.1%;"></div></div>
+        <div class="gmv-col"><span class="gmv-val">$3.5B</span><div class="gmv-bar" style="height:100%;"></div></div>
+      </div>
+      <div class="gmv-years">
+        <span class="gmv-yr">FY27</span>
+        <span class="gmv-yr">FY28</span>
+        <span class="gmv-yr">FY29</span>
+        <span class="gmv-yr mark">FY30</span>
+        <span class="gmv-yr">FY31</span>
+        <span class="gmv-yr">FY32</span>
+        <span class="gmv-yr">FY33</span>
+        <span class="gmv-yr">FY34</span>
+        <span class="gmv-yr">FY35</span>
+        <span class="gmv-yr">FY36</span>
+      </div>
+      <div class="gmv-legend">
+        <span class="gmv-key"><span class="gmv-dot" style="background:rgba(139,90,43,0.32);"></span> Pre-break-even, EBITDA negative</span>
+        <span class="gmv-key"><span class="gmv-dot" style="background:var(--accent);"></span> EBITDA positive, from FY2029-30</span>
+      </div>
+    </div>
+
+    <!-- ---- 3. Berkus staircase ---- -->
+    <div class="viz" id="viz-valuation">
+      <div class="viz-label">03 &middot; Valuation</div>
+      <div class="viz-title">What each milestone unlocks.</div>
+      <p class="viz-note">Berkus-method pre-money ranges by stage, the standard approach for early-stage companies without revenue history. A signed AD-I bank pilot is the single largest step up in value.</p>
+
+      <div class="stairs">
+        <div class="stair">
+          <div class="stair-val">$1.0-1.5M</div>
+          <div class="stair-milestone">Concept and market research only</div>
+        </div>
+        <div class="stair now">
+          <span class="stair-badge">You are here</span>
+          <div class="stair-val">$2.0-3.0M</div>
+          <div class="stair-milestone">MVP live, credible AD-I bank discussions underway</div>
+        </div>
+        <div class="stair">
+          <div class="stair-val">$3.0-5.0M</div>
+          <div class="stair-milestone">Signed bank LOI or pilot, first live transactions</div>
+        </div>
+        <div class="stair">
+          <div class="stair-val">$5.0-8.0M+</div>
+          <div class="stair-milestone">Live bank partner with repeat, compounding GMV</div>
+        </div>
+      </div>
+
+      <div class="rates">
+        <div class="viz-label" style="margin-top:32px;margin-bottom:2px;">Net revenue yield vs a public comparable</div>
+        <div class="rate-row">
+          <span class="rate-name"><b>Money2Abroad</b>, base case</span>
+          <span class="rate-val">0.75%</span>
+        </div>
+        <div class="rate-track"><div class="rate-fill" style="width:100%;"></div></div>
+        <div class="rate-row">
+          <span class="rate-name">Wise, personal cross-border FY2025<sup><a href="https://www.sec.gov/Archives/edgar/data/2099039/000119312526151439/d19735d20fr12b.htm" target="_blank" rel="noopener noreferrer">[7]</a></sup></span>
+          <span class="rate-val">0.63%</span>
+        </div>
+        <div class="rate-track"><div class="rate-fill muted" style="width:84%;"></div></div>
+        <div class="rate-row">
+          <span class="rate-name">Wise, cross-border take rate at scale, Q1 FY2027<sup><a href="https://owners.wise.com/financials/financial-results" target="_blank" rel="noopener noreferrer">[10]</a></sup></span>
+          <span class="rate-val">0.50%</span>
+        </div>
+        <div class="rate-track"><div class="rate-fill muted" style="width:67%;"></div></div>
+      </div>
+      <p class="viz-note" style="margin-top:16px;">Money2Abroad prices above Wise's mature take rate during the assisted, documentation-heavy early phase, and assumes compression toward parity as volume scales. The base-case 10-year DCF implies a <b>~$7M enterprise value</b> at a 22% discount rate and 38% mature EBITDA margin.</p>
+    </div>
+
+    <p class="section-sub" style="margin-top:32px;">
+      Every Money2Abroad figure above is a scenario projection for discussion purposes, not audited financials, a fairness opinion, or investment advice. Market figures trace to the sources listed below. Full model assumptions are available on request.
     </p>
   </div>
 </section>
@@ -614,6 +804,7 @@
       <li id="src7">Wise plc, SEC filing (FY2025 personal cross-border take rate). <a href="https://www.sec.gov/Archives/edgar/data/2099039/000119312526151439/d19735d20fr12b.htm" target="_blank" rel="noopener noreferrer">sec.gov</a></li>
       <li id="src8">Visa, Direct Remittances Report 2025. <a href="https://globalclient.visa.com/visa-direct-remittances-report-2025" target="_blank" rel="noopener noreferrer">globalclient.visa.com</a></li>
       <li id="src9">Money2Abroad estimate based on RBI LRS category mix and comparable bank/FX yield disclosures. Not an official RBI or bank-published figure.</li>
+      <li id="src10">Wise plc, reported financial results (cross-border take rate at scale). <a href="https://owners.wise.com/financials/financial-results" target="_blank" rel="noopener noreferrer">owners.wise.com</a></li>
     </ol>
   </div>
 </section>
