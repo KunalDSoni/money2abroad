@@ -23,6 +23,12 @@
   .dollar-flip {
     display: inline-block;
     animation: dollarFlip 4s ease-in-out infinite;
+    background: linear-gradient(155deg, #fbe295 0%, #d4af37 35%, #9c7a24 55%, #f4d160 75%, #b8860b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #d4af37;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.12);
   }
   @keyframes dollarFlip {
     0%, 75% { transform: rotateY(0deg); }
