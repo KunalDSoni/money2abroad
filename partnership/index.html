@@ -82,6 +82,54 @@
   .viz-note b { color: var(--ink); font-weight: 600; }
   .viz-hr { height: 1px; background: var(--line); margin: 52px 0 0; border: 0; }
 
+  /* --- Market growth (the pool itself compounds) --- */
+  .growth { display: flex; align-items: flex-end; gap: clamp(14px, 4vw, 56px); height: 215px; margin-top: 28px; }
+  .growth-col { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; min-width: 0; }
+  .growth-cap { font-family: 'JetBrains Mono', monospace; font-size: clamp(13px, 1.5vw, 18px); font-weight: 700; color: var(--accent); margin-bottom: 7px; white-space: nowrap; }
+  .growth-stack { width: 100%; display: flex; flex-direction: column; justify-content: flex-end; border-radius: 7px 7px 0 0; overflow: hidden; }
+  .growth-hi { background: rgba(139,90,43,0.24); }
+  .growth-base { background: var(--accent); }
+  .growth-years { display: flex; gap: clamp(14px, 4vw, 56px); margin-top: 9px; border-top: 1px solid var(--line-strong); padding-top: 9px; }
+  .growth-yr { flex: 1; min-width: 0; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: clamp(9px, 1vw, 11px); color: var(--ink-3); }
+  .growth-yr b { display: block; color: var(--ink-2); font-weight: 500; margin-top: 3px; font-size: 11px; }
+
+  /* --- The engine: pipeline + governance --- */
+  .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 28px; }
+  @media (max-width: 1000px) { .pipeline { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .pipeline { grid-template-columns: 1fr; } }
+  .pipe { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .pipe-n { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.09em; color: var(--accent); margin-bottom: 9px; }
+  .pipe-h { font-size: 14.5px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 7px; }
+  .pipe-p { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+  .guard { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
+  @media (max-width: 900px) { .guard { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .guard { grid-template-columns: 1fr; } }
+  .guard-item { font-size: 13px; color: var(--ink-2); line-height: 1.5; padding-left: 20px; position: relative; }
+  .guard-item b { color: var(--ink); font-weight: 600; }
+  .guard-item::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 8px; height: 8px; border-radius: 50%;
+    border: 2px solid var(--accent);
+  }
+
+  /* --- Expansion horizons --- */
+  .horizons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 28px; align-items: stretch; }
+  @media (max-width: 900px) { .horizons { grid-template-columns: 1fr; } }
+  .hz { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: var(--bg); }
+  .hz.now { border-color: var(--accent); background: rgba(139,90,43,0.05); }
+  .hz-k { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .hz.now .hz-k { color: var(--accent); }
+  .hz-h { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 10px; }
+  .hz-p { font-size: 13.5px; color: var(--ink-2); line-height: 1.55; margin-bottom: 14px; }
+  .hz-tam { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 700; padding-top: 12px; border-top: 1px solid var(--line); }
+
+  /* --- Global context strip --- */
+  .globe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 28px; }
+  @media (max-width: 760px) { .globe { grid-template-columns: 1fr; } }
+  .globe-c { background: var(--bg); padding: 24px; }
+  .globe-v { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(24px, 3vw, 34px); color: var(--accent); letter-spacing: -0.02em; line-height: 1; }
+  .globe-l { margin-top: 11px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
   /* --- Take-rate benchmark --- */
   .bench { margin-top: 26px; display: grid; gap: 15px; }
   .bench-row { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: baseline; }
@@ -617,7 +665,7 @@
         <h2 class="section-title">A regulated, high-ticket workflow<br/><em>with public comparables.</em></h2>
       </div>
       <p class="section-sub">
-        Six questions an investment committee will ask, answered with RBI data, SEC filings and a model that is deliberately conservative against every listed comparable in the category.
+        Eight questions an investment committee will ask, answered with RBI data, SEC filings and a model that is deliberately conservative against every listed comparable in the category.
       </p>
     </div>
 
@@ -676,6 +724,36 @@
           <div class="funnel-bar" style="width:6%;opacity:1;"></div>
         </div>
       </div>
+
+      <p class="viz-note" style="margin-top:40px;">And the pool itself compounds. India's outward market recovered from US$12.68B in FY2020-21 to roughly US$30B today, and on a 6% base case reaches <b>US$56.5B by FY2035-36</b>:</p>
+      <div class="growth">
+        <div class="growth-col">
+          <span class="growth-cap">$29.6B</span>
+          <div class="growth-stack" style="height:38.9%;">
+            <div class="growth-base" style="height:100%;"></div>
+          </div>
+        </div>
+        <div class="growth-col">
+          <span class="growth-cap">$41.9B</span>
+          <div class="growth-stack" style="height:65.1%;">
+            <div class="growth-hi" style="height:15.4%;"></div>
+            <div class="growth-base" style="height:84.6%;"></div>
+          </div>
+        </div>
+        <div class="growth-col">
+          <span class="growth-cap">$56.5B</span>
+          <div class="growth-stack" style="height:100%;">
+            <div class="growth-hi" style="height:25.7%;"></div>
+            <div class="growth-base" style="height:74.3%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="growth-years">
+        <span class="growth-yr">FY2024-25<b>Reported</b></span>
+        <span class="growth-yr">FY2030-31<b>Range $35.3-49.5B</b></span>
+        <span class="growth-yr">FY2035-36<b>Range $40.9-76.0B</b></span>
+      </div>
+      <p class="viz-note" style="margin-top:16px;">Solid bar is the 6% base case; the lighter extension is the 9% high case. Money2Abroad scenario projections built on RBI's reported base, not RBI forecasts.</p>
     </div>
 
     <hr class="viz-hr"/>
@@ -779,9 +857,54 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 4. Moat ---- -->
+    <!-- ---- 4. The engine ---- -->
+    <div class="viz" id="viz-engine">
+      <div class="viz-label">04 &middot; "What have you actually built?"</div>
+      <div class="viz-title">An engine that turns intent into a bank-ready case.</div>
+      <p class="viz-note">A customer arrives with a purpose and a folder of documents. The bank needs a structured, verified, auditable file. Five stages close that gap, and every one of them is machine work that is manual today.</p>
+
+      <div class="pipeline">
+        <div class="pipe">
+          <div class="pipe-n">STAGE 01</div>
+          <div class="pipe-h">Onboard &amp; classify purpose</div>
+          <div class="pipe-p">Consent, PAN and passport profile, beneficiary capture. The purpose engine maps intent to the exact fields, documents and checklist that purpose requires.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">STAGE 02</div>
+          <div class="pipe-h">Extract</div>
+          <div class="pipe-p">OCR and document intelligence across passport, visa, admission letters, university and medical invoices, relationship proof. Fields extracted, document type classified.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">STAGE 03</div>
+          <div class="pipe-h">Validate</div>
+          <div class="pipe-p">Name mismatches, expired documents, missing pages, invoice totals reconciled against the remittance amount, inconsistent metadata flagged.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">STAGE 04</div>
+          <div class="pipe-h">Score &amp; triage</div>
+          <div class="pipe-p">Risk tiering on amount, corridor, recipient, purpose, document confidence and screening output. Low, medium and high routed differently.</div>
+        </div>
+        <div class="pipe">
+          <div class="pipe-n">STAGE 05</div>
+          <div class="pipe-h">Hand off</div>
+          <div class="pipe-p">A structured case file with completeness score, purpose code, extracted fields with confidence, exceptions and a full audit trail, into the bank's reviewer queue.</div>
+        </div>
+      </div>
+
+      <p class="viz-note" style="margin-top:34px;"><b>The governance is the product.</b> A bank cannot adopt a black box, so the constraints are built in rather than bolted on:</p>
+      <div class="guard">
+        <div class="guard-item"><b>No black-box approval.</b> The engine prepares and flags. The AD-I bank decides, every time.</div>
+        <div class="guard-item"><b>Explainable output.</b> Every extracted field carries a confidence score and a model version.</div>
+        <div class="guard-item"><b>Human review on exceptions.</b> Anything uncertain routes to a person before it reaches the bank.</div>
+        <div class="guard-item"><b>Immutable audit trail.</b> Every action, extraction, access and status change is logged and tamper-evident.</div>
+      </div>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 5. Moat ---- -->
     <div class="viz" id="viz-moat">
-      <div class="viz-label">04 &middot; "Why won't the bank just build this?"</div>
+      <div class="viz-label">05 &middot; "Why won't the bank just build this?"</div>
       <div class="viz-title">Because the hard part isn't the software.</div>
       <p class="viz-note">Banks own the licence, the FX and the balance sheet. What they have not built, in twenty years of trying, is a paperless purpose-code and document workflow with distribution attached to it. Four things compound in our favour.</p>
 
@@ -848,9 +971,9 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 5. Path ---- -->
+    <!-- ---- 6. Path ---- -->
     <div class="viz" id="viz-path">
-      <div class="viz-label">05 &middot; "What are we funding?"</div>
+      <div class="viz-label">06 &middot; "What are we funding?"</div>
       <div class="viz-title">The next 36 months, not the next decade.</div>
       <p class="viz-note">Capital is deployed against near-term, checkable milestones. Each stage is a decision point, not a promise.</p>
 
@@ -890,9 +1013,9 @@
 
     <hr class="viz-hr"/>
 
-    <!-- ---- 6. Berkus staircase ---- -->
+    <!-- ---- 7. Berkus staircase ---- -->
     <div class="viz" id="viz-valuation">
-      <div class="viz-label">06 &middot; "What is it worth?"</div>
+      <div class="viz-label">07 &middot; "What is it worth?"</div>
       <div class="viz-title">What each milestone unlocks.</div>
       <p class="viz-note">Berkus-method pre-money ranges by stage, the standard approach for early-stage companies without revenue history. A signed AD-I bank pilot is the single largest step up in value.</p>
 
@@ -942,6 +1065,53 @@
         </div>
       </div>
       <p class="viz-note" style="margin-top:18px;">Implied enterprise value under each scenario. Early-stage DCF is highly sensitive to volume, take rate, margin and discount rate, which is why all three are shown rather than the base case alone.</p>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 8. Horizons ---- -->
+    <div class="viz" id="viz-horizon">
+      <div class="viz-label">08 &middot; "How big can this get?"</div>
+      <div class="viz-title">Consumer LRS is the wedge, not the ceiling.</div>
+      <p class="viz-note">Everything in this document describes horizon one. The same engine, once a bank trusts it and the compliance data has compounded, points at progressively larger regulated flows. Each horizon is gated on the one before it working.</p>
+
+      <div class="horizons">
+        <div class="hz now">
+          <div class="hz-k">Horizon 1 &middot; Now</div>
+          <div class="hz-h">Consumer outward remittance from India</div>
+          <div class="hz-p">Education, family maintenance, travel, medical, gifts and immigration transfers, executed by one AD-I partner bank. This is the entire business case above.</div>
+          <div class="hz-tam">$26B addressable today</div>
+        </div>
+        <div class="hz">
+          <div class="hz-k">Horizon 2 &middot; Adjacent flows</div>
+          <div class="hz-h">The same engine, business payments</div>
+          <div class="hz-p">SME vendor payments, international payroll, global freelancer receipts and business remittance reuse the identical purpose, document and compliance stack. Multi-bank routing follows.</div>
+          <div class="hz-tam">Gated on PA-CB review, 18-36 months</div>
+        </div>
+        <div class="hz">
+          <div class="hz-k">Horizon 3 &middot; Infrastructure</div>
+          <div class="hz-h">The engine becomes the product</div>
+          <div class="hz-p">White-label bank portals and compliance-as-a-service, sold to banks directly rather than sitting in front of them. Money2Abroad stops being a channel and becomes a rail.</div>
+          <div class="hz-tam">Category economics below</div>
+        </div>
+      </div>
+
+      <p class="viz-note" style="margin-top:36px;">For scale, the category Money2Abroad is entering:</p>
+      <div class="globe">
+        <div class="globe-c">
+          <div class="globe-v">$905B</div>
+          <div class="globe-l">Global peer-to-peer cross-border remittance market, 2024<sup><a href="https://globalclient.visa.com/visa-direct-remittances-report-2025" target="_blank" rel="noopener noreferrer">[8]</a></sup></div>
+        </div>
+        <div class="globe-c">
+          <div class="globe-v">771M</div>
+          <div class="globe-l">People who made a cross-border transaction, June 2023 to June 2024<sup><a href="https://globalclient.visa.com/visa-direct-remittances-report-2025" target="_blank" rel="noopener noreferrer">[8]</a></sup></div>
+        </div>
+        <div class="globe-c">
+          <div class="globe-v">$3.0T</div>
+          <div class="globe-l">Projected global payments revenue by 2029, from US$2.5T in 2024<sup><a href="https://www.mckinsey.com/industries/financial-services/our-insights/global-payments-report" target="_blank" rel="noopener noreferrer">[14]</a></sup></div>
+        </div>
+      </div>
+      <p class="viz-note" style="margin-top:18px;">Horizons two and three are strategy, not forecast. No revenue in the model above depends on either.</p>
     </div>
 
     <hr class="viz-hr"/>
@@ -1193,6 +1363,7 @@
       <li id="src11">Flywire, reported FY2024 payment volume and revenue. <a href="https://www.flywire.com/company/esg" target="_blank" rel="noopener noreferrer">flywire.com</a></li>
       <li id="src12">Remitly, FY2025 full-year results (send volume and revenue). <a href="https://ir.remitly.com/news-releases/news-release-details/remitly-reports-fourth-quarter-and-full-year-2025-results-above" target="_blank" rel="noopener noreferrer">ir.remitly.com</a></li>
       <li id="src13">Western Union, 2025 Form 10-K (consumer money transfer principal and revenue). <a href="https://www.sec.gov/Archives/edgar/data/1365135/000119312526061340/wu-20251231.htm" target="_blank" rel="noopener noreferrer">sec.gov</a></li>
+      <li id="src14">McKinsey, Global Payments Report (global payments revenue, 2024 and 2029 projection). <a href="https://www.mckinsey.com/industries/financial-services/our-insights/global-payments-report" target="_blank" rel="noopener noreferrer">mckinsey.com</a></li>
     </ol>
   </div>
 </section>
