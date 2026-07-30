@@ -12,9 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css" />
 <style>
-  /* Copper lifted for legibility on the dark investor band. Same hue family as --accent. */
-  :root { --gold: #e0a75e; }
-
   /* Page-scoped only: full-width headline with description below, instead of squeezing
      the title into a narrow side column next to the description. Cuts every headline
      down to 2 lines (matching its manual <br/>) instead of 3-5. */
@@ -45,118 +42,169 @@
     #grid-value, #grid-economics, #grid-how, #grid-distribution { grid-template-columns: repeat(4, 1fr); }
   }
 
-  /* ===== Page-scoped only: investor section, inverted institutional band =====
-     Uses the palette's own --bg-deep ("black for dark sections") and the
-     cream-on-dark ink already used by .kpi / .pill in css/main.css. */
+  /* ===== Page-scoped only: investor section =====
+     Elevated white panel on the cream body, using --bg-soft. Reads like a
+     printed tearsheet laid on the page; cards drop back to cream. */
   #investors {
-    background: var(--bg-deep);
-    color: rgba(245,241,232,0.62);
+    background: var(--bg-soft);
     padding: 76px var(--pad) 84px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
-  #investors .eyebrow { color: var(--gold); }
-  #investors .section-title { color: #f5f1e8; }
-  #investors .section-sub { color: rgba(245,241,232,0.62); }
-  #investors sup a { color: var(--gold); }
+
+  /* --- Tearsheet: the whole thesis in four numbers --- */
+  .tearsheet {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line);
+    border-radius: 20px; overflow: hidden; margin-top: 34px;
+  }
+  @media (max-width: 900px) { .tearsheet { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .tearsheet { grid-template-columns: 1fr; } }
+  .tear { background: var(--bg); padding: 28px 24px; }
+  .tear-v {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: clamp(30px, 4.2vw, 50px); color: var(--accent);
+    letter-spacing: -0.03em; line-height: 1;
+  }
+  .tear-l { margin-top: 13px; font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
 
   .viz { margin-top: 52px; }
   .viz-label {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
     text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--gold); margin-bottom: 8px;
+    color: var(--accent); margin-bottom: 8px;
   }
   .viz-title {
     font-size: clamp(19px, 2vw, 23px); font-weight: 600;
-    letter-spacing: -0.01em; margin-bottom: 6px; color: #f5f1e8;
+    letter-spacing: -0.01em; margin-bottom: 6px; color: var(--ink);
   }
-  .viz-note { font-size: 14px; color: rgba(245,241,232,0.6); line-height: 1.6; max-width: 70ch; }
-  .viz-note b { color: #f5f1e8; font-weight: 600; }
-  .viz-hr { height: 1px; background: rgba(245,241,232,0.12); margin: 52px 0 0; border: 0; }
+  .viz-note { font-size: 14px; color: var(--ink-2); line-height: 1.6; max-width: 70ch; }
+  .viz-note b { color: var(--ink); font-weight: 600; }
+  .viz-hr { height: 1px; background: var(--line); margin: 52px 0 0; border: 0; }
 
   /* --- Take-rate benchmark --- */
   .bench { margin-top: 26px; display: grid; gap: 15px; }
   .bench-row { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: baseline; }
-  .bench-name { font-size: 14px; color: rgba(245,241,232,0.62); }
-  .bench-row.us .bench-name { color: #f5f1e8; font-weight: 600; }
+  .bench-name { font-size: 14px; color: var(--ink-3); }
+  .bench-row.us .bench-name { color: var(--ink); font-weight: 600; }
   .bench-val {
     font-family: 'JetBrains Mono', monospace; font-size: 15px;
-    font-weight: 700; color: rgba(245,241,232,0.5);
+    font-weight: 700; color: var(--ink-3);
   }
-  .bench-row.us .bench-val { color: var(--gold); font-size: 17px; }
+  .bench-row.us .bench-val { color: var(--accent); font-size: 17px; }
   .bench-track {
     grid-column: 1 / -1; height: 10px; border-radius: 5px;
-    background: rgba(245,241,232,0.07); margin-top: -7px; overflow: hidden;
+    background: var(--line); margin-top: -7px; overflow: hidden;
   }
-  .bench-fill { height: 100%; border-radius: 5px; background: rgba(245,241,232,0.24); }
-  .bench-fill.us { background: var(--gold); }
+  .bench-fill { height: 100%; border-radius: 5px; background: rgba(0,0,0,0.22); }
+  .bench-fill.us { background: var(--accent); }
+
+  /* --- Revenue bridge --- */
+  .bridge { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 14px; align-items: stretch; margin-top: 28px; }
+  @media (max-width: 800px) { .bridge { grid-template-columns: 1fr; } }
+  .bridge-step {
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: 14px; padding: 20px;
+  }
+  .bridge-v {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 30px); color: var(--accent); letter-spacing: -0.02em; line-height: 1;
+  }
+  .bridge-l { margin-top: 10px; font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+  .bridge-op {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--ink-3); white-space: nowrap; padding: 0 2px;
+  }
+  @media (max-width: 800px) { .bridge-op { padding: 4px 0; } }
 
   /* --- Positioning matrix --- */
   .matrix-wrap { margin-top: 26px; overflow-x: auto; }
   .matrix { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 13.5px; }
   .matrix th, .matrix td {
     text-align: left; padding: 13px 14px;
-    border-bottom: 1px solid rgba(245,241,232,0.1); vertical-align: top;
+    border-bottom: 1px solid var(--line); vertical-align: top;
   }
   .matrix thead th {
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
     text-transform: uppercase; letter-spacing: 0.07em;
-    color: rgba(245,241,232,0.45); font-weight: 500;
-    border-bottom-color: rgba(245,241,232,0.2);
+    color: var(--ink-3); font-weight: 500;
+    border-bottom-color: var(--line-strong);
   }
-  .matrix tbody th { font-weight: 500; color: rgba(245,241,232,0.72); }
-  .matrix td { color: rgba(245,241,232,0.45); }
-  .matrix .col-us { background: rgba(224,167,94,0.09); color: #f5f1e8; font-weight: 500; }
-  .matrix thead .col-us { color: var(--gold); }
+  .matrix tbody th { font-weight: 500; color: var(--ink); }
+  .matrix td { color: var(--ink-3); }
+  .matrix .col-us { background: rgba(139,90,43,0.07); color: var(--ink); font-weight: 500; }
+  .matrix thead .col-us { color: var(--accent); }
 
   /* --- Moat cards --- */
   .moat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 26px; }
   @media (max-width: 900px) { .moat { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .moat { grid-template-columns: 1fr; } }
   .moat-card {
-    border: 1px solid rgba(245,241,232,0.13); border-radius: 14px;
-    padding: 20px; background: rgba(245,241,232,0.03);
+    border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px; background: var(--bg);
   }
-  .moat-card h4 { font-size: 15px; color: #f5f1e8; margin: 0 0 8px; font-weight: 600; }
-  .moat-card p { font-size: 13.5px; line-height: 1.55; color: rgba(245,241,232,0.55); margin: 0; }
+  .moat-card h4 { font-size: 15px; color: var(--ink); margin: 0 0 8px; font-weight: 600; }
+  .moat-card p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); margin: 0; }
 
   /* --- 36-month path --- */
   .path { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 30px; }
   @media (max-width: 900px) { .path { grid-template-columns: 1fr; } }
   .path-step { padding: 0 16px 0 0; position: relative; }
-  .path-node {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 14px;
-  }
-  .path-dot {
-    width: 11px; height: 11px; border-radius: 50%; flex: none;
-    background: var(--gold);
-  }
-  .path-line { flex: 1; height: 1px; background: rgba(245,241,232,0.18); }
+  .path-node { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .path-dot { width: 11px; height: 11px; border-radius: 50%; flex: none; background: var(--accent); }
+  .path-line { flex: 1; height: 1px; background: var(--line-strong); }
   @media (max-width: 900px) {
     .path-step { padding: 0 0 22px 0; }
     .path-line { display: none; }
   }
   .path-when {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--gold); letter-spacing: 0.05em; margin-bottom: 6px;
+    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 6px;
   }
-  .path-goal { font-size: 14.5px; color: #f5f1e8; font-weight: 600; line-height: 1.35; margin-bottom: 5px; }
-  .path-kpi { font-size: 13px; color: rgba(245,241,232,0.5); line-height: 1.5; }
+  .path-goal { font-size: 14.5px; color: var(--ink); font-weight: 600; line-height: 1.35; margin-bottom: 5px; }
+  .path-kpi { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  /* --- Valuation scenarios --- */
+  .scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+  @media (max-width: 800px) { .scenarios { grid-template-columns: 1fr; } }
+  .scen {
+    border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px; background: var(--bg);
+  }
+  .scen.base { border-color: var(--accent); background: rgba(139,90,43,0.05); }
+  .scen-k {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-3); margin-bottom: 12px;
+  }
+  .scen.base .scen-k { color: var(--accent); }
+  .scen-v {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: clamp(22px, 2.5vw, 29px); color: var(--accent);
+    letter-spacing: -0.02em; line-height: 1; margin-bottom: 14px;
+  }
+  .scen-row {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 12.5px; padding: 6px 0; border-top: 1px solid var(--line);
+  }
+  .scen-row span:first-child { color: var(--ink-3); }
+  .scen-row span:last-child { color: var(--ink); font-family: 'JetBrains Mono', monospace; }
 
   /* --- Risk + use of funds --- */
   .close-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; margin-top: 26px; }
   @media (max-width: 900px) { .close-grid { grid-template-columns: 1fr; gap: 40px; } }
-  .risk-item { padding: 15px 0; border-bottom: 1px solid rgba(245,241,232,0.1); }
+  .risk-item { padding: 15px 0; border-bottom: 1px solid var(--line); }
   .risk-item:first-of-type { padding-top: 4px; }
-  .risk-q { font-size: 14.5px; color: #f5f1e8; font-weight: 600; margin-bottom: 5px; }
-  .risk-a { font-size: 13.5px; color: rgba(245,241,232,0.55); line-height: 1.55; }
+  .risk-q { font-size: 14.5px; color: var(--ink); font-weight: 600; margin-bottom: 5px; }
+  .risk-a { font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
   .funds { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 11px; }
   .funds li {
-    font-size: 14px; color: rgba(245,241,232,0.68);
+    font-size: 14px; color: var(--ink-2);
     padding-left: 20px; position: relative; line-height: 1.5;
   }
   .funds li::before {
     content: ""; position: absolute; left: 0; top: 8px;
-    width: 7px; height: 7px; border-radius: 2px; background: var(--gold);
+    width: 7px; height: 7px; border-radius: 2px; background: var(--accent);
   }
 
   /* --- Market funnel --- */
@@ -165,13 +213,13 @@
     display: flex; justify-content: space-between; align-items: baseline;
     gap: 16px; margin-bottom: 7px;
   }
-  .funnel-label { font-size: 14px; color: rgba(245,241,232,0.6); }
+  .funnel-label { font-size: 14px; color: var(--ink-2); }
   .funnel-val {
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: clamp(17px, 2vw, 24px); color: var(--gold);
+    font-size: clamp(17px, 2vw, 24px); color: var(--accent);
     letter-spacing: -0.02em; white-space: nowrap;
   }
-  .funnel-bar { height: 13px; border-radius: 7px; background: var(--gold); }
+  .funnel-bar { height: 13px; border-radius: 7px; background: var(--accent); }
 
   /* --- GMV ramp --- */
   .gmv {
@@ -184,26 +232,26 @@
   }
   .gmv-val {
     font-family: 'JetBrains Mono', monospace; font-size: clamp(9px, 0.85vw, 11px);
-    color: rgba(245,241,232,0.6); margin-bottom: 6px; white-space: nowrap;
+    color: var(--ink-2); margin-bottom: 6px; white-space: nowrap;
   }
   .gmv-bar {
     width: 100%; min-height: 3px; border-radius: 4px 4px 0 0;
-    background: var(--gold);
+    background: var(--accent);
   }
-  .gmv-bar.loss { background: rgba(224,167,94,0.3); }
+  .gmv-bar.loss { background: rgba(139,90,43,0.3); }
   .gmv-years {
     display: flex; gap: clamp(3px, 0.7vw, 11px);
-    margin-top: 9px; border-top: 1px solid rgba(245,241,232,0.18); padding-top: 9px;
+    margin-top: 9px; border-top: 1px solid var(--line-strong); padding-top: 9px;
   }
   .gmv-yr {
     flex: 1; min-width: 0; text-align: center;
     font-family: 'JetBrains Mono', monospace; font-size: clamp(8px, 0.75vw, 10px);
-    color: rgba(245,241,232,0.42); white-space: nowrap;
+    color: var(--ink-3); white-space: nowrap;
   }
-  .gmv-yr.mark { color: var(--gold); font-weight: 500; }
+  .gmv-yr.mark { color: var(--accent); font-weight: 500; }
   .gmv-legend {
     display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px;
-    font-size: 13px; color: rgba(245,241,232,0.55);
+    font-size: 13px; color: var(--ink-2);
   }
   .gmv-key { display: inline-flex; align-items: center; gap: 7px; }
   .gmv-dot { width: 11px; height: 11px; border-radius: 3px; flex: none; }
@@ -214,26 +262,26 @@
     gap: 12px; align-items: end; margin-top: 26px;
   }
   .stair {
-    border: 1px solid rgba(245,241,232,0.13); border-radius: 16px;
-    padding: 20px; background: rgba(245,241,232,0.03);
+    border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px; background: var(--bg);
     display: flex; flex-direction: column; justify-content: flex-end; gap: 10px;
   }
   .stair:nth-child(1) { min-height: 148px; }
   .stair:nth-child(2) { min-height: 182px; }
   .stair:nth-child(3) { min-height: 216px; }
   .stair:nth-child(4) { min-height: 250px; }
-  .stair.now { border-color: var(--gold); background: rgba(224,167,94,0.1); }
+  .stair.now { border-color: var(--accent); background: rgba(139,90,43,0.06); }
   .stair-badge {
     align-self: flex-start; font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: #17130f; background: var(--gold);
+    color: var(--accent-on); background: var(--accent);
     padding: 4px 9px; border-radius: 999px; font-weight: 500;
   }
   .stair-val {
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: clamp(18px, 1.9vw, 23px); color: var(--gold); letter-spacing: -0.02em;
+    font-size: clamp(18px, 1.9vw, 23px); color: var(--accent); letter-spacing: -0.02em;
   }
-  .stair-milestone { font-size: 14px; line-height: 1.45; color: rgba(245,241,232,0.58); }
+  .stair-milestone { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
   @media (max-width: 900px) {
     .stairs { grid-template-columns: repeat(2, 1fr); }
     .stair:nth-child(n) { min-height: 0; }
@@ -573,6 +621,25 @@
       </p>
     </div>
 
+    <div class="tearsheet">
+      <div class="tear">
+        <div class="tear-v">$29.6B</div>
+        <div class="tear-l">India's regulated outward-remittance market, FY2024-25<sup><a href="https://www.business-standard.com/amp/industry/news/overseas-travel-spending-by-indians-falls-to-1-09-billion-126052400289_1.html" target="_blank" rel="noopener noreferrer">[2]</a></sup></div>
+      </div>
+      <div class="tear">
+        <div class="tear-v">2.2&times;</div>
+        <div class="tear-l">What our closest listed comparable earns per dollar moved, versus what we model</div>
+      </div>
+      <div class="tear">
+        <div class="tear-v">$3.5B</div>
+        <div class="tear-l">Base-case annual processed volume by FY2035-36</div>
+      </div>
+      <div class="tear">
+        <div class="tear-v">38%</div>
+        <div class="tear-l">Mature EBITDA margin at scale, positive from year four</div>
+      </div>
+    </div>
+
     <!-- ---- 1. Market funnel ---- -->
     <div class="viz" id="viz-market">
       <div class="viz-label">01 &middot; "How big is it, really?"</div>
@@ -687,8 +754,26 @@
         <span class="gmv-yr">FY36</span>
       </div>
       <div class="gmv-legend">
-        <span class="gmv-key"><span class="gmv-dot" style="background:rgba(139,90,43,0.32);"></span> Pre-break-even, EBITDA negative</span>
+        <span class="gmv-key"><span class="gmv-dot" style="background:rgba(139,90,43,0.3);"></span> Pre-break-even, EBITDA negative</span>
         <span class="gmv-key"><span class="gmv-dot" style="background:var(--accent);"></span> EBITDA positive, from FY2029-30</span>
+      </div>
+
+      <p class="viz-note" style="margin-top:36px;">Volume is not revenue. How the FY2035-36 base case converts:</p>
+      <div class="bridge">
+        <div class="bridge-step">
+          <div class="bridge-v">$3.50B</div>
+          <div class="bridge-l">Annual processed volume (GMV)</div>
+        </div>
+        <div class="bridge-op">&times; 0.625% &rarr;</div>
+        <div class="bridge-step">
+          <div class="bridge-v">$21.9M</div>
+          <div class="bridge-l">Net revenue at a mature take rate</div>
+        </div>
+        <div class="bridge-op">&times; 38% &rarr;</div>
+        <div class="bridge-step">
+          <div class="bridge-v">$8.3M</div>
+          <div class="bridge-l">EBITDA at mature margin</div>
+        </div>
       </div>
     </div>
 
@@ -817,7 +902,7 @@
           <div class="stair-milestone">Concept and market research only</div>
         </div>
         <div class="stair now">
-          <span class="stair-badge">You are here</span>
+          <span class="stair-badge">We're here</span>
           <div class="stair-val">$2.0-3.0M</div>
           <div class="stair-milestone">MVP live, credible AD-I bank discussions underway</div>
         </div>
@@ -831,7 +916,32 @@
         </div>
       </div>
 
-      <p class="viz-note" style="margin-top:22px;">A signed AD-I bank pilot is the single largest step up on this ladder. Independently, the base-case ten-year DCF implies a <b>~$7M enterprise value</b> at a 22% discount rate and 38% mature EBITDA margin, converging on the same range from a different direction.</p>
+      <p class="viz-note" style="margin-top:22px;">A signed AD-I bank pilot is the single largest step up on this ladder. Approached independently, a ten-year DCF converges on the same range, and stretches well beyond it if execution runs ahead of base case.</p>
+
+      <div class="scenarios">
+        <div class="scen">
+          <div class="scen-k">Conservative</div>
+          <div class="scen-v">$1-3M</div>
+          <div class="scen-row"><span>FY2035-36 GMV</span><span>$1.4B</span></div>
+          <div class="scen-row"><span>Mature take rate</span><span>0.50%</span></div>
+          <div class="scen-row"><span>Discount rate</span><span>28%</span></div>
+        </div>
+        <div class="scen base">
+          <div class="scen-k">Base case</div>
+          <div class="scen-v">~$7M</div>
+          <div class="scen-row"><span>FY2035-36 GMV</span><span>$3.5B</span></div>
+          <div class="scen-row"><span>Mature take rate</span><span>0.625%</span></div>
+          <div class="scen-row"><span>Discount rate</span><span>22%</span></div>
+        </div>
+        <div class="scen">
+          <div class="scen-k">High</div>
+          <div class="scen-v">$18-30M</div>
+          <div class="scen-row"><span>FY2035-36 GMV</span><span>$6.0B</span></div>
+          <div class="scen-row"><span>Mature take rate</span><span>0.75%</span></div>
+          <div class="scen-row"><span>Discount rate</span><span>18%</span></div>
+        </div>
+      </div>
+      <p class="viz-note" style="margin-top:18px;">Implied enterprise value under each scenario. Early-stage DCF is highly sensitive to volume, take rate, margin and discount rate, which is why all three are shown rather than the base case alone.</p>
     </div>
 
     <hr class="viz-hr"/>
@@ -870,12 +980,12 @@
             <li>Consumer and operations portals</li>
             <li>Partner acquisition across education, immigration, travel and medical channels</li>
           </ul>
-          <p class="viz-note" style="margin-top:20px;">Round size, instrument and use-of-funds split are discussed directly with interested parties. <a href="mailto:bhrugesh@money2abroad.com?subject=Money2Abroad%20investment%20enquiry" style="color:var(--gold);">bhrugesh@money2abroad.com</a></p>
+          <p class="viz-note" style="margin-top:20px;">Round size, instrument and use-of-funds split are discussed directly with interested parties. <a href="mailto:bhrugesh@money2abroad.com?subject=Money2Abroad%20investment%20enquiry" style="color:var(--accent);font-weight:500;">bhrugesh@money2abroad.com</a></p>
         </div>
       </div>
     </div>
 
-    <p class="viz-note" style="margin-top:52px;padding-top:24px;border-top:1px solid rgba(245,241,232,0.12);">
+    <p class="viz-note" style="margin-top:52px;padding-top:24px;border-top:1px solid var(--line);">
       Every Money2Abroad figure above is a scenario projection for discussion purposes, not audited financials, a fairness opinion, or investment advice. Market and comparable-company figures trace to the sources listed below. Full model assumptions are available on request.
     </p>
   </div>
