@@ -12,6 +12,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css" />
 <style>
+  /* Copper lifted for legibility on the dark investor band. Same hue family as --accent. */
+  :root { --gold: #e0a75e; }
+
   /* Page-scoped only: full-width headline with description below, instead of squeezing
      the title into a narrow side column next to the description. Cuts every headline
      down to 2 lines (matching its manual <br/>) instead of 3-5. */
@@ -42,29 +45,133 @@
     #grid-value, #grid-economics, #grid-how, #grid-distribution { grid-template-columns: repeat(4, 1fr); }
   }
 
-  /* ===== Page-scoped only: investor visuals ===== */
-  .viz { margin-top: 40px; }
+  /* ===== Page-scoped only: investor section, inverted institutional band =====
+     Uses the palette's own --bg-deep ("black for dark sections") and the
+     cream-on-dark ink already used by .kpi / .pill in css/main.css. */
+  #investors {
+    background: var(--bg-deep);
+    color: rgba(245,241,232,0.62);
+    padding: 76px var(--pad) 84px;
+  }
+  #investors .eyebrow { color: var(--gold); }
+  #investors .section-title { color: #f5f1e8; }
+  #investors .section-sub { color: rgba(245,241,232,0.62); }
+  #investors sup a { color: var(--gold); }
+
+  .viz { margin-top: 52px; }
   .viz-label {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--accent); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--gold); margin-bottom: 8px;
   }
-  .viz-title { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
-  .viz-note { font-size: 14px; color: var(--ink-2); line-height: 1.55; max-width: 68ch; }
+  .viz-title {
+    font-size: clamp(19px, 2vw, 23px); font-weight: 600;
+    letter-spacing: -0.01em; margin-bottom: 6px; color: #f5f1e8;
+  }
+  .viz-note { font-size: 14px; color: rgba(245,241,232,0.6); line-height: 1.6; max-width: 70ch; }
+  .viz-note b { color: #f5f1e8; font-weight: 600; }
+  .viz-hr { height: 1px; background: rgba(245,241,232,0.12); margin: 52px 0 0; border: 0; }
+
+  /* --- Take-rate benchmark --- */
+  .bench { margin-top: 26px; display: grid; gap: 15px; }
+  .bench-row { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: baseline; }
+  .bench-name { font-size: 14px; color: rgba(245,241,232,0.62); }
+  .bench-row.us .bench-name { color: #f5f1e8; font-weight: 600; }
+  .bench-val {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px;
+    font-weight: 700; color: rgba(245,241,232,0.5);
+  }
+  .bench-row.us .bench-val { color: var(--gold); font-size: 17px; }
+  .bench-track {
+    grid-column: 1 / -1; height: 10px; border-radius: 5px;
+    background: rgba(245,241,232,0.07); margin-top: -7px; overflow: hidden;
+  }
+  .bench-fill { height: 100%; border-radius: 5px; background: rgba(245,241,232,0.24); }
+  .bench-fill.us { background: var(--gold); }
+
+  /* --- Positioning matrix --- */
+  .matrix-wrap { margin-top: 26px; overflow-x: auto; }
+  .matrix { width: 100%; border-collapse: collapse; min-width: 620px; font-size: 13.5px; }
+  .matrix th, .matrix td {
+    text-align: left; padding: 13px 14px;
+    border-bottom: 1px solid rgba(245,241,232,0.1); vertical-align: top;
+  }
+  .matrix thead th {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    color: rgba(245,241,232,0.45); font-weight: 500;
+    border-bottom-color: rgba(245,241,232,0.2);
+  }
+  .matrix tbody th { font-weight: 500; color: rgba(245,241,232,0.72); }
+  .matrix td { color: rgba(245,241,232,0.45); }
+  .matrix .col-us { background: rgba(224,167,94,0.09); color: #f5f1e8; font-weight: 500; }
+  .matrix thead .col-us { color: var(--gold); }
+
+  /* --- Moat cards --- */
+  .moat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 26px; }
+  @media (max-width: 900px) { .moat { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .moat { grid-template-columns: 1fr; } }
+  .moat-card {
+    border: 1px solid rgba(245,241,232,0.13); border-radius: 14px;
+    padding: 20px; background: rgba(245,241,232,0.03);
+  }
+  .moat-card h4 { font-size: 15px; color: #f5f1e8; margin: 0 0 8px; font-weight: 600; }
+  .moat-card p { font-size: 13.5px; line-height: 1.55; color: rgba(245,241,232,0.55); margin: 0; }
+
+  /* --- 36-month path --- */
+  .path { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 30px; }
+  @media (max-width: 900px) { .path { grid-template-columns: 1fr; } }
+  .path-step { padding: 0 16px 0 0; position: relative; }
+  .path-node {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .path-dot {
+    width: 11px; height: 11px; border-radius: 50%; flex: none;
+    background: var(--gold);
+  }
+  .path-line { flex: 1; height: 1px; background: rgba(245,241,232,0.18); }
+  @media (max-width: 900px) {
+    .path-step { padding: 0 0 22px 0; }
+    .path-line { display: none; }
+  }
+  .path-when {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--gold); letter-spacing: 0.05em; margin-bottom: 6px;
+  }
+  .path-goal { font-size: 14.5px; color: #f5f1e8; font-weight: 600; line-height: 1.35; margin-bottom: 5px; }
+  .path-kpi { font-size: 13px; color: rgba(245,241,232,0.5); line-height: 1.5; }
+
+  /* --- Risk + use of funds --- */
+  .close-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; margin-top: 26px; }
+  @media (max-width: 900px) { .close-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .risk-item { padding: 15px 0; border-bottom: 1px solid rgba(245,241,232,0.1); }
+  .risk-item:first-of-type { padding-top: 4px; }
+  .risk-q { font-size: 14.5px; color: #f5f1e8; font-weight: 600; margin-bottom: 5px; }
+  .risk-a { font-size: 13.5px; color: rgba(245,241,232,0.55); line-height: 1.55; }
+  .funds { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 11px; }
+  .funds li {
+    font-size: 14px; color: rgba(245,241,232,0.68);
+    padding-left: 20px; position: relative; line-height: 1.5;
+  }
+  .funds li::before {
+    content: ""; position: absolute; left: 0; top: 8px;
+    width: 7px; height: 7px; border-radius: 2px; background: var(--gold);
+  }
 
   /* --- Market funnel --- */
-  .funnel { display: grid; gap: 16px; margin-top: 24px; }
+  .funnel { display: grid; gap: 16px; margin-top: 26px; }
   .funnel-head {
     display: flex; justify-content: space-between; align-items: baseline;
     gap: 16px; margin-bottom: 7px;
   }
-  .funnel-label { font-size: 14px; color: var(--ink-2); }
+  .funnel-label { font-size: 14px; color: rgba(245,241,232,0.6); }
   .funnel-val {
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: clamp(17px, 2vw, 24px); color: var(--accent);
+    font-size: clamp(17px, 2vw, 24px); color: var(--gold);
     letter-spacing: -0.02em; white-space: nowrap;
   }
-  .funnel-bar { height: 13px; border-radius: 7px; background: var(--accent); }
+  .funnel-bar { height: 13px; border-radius: 7px; background: var(--gold); }
 
   /* --- GMV ramp --- */
   .gmv {
@@ -77,26 +184,26 @@
   }
   .gmv-val {
     font-family: 'JetBrains Mono', monospace; font-size: clamp(9px, 0.85vw, 11px);
-    color: var(--ink-2); margin-bottom: 6px; white-space: nowrap;
+    color: rgba(245,241,232,0.6); margin-bottom: 6px; white-space: nowrap;
   }
   .gmv-bar {
     width: 100%; min-height: 3px; border-radius: 4px 4px 0 0;
-    background: var(--accent);
+    background: var(--gold);
   }
-  .gmv-bar.loss { background: rgba(139, 90, 43, 0.32); }
+  .gmv-bar.loss { background: rgba(224,167,94,0.3); }
   .gmv-years {
     display: flex; gap: clamp(3px, 0.7vw, 11px);
-    margin-top: 9px; border-top: 1px solid var(--line); padding-top: 9px;
+    margin-top: 9px; border-top: 1px solid rgba(245,241,232,0.18); padding-top: 9px;
   }
   .gmv-yr {
     flex: 1; min-width: 0; text-align: center;
     font-family: 'JetBrains Mono', monospace; font-size: clamp(8px, 0.75vw, 10px);
-    color: var(--ink-3); white-space: nowrap;
+    color: rgba(245,241,232,0.42); white-space: nowrap;
   }
-  .gmv-yr.mark { color: var(--accent); font-weight: 500; }
+  .gmv-yr.mark { color: var(--gold); font-weight: 500; }
   .gmv-legend {
     display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px;
-    font-size: 13px; color: var(--ink-2);
+    font-size: 13px; color: rgba(245,241,232,0.55);
   }
   .gmv-key { display: inline-flex; align-items: center; gap: 7px; }
   .gmv-dot { width: 11px; height: 11px; border-radius: 3px; flex: none; }
@@ -107,44 +214,31 @@
     gap: 12px; align-items: end; margin-top: 26px;
   }
   .stair {
-    border: 1px solid var(--line); border-radius: 16px;
-    padding: 20px; background: var(--bg);
+    border: 1px solid rgba(245,241,232,0.13); border-radius: 16px;
+    padding: 20px; background: rgba(245,241,232,0.03);
     display: flex; flex-direction: column; justify-content: flex-end; gap: 10px;
   }
   .stair:nth-child(1) { min-height: 148px; }
   .stair:nth-child(2) { min-height: 182px; }
   .stair:nth-child(3) { min-height: 216px; }
   .stair:nth-child(4) { min-height: 250px; }
-  .stair.now { border-color: var(--accent); background: var(--bg-soft); }
+  .stair.now { border-color: var(--gold); background: rgba(224,167,94,0.1); }
   .stair-badge {
     align-self: flex-start; font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--accent-on, #fff); background: var(--accent);
-    padding: 4px 9px; border-radius: 999px;
+    color: #17130f; background: var(--gold);
+    padding: 4px 9px; border-radius: 999px; font-weight: 500;
   }
   .stair-val {
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: clamp(18px, 1.9vw, 23px); color: var(--accent); letter-spacing: -0.02em;
+    font-size: clamp(18px, 1.9vw, 23px); color: var(--gold); letter-spacing: -0.02em;
   }
-  .stair-milestone { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+  .stair-milestone { font-size: 14px; line-height: 1.45; color: rgba(245,241,232,0.58); }
   @media (max-width: 900px) {
     .stairs { grid-template-columns: repeat(2, 1fr); }
     .stair:nth-child(n) { min-height: 0; }
   }
   @media (max-width: 560px) { .stairs { grid-template-columns: 1fr; } }
-
-  /* --- Take-rate comparison --- */
-  .rates { display: grid; gap: 14px; margin-top: 22px; max-width: 560px; }
-  .rate-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
-  .rate-name { font-size: 14px; color: var(--ink-2); }
-  .rate-name b { color: var(--ink); font-weight: 600; }
-  .rate-val {
-    font-family: 'JetBrains Mono', monospace; font-size: 15px;
-    font-weight: 700; color: var(--accent);
-  }
-  .rate-track { grid-column: 1 / -1; height: 9px; border-radius: 5px; background: var(--line); overflow: hidden; margin-top: -6px; }
-  .rate-fill { height: 100%; border-radius: 5px; background: var(--accent); }
-  .rate-fill.muted { background: rgba(139, 90, 43, 0.32); }
 
   /* Page-scoped only: keep a consistent header-to-body gap regardless of heading length. */
   #grid-market .built-cell {
@@ -466,24 +560,24 @@
 </section>
 
 <!-- =========== INVESTOR CASE =========== -->
-<section id="investors" style="padding-top:0;">
+<section id="investors">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="eyebrow">For investors</div>
+        <div class="eyebrow">The investment case</div>
         <div class="spacer-sm"></div>
-        <h2 class="section-title">A regulated, high-ticket workflow<br/><em>with real comparables.</em></h2>
+        <h2 class="section-title">A regulated, high-ticket workflow<br/><em>with public comparables.</em></h2>
       </div>
       <p class="section-sub">
-        The consumer-use-case addressable market is US$24B-US$27B<sup><a href="https://www.rbi.org.in/scripts/BS_ViewBulletin.aspx?Id=23035" target="_blank" rel="noopener noreferrer">[1]</a></sup><sup><a href="https://www.business-standard.com/amp/industry/news/overseas-travel-spending-by-indians-falls-to-1-09-billion-126052400289_1.html" target="_blank" rel="noopener noreferrer">[2]</a></sup>, a Money2Abroad estimate built from RBI's category mix, not an official RBI TAM. Comparable cross-border take rates: Wise reported a 0.63% personal cross-border take rate in FY2025<sup><a href="https://www.sec.gov/Archives/edgar/data/2099039/000119312526151439/d19735d20fr12b.htm" target="_blank" rel="noopener noreferrer">[7]</a></sup>.
+        Six questions an investment committee will ask, answered with RBI data, SEC filings and a model that is deliberately conservative against every listed comparable in the category.
       </p>
     </div>
 
     <!-- ---- 1. Market funnel ---- -->
     <div class="viz" id="viz-market">
-      <div class="viz-label">01 &middot; Market</div>
+      <div class="viz-label">01 &middot; "How big is it, really?"</div>
       <div class="viz-title">We are not claiming the whole market.</div>
-      <p class="viz-note">From India's total regulated outward-remittance pool down to what Money2Abroad realistically processes by year three, roughly half of one percent of the consumer segment.</p>
+      <p class="viz-note">From India's total regulated outward-remittance pool down to what Money2Abroad realistically processes by year three, roughly half of one percent of the consumer segment. Every layer below is a deliberate exclusion, not an oversight.</p>
 
       <div class="funnel">
         <div>
@@ -517,9 +611,54 @@
       </div>
     </div>
 
-    <!-- ---- 2. GMV ramp ---- -->
+    <hr class="viz-hr"/>
+
+    <!-- ---- 2. Take-rate benchmark ---- -->
+    <div class="viz" id="viz-benchmark">
+      <div class="viz-label">02 &middot; "Is your revenue assumption real?"</div>
+      <div class="viz-title">We model below every public comparable but one.</div>
+      <p class="viz-note">Take rate is the single assumption the entire model rests on. Rather than assert ours, here it is against what listed cross-border players actually earn, calculated from their own filings.</p>
+
+      <div class="bench">
+        <div class="bench-row">
+          <span class="bench-name">Wise &middot; cross-border at scale, Q1 FY2027<sup><a href="https://owners.wise.com/financials/financial-results" target="_blank" rel="noopener noreferrer">[10]</a></sup></span>
+          <span class="bench-val">0.50%</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill" style="width:15.3%;"></div></div>
+
+        <div class="bench-row us">
+          <span class="bench-name">Money2Abroad &middot; base-case net revenue yield</span>
+          <span class="bench-val">0.75%</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill us" style="width:23%;"></div></div>
+
+        <div class="bench-row">
+          <span class="bench-name">Flywire &middot; FY2024, $492M on $29.7B<sup><a href="https://www.flywire.com/company/esg" target="_blank" rel="noopener noreferrer">[11]</a></sup></span>
+          <span class="bench-val">1.66%</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill" style="width:50.9%;"></div></div>
+
+        <div class="bench-row">
+          <span class="bench-name">Remitly &middot; FY2025, $1.6B on $74.9B<sup><a href="https://ir.remitly.com/news-releases/news-release-details/remitly-reports-fourth-quarter-and-full-year-2025-results-above" target="_blank" rel="noopener noreferrer">[12]</a></sup></span>
+          <span class="bench-val">2.14%</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill" style="width:65.6%;"></div></div>
+
+        <div class="bench-row">
+          <span class="bench-name">Western Union &middot; FY2025 consumer transfer, $3.5B on $107.4B<sup><a href="https://www.sec.gov/Archives/edgar/data/1365135/000119312526061340/wu-20251231.htm" target="_blank" rel="noopener noreferrer">[13]</a></sup></span>
+          <span class="bench-val">3.26%</span>
+        </div>
+        <div class="bench-track"><div class="bench-fill" style="width:100%;"></div></div>
+      </div>
+
+      <p class="viz-note" style="margin-top:22px;"><b>Flywire is the closest analogue on this list</b>, a verticalised education-payments workflow business, and it earns 1.66%. Money2Abroad models 0.75%, less than half. The only comparable pricing below us is Wise, a pure self-serve product operating at roughly twenty times our FY2035-36 projected volume. Take rates other than Wise's stated 0.50% are implied, reported revenue divided by reported volume.</p>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 3. GMV ramp ---- -->
     <div class="viz" id="viz-trajectory">
-      <div class="viz-label">02 &middot; Trajectory</div>
+      <div class="viz-label">03 &middot; "Where does it go?"</div>
       <div class="viz-title">Processed volume, and where it turns profitable.</div>
       <p class="viz-note">Base-case GMV ramp. The model crosses into positive EBITDA in FY2029-30, year four, and holds a 38% mature margin from FY2034-35.</p>
 
@@ -553,9 +692,122 @@
       </div>
     </div>
 
-    <!-- ---- 3. Berkus staircase ---- -->
+    <hr class="viz-hr"/>
+
+    <!-- ---- 4. Moat ---- -->
+    <div class="viz" id="viz-moat">
+      <div class="viz-label">04 &middot; "Why won't the bank just build this?"</div>
+      <div class="viz-title">Because the hard part isn't the software.</div>
+      <p class="viz-note">Banks own the licence, the FX and the balance sheet. What they have not built, in twenty years of trying, is a paperless purpose-code and document workflow with distribution attached to it. Four things compound in our favour.</p>
+
+      <div class="moat">
+        <div class="moat-card">
+          <h4>Bank integration depth</h4>
+          <p>Each live AD-I integration is months of workflow, compliance and security review. Once embedded in a bank's operations, replacement cost is high and switching is disruptive.</p>
+        </div>
+        <div class="moat-card">
+          <h4>India-specific rule engine</h4>
+          <p>Purpose codes, Form A2, relationship proof, per-country document rules. This is narrow, unglamorous domain logic that global platforms have no incentive to build for one market.</p>
+        </div>
+        <div class="moat-card">
+          <h4>Partner distribution</h4>
+          <p>Counsellors, FFMCs, CAs, travel and medical facilitators already sit between the customer and the transfer. Those relationships are held one at a time and are not purchasable at scale.</p>
+        </div>
+        <div class="moat-card">
+          <h4>Compliance data flywheel</h4>
+          <p>Every processed case improves document classification, completeness scoring and rejection prediction. Accuracy compounds with volume, and the bank sees it as falling rework.</p>
+        </div>
+      </div>
+
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th scope="col">Capability</th>
+              <th scope="col">Banks</th>
+              <th scope="col">Global apps</th>
+              <th scope="col">Forex players</th>
+              <th scope="col" class="col-us">Money2Abroad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">RBI / FEMA execution</th>
+              <td>Strong</td><td>Partner-dependent</td><td>Partner-dependent</td>
+              <td class="col-us">Bank partner-led</td>
+            </tr>
+            <tr>
+              <th scope="row">India LRS purpose workflow</th>
+              <td>Strong but manual</td><td>Limited</td><td>Mixed</td>
+              <td class="col-us">Strong and automated</td>
+            </tr>
+            <tr>
+              <th scope="row">AI document intelligence</th>
+              <td>Limited</td><td>Emerging</td><td>Limited</td>
+              <td class="col-us">Core differentiator</td>
+            </tr>
+            <tr>
+              <th scope="row">Education / family repeat flows</th>
+              <td>Mixed</td><td>Mixed</td><td>Limited</td>
+              <td class="col-us">Core wedge</td>
+            </tr>
+            <tr>
+              <th scope="row">Bank compliance dashboard</th>
+              <td>Internal only</td><td>Limited</td><td>Limited</td>
+              <td class="col-us">Core bank product</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 5. Path ---- -->
+    <div class="viz" id="viz-path">
+      <div class="viz-label">05 &middot; "What are we funding?"</div>
+      <div class="viz-title">The next 36 months, not the next decade.</div>
+      <p class="viz-note">Capital is deployed against near-term, checkable milestones. Each stage is a decision point, not a promise.</p>
+
+      <div class="path">
+        <div class="path-step">
+          <div class="path-node"><span class="path-dot"></span><span class="path-line"></span></div>
+          <div class="path-when">0-3 MONTHS</div>
+          <div class="path-goal">Bank conversations</div>
+          <div class="path-kpi">Signed LOI or pilot MOU with an AD-I bank</div>
+        </div>
+        <div class="path-step">
+          <div class="path-node"><span class="path-dot"></span><span class="path-line"></span></div>
+          <div class="path-when">3-6 MONTHS</div>
+          <div class="path-goal">MVP pilot</div>
+          <div class="path-kpi">500+ applications processed end to end</div>
+        </div>
+        <div class="path-step">
+          <div class="path-node"><span class="path-dot"></span><span class="path-line"></span></div>
+          <div class="path-when">6-12 MONTHS</div>
+          <div class="path-goal">Commercial pilot</div>
+          <div class="path-kpi">$10M-$25M annualised volume</div>
+        </div>
+        <div class="path-step">
+          <div class="path-node"><span class="path-dot"></span><span class="path-line"></span></div>
+          <div class="path-when">12-24 MONTHS</div>
+          <div class="path-goal">Scale</div>
+          <div class="path-kpi">$60M-$125M annualised volume</div>
+        </div>
+        <div class="path-step">
+          <div class="path-node"><span class="path-dot"></span></div>
+          <div class="path-when">24-36 MONTHS</div>
+          <div class="path-goal">Multi-partner platform</div>
+          <div class="path-kpi">$250M+ annualised volume</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="viz-hr"/>
+
+    <!-- ---- 6. Berkus staircase ---- -->
     <div class="viz" id="viz-valuation">
-      <div class="viz-label">03 &middot; Valuation</div>
+      <div class="viz-label">06 &middot; "What is it worth?"</div>
       <div class="viz-title">What each milestone unlocks.</div>
       <p class="viz-note">Berkus-method pre-money ranges by stage, the standard approach for early-stage companies without revenue history. A signed AD-I bank pilot is the single largest step up in value.</p>
 
@@ -579,29 +831,52 @@
         </div>
       </div>
 
-      <div class="rates">
-        <div class="viz-label" style="margin-top:32px;margin-bottom:2px;">Net revenue yield vs a public comparable</div>
-        <div class="rate-row">
-          <span class="rate-name"><b>Money2Abroad</b>, base case</span>
-          <span class="rate-val">0.75%</span>
-        </div>
-        <div class="rate-track"><div class="rate-fill" style="width:100%;"></div></div>
-        <div class="rate-row">
-          <span class="rate-name">Wise, personal cross-border FY2025<sup><a href="https://www.sec.gov/Archives/edgar/data/2099039/000119312526151439/d19735d20fr12b.htm" target="_blank" rel="noopener noreferrer">[7]</a></sup></span>
-          <span class="rate-val">0.63%</span>
-        </div>
-        <div class="rate-track"><div class="rate-fill muted" style="width:84%;"></div></div>
-        <div class="rate-row">
-          <span class="rate-name">Wise, cross-border take rate at scale, Q1 FY2027<sup><a href="https://owners.wise.com/financials/financial-results" target="_blank" rel="noopener noreferrer">[10]</a></sup></span>
-          <span class="rate-val">0.50%</span>
-        </div>
-        <div class="rate-track"><div class="rate-fill muted" style="width:67%;"></div></div>
-      </div>
-      <p class="viz-note" style="margin-top:16px;">Money2Abroad prices above Wise's mature take rate during the assisted, documentation-heavy early phase, and assumes compression toward parity as volume scales. The base-case 10-year DCF implies a <b>~$7M enterprise value</b> at a 22% discount rate and 38% mature EBITDA margin.</p>
+      <p class="viz-note" style="margin-top:22px;">A signed AD-I bank pilot is the single largest step up on this ladder. Independently, the base-case ten-year DCF implies a <b>~$7M enterprise value</b> at a 22% discount rate and 38% mature EBITDA margin, converging on the same range from a different direction.</p>
     </div>
 
-    <p class="section-sub" style="margin-top:32px;">
-      Every Money2Abroad figure above is a scenario projection for discussion purposes, not audited financials, a fairness opinion, or investment advice. Market figures trace to the sources listed below. Full model assumptions are available on request.
+    <hr class="viz-hr"/>
+
+    <!-- ---- Close: risk + use of funds ---- -->
+    <div class="viz" id="viz-close">
+      <div class="close-grid">
+        <div>
+          <div class="viz-label">What could go wrong</div>
+          <div class="viz-title">The three risks we are underwriting.</div>
+          <p class="viz-note" style="margin-bottom:14px;">Named plainly, because a committee will find them anyway.</p>
+
+          <div class="risk-item">
+            <div class="risk-q">Bank integration cycles are slow.</div>
+            <div class="risk-a">Mitigated by design: we start with a semi-integrated workflow and an operations dashboard that needs no core-banking change, and move to deep API integration only once volume justifies it.</div>
+          </div>
+          <div class="risk-item">
+            <div class="risk-q">Regulatory boundary ambiguity.</div>
+            <div class="risk-a">FX execution, LRS eligibility and final approval stay with the AD-I bank in every scenario. We are a preparation and workflow layer, with counsel review and explicit customer disclosure that the bank executes the remittance.</div>
+          </div>
+          <div class="risk-item" style="border-bottom:0;">
+            <div class="risk-q">Price competition compresses yield.</div>
+            <div class="risk-a">We do not compete on headline FX rate. The wedge is completion, turnaround and documentation quality in categories where a failed or delayed transfer carries real consequence, tuition deadlines, visa filings, hospital deposits.</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="viz-label">Use of capital</div>
+          <div class="viz-title">What the raise builds.</div>
+          <p class="viz-note" style="margin-bottom:14px;">Deployed against the 36-month milestone path above.</p>
+          <ul class="funds">
+            <li>Bank-ready digital onboarding and Form A2 capture</li>
+            <li>AI document intelligence and OCR extraction</li>
+            <li>Compliance workflow and risk-scoring engine</li>
+            <li>Bank integration layer and reviewer dashboard</li>
+            <li>Consumer and operations portals</li>
+            <li>Partner acquisition across education, immigration, travel and medical channels</li>
+          </ul>
+          <p class="viz-note" style="margin-top:20px;">Round size, instrument and use-of-funds split are discussed directly with interested parties. <a href="mailto:bhrugesh@money2abroad.com?subject=Money2Abroad%20investment%20enquiry" style="color:var(--gold);">bhrugesh@money2abroad.com</a></p>
+        </div>
+      </div>
+    </div>
+
+    <p class="viz-note" style="margin-top:52px;padding-top:24px;border-top:1px solid rgba(245,241,232,0.12);">
+      Every Money2Abroad figure above is a scenario projection for discussion purposes, not audited financials, a fairness opinion, or investment advice. Market and comparable-company figures trace to the sources listed below. Full model assumptions are available on request.
     </p>
   </div>
 </section>
@@ -805,6 +1080,9 @@
       <li id="src8">Visa, Direct Remittances Report 2025. <a href="https://globalclient.visa.com/visa-direct-remittances-report-2025" target="_blank" rel="noopener noreferrer">globalclient.visa.com</a></li>
       <li id="src9">Money2Abroad estimate based on RBI LRS category mix and comparable bank/FX yield disclosures. Not an official RBI or bank-published figure.</li>
       <li id="src10">Wise plc, reported financial results (cross-border take rate at scale). <a href="https://owners.wise.com/financials/financial-results" target="_blank" rel="noopener noreferrer">owners.wise.com</a></li>
+      <li id="src11">Flywire, reported FY2024 payment volume and revenue. <a href="https://www.flywire.com/company/esg" target="_blank" rel="noopener noreferrer">flywire.com</a></li>
+      <li id="src12">Remitly, FY2025 full-year results (send volume and revenue). <a href="https://ir.remitly.com/news-releases/news-release-details/remitly-reports-fourth-quarter-and-full-year-2025-results-above" target="_blank" rel="noopener noreferrer">ir.remitly.com</a></li>
+      <li id="src13">Western Union, 2025 Form 10-K (consumer money transfer principal and revenue). <a href="https://www.sec.gov/Archives/edgar/data/1365135/000119312526061340/wu-20251231.htm" target="_blank" rel="noopener noreferrer">sec.gov</a></li>
     </ol>
   </div>
 </section>
